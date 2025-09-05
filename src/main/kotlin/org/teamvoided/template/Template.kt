@@ -8,7 +8,7 @@ import org.teamvoided.template.config.TemplateConfig
 
 @Suppress("unused")
 object Template {
-    const val MODID = "template"
+    const val MODID = "all_the_heads"
 
     @JvmField
     val log: Logger = LoggerFactory.getLogger(Template::class.simpleName)
