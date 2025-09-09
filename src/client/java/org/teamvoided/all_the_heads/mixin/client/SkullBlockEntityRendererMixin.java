@@ -31,8 +31,7 @@ public abstract class SkullBlockEntityRendererMixin {
     @SuppressWarnings("UnstableApiUsage")
     @WrapWithCondition(method = "render(Lnet/minecraft/block/entity/SkullBlockEntity;FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/block/entity/SkullBlockEntityRenderer;renderSkull(Lnet/minecraft/util/math/Direction;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/block/entity/model/AbstractSkullBlockEntityModel;Lnet/minecraft/client/render/RenderLayer;)V"))
     boolean customSkullRendering(Direction direction, float yaw, float animationProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractSkullBlockEntityModel model, RenderLayer renderLayer,
-                                 @Local(argsOnly = true) SkullBlockEntity skullBlockEntity, @Local SkullBlock.SkullType skullType
-    ) {
+                                 @Local(argsOnly = true) SkullBlockEntity skullBlockEntity, @Local SkullBlock.SkullType skullType) {
         if (skullType == SkullBlock.Type.PLAYER) {
             RenderKt.models = models;
             return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, skullBlockEntity.getAttached(HEAD_DATA), skullBlockEntity);
