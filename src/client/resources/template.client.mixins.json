@@ -4,11 +4,14 @@
   "package": "org.teamvoided.template.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "BuiltinModelItemRendererMixin",
-    "HeadFeatureRendererMixin",
-    "SkullBlockEntityRendererMixin"
+    "client.BuiltinModelItemRendererMixin",
+    "client.HeadFeatureRendererMixin",
+    "client.SkullBlockEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+    "client.AbstractSkullBlockMixin"
+  ]
 }
