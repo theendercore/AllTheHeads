@@ -1,20 +1,21 @@
 package org.teamvoided.all_the_heads.mixin;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.SkullBlockEntity;
-import net.minecraft.component.DataComponentMap;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.NbtComponent;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.SkullBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static org.teamvoided.all_the_heads.AllTheHeads.*;
+import static org.teamvoided.all_the_heads.AllTheHeads.HEAD_DATA;
+import static org.teamvoided.all_the_heads.AllTheHeads.HEAD_ID;
 import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadData;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -24,18 +25,18 @@ public abstract class SkullBlockEntityMixin extends BlockEntity {
         super(type, pos, state);
     }
 
-    @Inject(method = "readComponents", at = @At("TAIL"))
-    void readCustomComponents(BlockEntity.ComponentAccess access, CallbackInfo ci) {
-        this.setAttached(HEAD_DATA, getHeadData(access.get(DataComponentTypes.CUSTOM_DATA)));
+    @Inject(method = "applyImplicitComponents", at = @At("TAIL"))
+    void readCustomComponents(BlockEntity.DataComponentInput access, CallbackInfo ci) {
+        this.setAttached(HEAD_DATA, getHeadData(access.get(DataComponents.CUSTOM_DATA)));
     }
 
-    @Inject(method = "addComponents", at = @At("TAIL"))
+    @Inject(method = "collectImplicitComponents", at = @At("TAIL"))
     void addCustomComponents(DataComponentMap.Builder builder, CallbackInfo ci) {
         var headData = this.getAttached(HEAD_DATA);
         if (headData != null) {
-            var nbt = builder.getOrDefault(DataComponentTypes.CUSTOM_DATA, NbtComponent.of(new NbtCompound())).getNbt();
+            var nbt = builder.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.of(new CompoundTag())).getUnsafe();
             nbt.putString(HEAD_ID.toString(), headData.toString());
-            builder.put(DataComponentTypes.CUSTOM_DATA, NbtComponent.of(nbt));
+            builder.set(DataComponents.CUSTOM_DATA, CustomData.of(nbt));
         }
     }
 }

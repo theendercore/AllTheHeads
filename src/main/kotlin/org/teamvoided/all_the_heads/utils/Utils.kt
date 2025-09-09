@@ -1,21 +1,21 @@
 package org.teamvoided.all_the_heads.utils
 
-import net.minecraft.component.DataComponentTypes
-import net.minecraft.component.type.NbtComponent
-import net.minecraft.item.ItemStack
-import net.minecraft.util.Identifier
+import net.minecraft.core.component.DataComponents
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.component.CustomData
 import org.teamvoided.all_the_heads.AllTheHeads.HEAD_ID
 
-fun getHeadData(stack: ItemStack): Identifier? {
-    val nbt = stack.get(DataComponentTypes.CUSTOM_DATA) ?: return null
+
+fun getHeadData(stack: ItemStack): ResourceLocation? {
+    val nbt = stack.get(DataComponents.CUSTOM_DATA) ?: return null
     return getHeadData(nbt)
 }
 
-fun getHeadData(comp: NbtComponent?): Identifier? {
+fun getHeadData(comp: CustomData?): ResourceLocation? {
     if (comp == null || comp.isEmpty) return null
-    val nbt = comp.nbt
-    if (!nbt.contains(HEAD_ID.toString())) return null
-    val id = nbt.getString(HEAD_ID.toString()) ?: return null
+    if (!comp.contains(HEAD_ID.toString())) return null
+    val id = comp.copyTag().getString(HEAD_ID.toString()) ?: return null
 
-    return Identifier.tryParse(id)
+    return ResourceLocation.tryParse(id)
 }

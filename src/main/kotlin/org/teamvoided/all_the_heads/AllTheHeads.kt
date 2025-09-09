@@ -6,17 +6,18 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType
 import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents
-import net.minecraft.block.Blocks
-import net.minecraft.block.entity.SkullBlockEntity
-import net.minecraft.component.DataComponentTypes
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.loot.function.CopyComponentsLootFunction
-import net.minecraft.text.Text
-import net.minecraft.util.ActionResult
-import net.minecraft.util.Hand
-import net.minecraft.util.Identifier
-import net.minecraft.util.hit.BlockHitResult
-import net.minecraft.world.World
+import net.minecraft.core.component.DataComponents
+import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.InteractionHand
+import net.minecraft.world.InteractionResult
+import net.minecraft.world.entity.player.Player
+import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.entity.SkullBlockEntity
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction
+import net.minecraft.world.phys.BlockHitResult
+
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.teamvoided.all_the_heads.config.AllTheHeadsConfig
@@ -35,29 +36,27 @@ object AllTheHeads {
         log.info("Hello from Common")
 
         UseBlockCallback.EVENT.register { player, world, hand, hitResult ->
-            if (debugUse(player, world, hand, hitResult)) ActionResult.SUCCESS
-            else ActionResult.PASS
+            if (debugUse(player, world, hand, hitResult)) InteractionResult.SUCCESS
+            else InteractionResult.PASS
         }
 
         LootTableEvents.MODIFY.register { key, tableBuilder, source, registries ->
-            if (key.equals(Blocks.PLAYER_HEAD.lootTableId)) {
-                tableBuilder.modifyPools {
-                    it.apply(
-                        CopyComponentsLootFunction.method_57637(CopyComponentsLootFunction.C_zcqyfuyv.BLOCK_ENTITY)
-                            .method_58730(DataComponentTypes.CUSTOM_DATA)
-                    )
-                }
+            if (key.equals(Blocks.PLAYER_HEAD.lootTable)) tableBuilder.modifyPools {
+                it.apply(
+                    CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                        .include(DataComponents.CUSTOM_DATA)
+                )
             }
         }
     }
 
     private fun debugUse(
-        player: PlayerEntity,
-        world: World,
-        hand: Hand,
+        player: Player,
+        world: Level,
+        hand: InteractionHand,
         hitResult: BlockHitResult?,
     ): Boolean {
-        val stack = player.mainHandStack
+        val stack = player.mainHandItem
         if (!stack.isEmpty) return false
         if (hitResult == null) return false
         val pos = hitResult.blockPos
@@ -68,12 +67,12 @@ object AllTheHeads {
         val be = world.getBlockEntity(pos)
         if (be !is SkullBlockEntity) return false
 
-        if (!world.isClient) {
-            val data = be.getAttached(HEAD_DATA)
-            player.sendSystemMessage(Text.literal(data.toString()))
+        if (world.isClientSide) {
+            val ticks = be.getAnimation(1f)
+            player.sendSystemMessage(Component.literal("Ticks: $ticks"))
         } else {
-            val ticks = be.getAnimationTicks(1f)
-            player.sendSystemMessage(Text.literal("Ticks: $ticks"))
+            val data = be.getAttached(HEAD_DATA)
+            player.sendSystemMessage(Component.literal(data.toString()))
         }
 
         return true
@@ -82,14 +81,13 @@ object AllTheHeads {
     @JvmField
     val HEAD_ID = id("head")
 
-    @Suppress("UnstableApiUsage")
     @JvmField
-    val HEAD_DATA: AttachmentType<Identifier> = AttachmentRegistry.create(HEAD_ID) { builder ->
+    @Suppress("UnstableApiUsage")
+    val HEAD_DATA: AttachmentType<ResourceLocation> = AttachmentRegistry.create(HEAD_ID) { builder ->
         builder
-            .persistent(Identifier.CODEC)
-            .syncWith(Identifier.PACKET_CODEC, AttachmentSyncPredicate.all())
-
+            .persistent(ResourceLocation.CODEC)
+            .syncWith(ResourceLocation.STREAM_CODEC, AttachmentSyncPredicate.all())
     }
 
-    fun id(path: String): Identifier = Identifier.of(MODID, path)
+    fun id(path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(MODID, path)
 }

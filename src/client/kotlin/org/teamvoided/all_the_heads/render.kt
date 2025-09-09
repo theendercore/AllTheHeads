@@ -1,89 +1,88 @@
 package org.teamvoided.all_the_heads
 
-import net.minecraft.block.SkullBlock
-import net.minecraft.block.entity.SkullBlockEntity
-import net.minecraft.client.MinecraftClient
-import net.minecraft.client.font.TextRenderer
-import net.minecraft.client.render.OverlayTexture
-import net.minecraft.client.render.RenderLayer
-import net.minecraft.client.render.VertexConsumerProvider
-import net.minecraft.client.render.block.entity.model.AbstractSkullBlockEntityModel
-import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.text.Text
-import net.minecraft.util.Identifier
-import net.minecraft.util.math.Direction
+import com.mojang.blaze3d.vertex.PoseStack
+import net.minecraft.client.Minecraft
+import net.minecraft.client.gui.Font
+import net.minecraft.client.model.SkullModelBase
+import net.minecraft.client.renderer.MultiBufferSource
+import net.minecraft.client.renderer.RenderType
+import net.minecraft.client.renderer.texture.OverlayTexture
+import net.minecraft.core.Direction
+import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.level.block.SkullBlock
+import net.minecraft.world.level.block.entity.SkullBlockEntity
 
 @JvmField
-var models: MutableMap<SkullBlock.SkullType, AbstractSkullBlockEntityModel> = mutableMapOf()
+var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
 
 @Suppress("DEPRECATION")
 fun renderSkull(
     direction: Direction?,
     yaw: Float,
     animationProgress: Float,
-    matrices: MatrixStack,
-    vertexConsumers: VertexConsumerProvider,
+    matrices: PoseStack,
+    vertexConsumers: MultiBufferSource,
     light: Int,
-    id: Identifier?,
+    id: ResourceLocation?,
     be: SkullBlockEntity?,
 ): Boolean {
     if (id == null) return true
     if (be != null) renderDebugText(matrices, vertexConsumers, be, id)
     val data = fetchSkullData(id) ?: return true
 
-    matrices.push()
+    matrices.pushPose()
     if (direction == null) matrices.translate(0.5f, 0.0f, 0.5f)
     else {
         val f = 0.25f
-        matrices.translate(0.5f - direction.offsetX * f, f, 0.5f - direction.offsetZ * f)
+        matrices.translate(0.5f - direction.stepX * f, f, 0.5f - direction.stepZ * f)
     }
 
     matrices.scale(-1.0f, -1.0f, 1.0f)
-    val customModel = models[SkullBlock.Type.DRAGON]
-    customModel?.setHeadAngles(animationProgress, yaw, 0.0f)
-
+    val customModel = models[SkullBlock.Types.DRAGON]
+    customModel?.setupAnim(animationProgress, yaw, 0.0f)
     val renderLayer =
-        RenderLayer.getEntityCutoutNoCullZOffset(Identifier.ofDefault("textures/entity/enderdragon/dragon.png"))
-    customModel?.method_60879(
+        RenderType.entityCutoutNoCullZOffset(ResourceLocation.tryParse("textures/entity/enderdragon/dragon.png")!!)
+    customModel?.renderToBuffer(
         matrices,
         vertexConsumers.getBuffer(renderLayer),
         light,
-        OverlayTexture.DEFAULT_UV
+        OverlayTexture.NO_OVERLAY
     )
-    matrices.pop()
+    matrices.popPose()
     return false
 }
 
 fun renderDebugText(
-    matrices: MatrixStack,
-    vertexConsumers: VertexConsumerProvider,
+    matrices: PoseStack,
+    vertexConsumers: MultiBufferSource,
     be: SkullBlockEntity,
-    id: Identifier?,
+    id: ResourceLocation?,
 ) {
-    val font = MinecraftClient.getInstance().textRenderer
+    val font = Minecraft.getInstance().font
     val textList = mutableListOf(
         "Skull",
         id.toString(),
     )
 
-    matrices.push()
+    matrices.pushPose()
     matrices.translate(.5f, 1.3f, .5f)
-    matrices.rotate(MinecraftClient.getInstance().entityRenderDispatcher.rotation)
+    matrices.mulPose(Minecraft.getInstance().entityRenderDispatcher.cameraOrientation())
     matrices.scale(0.025f, -0.025f, 0.025f)
 
 
     val color = 0xff_ff_ff_ff.toInt()
     for ((idx, rawText) in textList.reversed().withIndex()) {
-        val text = Text.literal(rawText)
+        val text = Component.literal(rawText)
 //            .append(Text.literal("${rawText.second}").formatted(Formatting.GREEN))
-        font.draw(
-            text, font.getWidth(text) / -2f, idx * -(1f + font.fontHeight), color,
-            true, matrices.peek().model, vertexConsumers,
-            TextRenderer.TextLayerType.NORMAL, 0, 15728880
+        font.drawInBatch(
+            text, font.width(text) / -2f, idx * -(1f + font.lineHeight), color,
+            true, matrices.last().pose(), vertexConsumers,
+            Font.DisplayMode.NORMAL, 0, 15728880
         )
     }
-    matrices.pop()
+    matrices.popPose()
 
 }
 
-fun fetchSkullData(id: Identifier): Identifier? = id
+fun fetchSkullData(id: ResourceLocation): ResourceLocation? = id
