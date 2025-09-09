@@ -1,11 +1,10 @@
-package org.teamvoided.template.utils
+package org.teamvoided.all_the_heads.utils
 
 import net.minecraft.component.DataComponentTypes
 import net.minecraft.component.type.NbtComponent
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
-import org.teamvoided.template.Template
-import org.teamvoided.template.Template.HEAD_ID
+import org.teamvoided.all_the_heads.AllTheHeads.HEAD_ID
 
 fun getHeadData(stack: ItemStack): Identifier? {
     val nbt = stack.get(DataComponentTypes.CUSTOM_DATA) ?: return null

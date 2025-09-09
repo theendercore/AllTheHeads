@@ -1,8 +1,8 @@
-projectTitle = "Team Voided Template"
-modId = "template"
+projectTitle = "All The Heads"
+modId = "all_the_heads"
 modVersion = "1.0.0"
 group = "org.teamvoided"
-githubRepo = "Teamvoided/TeamVoidedTemplateMod"
+githubRepo = "Teamvoided/AllTheHeads"
 discordServerInviteId = "KZ5Q364hEg"
 authors = [ "TheEnderCore" ]
 majorMinecraftVersion = ">=1.21"
@@ -12,7 +12,7 @@ fabricApiVersion = "0.116.0+1.21.1"
 fabricLangKotlinVersion = "1.13.2+kotlin.2.1.20"
 license = "MIT"
 modules = [ ]
-modDescription = "Template Mod Description"
+modDescription = "Makes your heads less boring"
 # Modmenu badges, values can be: [ library, deprecated ]
 badges = [ ]
 disableKotlin = false

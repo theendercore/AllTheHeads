@@ -1,4 +1,4 @@
-package org.teamvoided.template
+package org.teamvoided.all_the_heads
 
 import net.minecraft.block.SkullBlock
 import net.minecraft.block.entity.SkullBlockEntity
@@ -32,9 +32,8 @@ fun renderSkull(
     val data = fetchSkullData(id) ?: return true
 
     matrices.push()
-    if (direction == null) {
-        matrices.translate(0.5f, 0.0f, 0.5f)
-    } else {
+    if (direction == null) matrices.translate(0.5f, 0.0f, 0.5f)
+    else {
         val f = 0.25f
         matrices.translate(0.5f - direction.offsetX * f, f, 0.5f - direction.offsetZ * f)
     }

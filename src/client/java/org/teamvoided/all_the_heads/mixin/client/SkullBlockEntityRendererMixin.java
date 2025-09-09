@@ -1,9 +1,8 @@
-package org.teamvoided.template.mixin.client;
+package org.teamvoided.all_the_heads.mixin.client;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.block.SkullBlock;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SkullBlockEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -15,12 +14,12 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.teamvoided.template.RenderKt;
+import org.teamvoided.all_the_heads.RenderKt;
 
 import java.util.Map;
 
-import static org.teamvoided.template.RenderKt.renderSkull;
-import static org.teamvoided.template.Template.HEAD_DATA;
+import static org.teamvoided.all_the_heads.AllTheHeads.HEAD_DATA;
+import static org.teamvoided.all_the_heads.RenderKt.renderSkull;
 
 @Mixin(SkullBlockEntityRenderer.class)
 public abstract class SkullBlockEntityRendererMixin {

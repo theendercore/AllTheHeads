@@ -1,4 +1,4 @@
-package org.teamvoided.template.mixin.client;
+package org.teamvoided.all_the_heads.mixin.client;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -15,8 +15,8 @@ import net.minecraft.util.math.Direction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static org.teamvoided.template.utils.UtilsKt.getHeadData;
-import static org.teamvoided.template.RenderKt.renderSkull;
+import static org.teamvoided.all_the_heads.RenderKt.renderSkull;
+import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadData;
 
 @Mixin(BuiltinModelItemRenderer.class)
 public class BuiltinModelItemRendererMixin {

@@ -1,4 +1,4 @@
-package org.teamvoided.template.mixin.client;
+package org.teamvoided.all_the_heads.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;

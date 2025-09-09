@@ -1,4 +1,4 @@
-package org.teamvoided.template
+package org.teamvoided.all_the_heads
 
 import me.fzzyhmstrs.fzzy_config.api.ConfigApi
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry
@@ -19,17 +19,17 @@ import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.world.World
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.teamvoided.template.config.TemplateConfig
+import org.teamvoided.all_the_heads.config.AllTheHeadsConfig
 
 @Suppress("unused")
-object Template {
+object AllTheHeads {
     const val MODID = "all_the_heads"
 
     @JvmField
-    val log: Logger = LoggerFactory.getLogger(Template::class.simpleName)
+    val log: Logger = LoggerFactory.getLogger(AllTheHeads::class.simpleName)
 
     @JvmField
-    var config = ConfigApi.registerAndLoadConfig(::TemplateConfig)
+    var config = ConfigApi.registerAndLoadConfig(::AllTheHeadsConfig)
 
     fun init() {
         log.info("Hello from Common")

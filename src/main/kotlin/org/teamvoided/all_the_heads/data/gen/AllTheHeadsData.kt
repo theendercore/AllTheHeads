@@ -1,12 +1,12 @@
-package org.teamvoided.template.data.gen
+package org.teamvoided.all_the_heads.data.gen
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.minecraft.registry.RegistrySetBuilder
-import org.teamvoided.template.Template.log
+import org.teamvoided.all_the_heads.AllTheHeads.log
 
 @Suppress("unused")
-object TemplateData : DataGeneratorEntrypoint {
+object AllTheHeadsData : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(gen: FabricDataGenerator) {
         log.info("Hello from DataGen")
         val pack = gen.createPack()

@@ -1,4 +1,4 @@
-package org.teamvoided.template.mixin;
+package org.teamvoided.all_the_heads.mixin;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static org.teamvoided.template.Template.*;
-import static org.teamvoided.template.utils.UtilsKt.getHeadData;
+import static org.teamvoided.all_the_heads.AllTheHeads.*;
+import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadData;
 
 @SuppressWarnings("UnstableApiUsage")
 @Mixin(SkullBlockEntity.class)
