@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
+import net.minecraft.world.item.component.ResolvableProfile
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.SkullBlockEntity
 import net.minecraft.world.phys.BlockHitResult
@@ -17,6 +18,8 @@ fun initDebug() {
         else InteractionResult.PASS
     }
 }
+
+var CLIENT_SUPPLIER = { profile: ResolvableProfile? -> }
 
 @Suppress("UnstableApiUsage")
 fun debugUse(
@@ -42,6 +45,7 @@ fun debugUse(
     } else {
         val data = be.getAttached(AllTheHeads.HEAD_ATTACHMENT)
         player.sendSystemMessage(Component.literal(data.toString()))
+        CLIENT_SUPPLIER(be.ownerProfile)
     }
 
     return true
