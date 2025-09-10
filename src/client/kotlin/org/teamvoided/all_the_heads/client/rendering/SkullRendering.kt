@@ -8,8 +8,10 @@ import net.minecraft.core.Direction
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
+import org.teamvoided.all_the_heads.client.AllTheHeadsClient.sendError
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
+import org.teamvoided.all_the_heads.client.data.SkullRenderData
 
 @Suppress("DEPRECATION")
 fun renderSkull(
@@ -21,19 +23,8 @@ fun renderSkull(
     light: Int,
     ctx: SkullRenderContext,
 ): Boolean {
-    if (ctx.skullId == null) return true
     debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, ctx)
-    val data = fetchSkullData(ctx.skullId) ?: return true
-
-    val customModel =
-        if (clientConfig.headRenderMode.get() == HeadRenderMode.NAME_BASED) models[SkullBlock.Types.PIGLIN]
-        else models[SkullBlock.Types.DRAGON]
-    val renderLayer = RenderType.entityCutoutNoCullZOffset(
-        tryParseId(
-            if (clientConfig.headRenderMode.get() == HeadRenderMode.NAME_BASED) "textures/entity/piglin/piglin.png"
-            else "textures/entity/enderdragon/dragon.png"
-        )!!
-    )
+    val data = fetchSkullRenderInfo(ctx) ?: return true
 
     matrices.pushPose()
     if (direction == null) matrices.translate(0.5f, 0.0f, 0.5f)
@@ -43,13 +34,46 @@ fun renderSkull(
     }
 
     matrices.scale(-1.0f, -1.0f, 1.0f)
-    customModel?.setupAnim(animationProgress, yaw, 0.0f)
-    customModel?.renderToBuffer(
+    val customModel = data.model
+    customModel.setupAnim(animationProgress, yaw, 0.0f)
+    customModel.renderToBuffer(
         matrices,
-        vertexConsumers.getBuffer(renderLayer),
+        vertexConsumers.getBuffer(data.renderType),
         light,
         OverlayTexture.NO_OVERLAY
     )
     matrices.popPose()
     return false
 }
+
+fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
+    when (clientConfig.headRenderMode.get()) {
+        HeadRenderMode.PROFILE -> {
+            val profile = ctx.skullOwner?.gameProfile
+            if (profile == null) return null
+            val model = models[SkullBlock.Types.PIGLIN]
+            if (model == null) {
+                sendError("Could not find model for ${SkullBlock.Types.PIGLIN}")
+
+                return null
+            }
+
+            return SkullRenderData(model, rType("textures/entity/piglin/piglin.png"))
+        }
+
+        HeadRenderMode.CUSTOM_DATA -> {
+            val id = ctx.skullId
+            if (id == null) return null
+            val model = models[SkullBlock.Types.DRAGON]
+            if (model == null) {
+                sendError("Could not find model for ${SkullBlock.Types.DRAGON}")
+
+                return null
+            }
+            return SkullRenderData(model, rType("textures/entity/enderdragon/dragon.png"))
+        }
+    }
+}
+
+
+fun rType(texture: String): RenderType = RenderType.entityCutoutNoCullZOffset(tryParseId(texture)!!)

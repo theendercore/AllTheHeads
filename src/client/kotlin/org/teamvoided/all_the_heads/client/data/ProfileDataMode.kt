@@ -1,3 +1,3 @@
 package org.teamvoided.all_the_heads.client.data
 
-enum class HeadRenderMode { PROFILE, CUSTOM_DATA }
+enum class ProfileDataMode { NAME, ID, TEXTURE }
