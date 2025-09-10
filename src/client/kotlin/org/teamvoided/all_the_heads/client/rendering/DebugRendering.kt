@@ -1,6 +1,8 @@
 package org.teamvoided.all_the_heads.client.rendering
 
 import com.mojang.authlib.GameProfile
+import com.mojang.authlib.properties.Property
+import com.mojang.authlib.properties.PropertyMap
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Font
@@ -12,6 +14,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.component.ResolvableProfile
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
+import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.RenderLocation
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 
@@ -33,8 +36,10 @@ fun debugRenderer(
     val font = Minecraft.getInstance().font
     val textList = buildList {
         add("Skull")
-        add(ctx.skullId?.toString() ?: "[No Id]")
-        add(ctx.skullOwner?.readableString() ?: "[No Owner]")
+        if (clientConfig.headRenderMode.get() == HeadRenderMode.PROFILE)
+            add(ctx.skullOwner?.readableString() ?: "[No Owner]")
+        else
+            add(ctx.skullId?.toString() ?: "[No Id]")
 
         if (Screen.hasShiftDown()) {
             add(ctx.renderLocation.toString())
@@ -69,9 +74,31 @@ fun ResolvableProfile.readableString(): String = buildString {
     append("[")
     if (name.isPresent) append("Name: ${name.get()}, ")
     if (Screen.hasAltDown() && id.isPresent) append("Id: ${id.get()}, ")
+    if (Screen.hasAltDown()) {
+        append("Properties: ${properties.readableString()}")
+    } else {
+        append("Texture: ${properties.get("textures").first().value.substring(0, 12)}..., ")
+    }
     append("GameProfile: ${gameProfile.readableString()}")
     append("]")
 }
+
+fun PropertyMap.readableString(): String = buildString {
+    append("[")
+    this@readableString.forEach { key, value ->
+        append("$key: ${value.readableString()}")
+    }
+    append("]")
+}
+
+fun Property.readableString(): String = buildString {
+    append("[")
+    append("Name: $name")
+    append("Value: ${value.substring(0, 3)}...")
+    signature?.let { append("signature: ${signature?.substring(0, 3)}...") }
+    append("]")
+}
+
 
 fun GameProfile.readableString(): String = buildString {
     append("[")
