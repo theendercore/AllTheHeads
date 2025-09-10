@@ -9,10 +9,9 @@ import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
-import net.minecraft.world.level.block.entity.SkullBlockEntity
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
-import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 import org.teamvoided.all_the_heads.client.data.RenderLocation
+import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 
 @JvmField
 var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
@@ -25,22 +24,23 @@ fun debugRenderer(
     matrices: PoseStack,
     vertexConsumers: MultiBufferSource,
     light: Int,
-    id: ResourceLocation?,
-    be: SkullBlockEntity?,
-    renderData: SkullRenderContext,
+    ctx: SkullRenderContext,
 ) {
     if (!clientConfig.enableDebugRendering) return
 
     val font = Minecraft.getInstance().font
     val textList = mutableListOf(
         "Skull",
-        id.toString(),
+        ctx.skullId?.toString() ?: "[No Id]",
+        ctx.skullOwner?.toString() ?: "[No Owner]",
+        ctx.renderLocation.toString(),
     )
+    ctx.itemCtx?.let { textList.add(it.toString()) }
 
     matrices.pushPose()
-    val yOffset = if (renderData.location == RenderLocation.ON_HEAD) 0.8f else 1.3f
+    val yOffset = if (ctx.renderLocation == RenderLocation.ON_HEAD) 0.8f else 1.3f
     matrices.translate(.5f, yOffset, .5f)
-    if (renderData.location == RenderLocation.IN_WORLD) {
+    if (ctx.renderLocation == RenderLocation.IN_WORLD) {
         matrices.mulPose(Minecraft.getInstance().entityRenderDispatcher.cameraOrientation())
     }
     matrices.scale(0.025f, -0.025f, 0.025f)

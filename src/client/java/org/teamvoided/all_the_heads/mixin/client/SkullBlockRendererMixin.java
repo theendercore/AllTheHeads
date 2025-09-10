@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.teamvoided.all_the_heads.client.data.SkullRenderContext;
 import org.teamvoided.all_the_heads.client.data.RenderLocation;
+import org.teamvoided.all_the_heads.client.data.SkullRenderContext;
 import org.teamvoided.all_the_heads.client.rendering.DebugRenderingKt;
 
 import java.util.Map;
@@ -27,7 +27,9 @@ import static org.teamvoided.all_the_heads.client.rendering.SkullRenderingKt.ren
 public abstract class SkullBlockRendererMixin {
 
 
-    @Shadow @Final private Map<SkullBlock.Type, SkullModelBase> modelByType;
+    @Shadow
+    @Final
+    private Map<SkullBlock.Type, SkullModelBase> modelByType;
 
     @SuppressWarnings("UnstableApiUsage")
     @WrapWithCondition(method = "render(Lnet/minecraft/world/level/block/entity/SkullBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/blockentity/SkullBlockRenderer;renderSkull(Lnet/minecraft/core/Direction;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/client/model/SkullModelBase;Lnet/minecraft/client/renderer/RenderType;)V"))
@@ -35,7 +37,14 @@ public abstract class SkullBlockRendererMixin {
                                  @Local(argsOnly = true) SkullBlockEntity skullBlockEntity, @Local SkullBlock.Type skullType) {
         if (skullType == SkullBlock.Types.PLAYER) {
             DebugRenderingKt.models = modelByType;
-            return renderSkull(direction, yaw, animationProgress, matrices, bufferSource, light, skullBlockEntity.getAttached(HEAD_ATTACHMENT), skullBlockEntity, new SkullRenderContext(RenderLocation.IN_WORLD));
+            return renderSkull(
+                    direction, yaw, animationProgress, matrices, bufferSource, light,
+                    new SkullRenderContext(
+                            skullBlockEntity.getAttached(HEAD_ATTACHMENT), skullBlockEntity.getOwnerProfile(),
+                            RenderLocation.IN_WORLD, null,
+                            skullBlockEntity
+                    )
+            );
         }
 
         return true;

@@ -5,9 +5,7 @@ import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.core.Direction
-import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
-import net.minecraft.world.level.block.entity.SkullBlockEntity
 import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
@@ -21,13 +19,11 @@ fun renderSkull(
     matrices: PoseStack,
     vertexConsumers: MultiBufferSource,
     light: Int,
-    id: ResourceLocation?,
-    be: SkullBlockEntity?,
-    renderLoc: SkullRenderContext,
+    ctx: SkullRenderContext,
 ): Boolean {
-    if (id == null) return true
-    val data = fetchSkullData(id) ?: return true
-    debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, id, be, renderLoc)
+    if (ctx.skullId == null) return true
+    val data = fetchSkullData(ctx.skullId) ?: return true
+    debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, ctx)
 
     val customModel =
         if (clientConfig.headRenderMode.get() == HeadRenderMode.NAME_BASED) models[SkullBlock.Types.PIGLIN]

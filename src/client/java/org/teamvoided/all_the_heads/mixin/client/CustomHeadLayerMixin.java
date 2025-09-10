@@ -2,21 +2,20 @@ package org.teamvoided.all_the_heads.mixin.client;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
-import net.minecraft.world.item.ItemDisplayContext;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.SkullBlock;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ResolvableProfile;
-import org.teamvoided.all_the_heads.client.data.SkullRenderContext;
+import net.minecraft.world.level.block.SkullBlock;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
 import org.teamvoided.all_the_heads.client.data.RenderLocation;
+import org.teamvoided.all_the_heads.client.data.SkullRenderContext;
 
 import static org.teamvoided.all_the_heads.client.rendering.SkullRenderingKt.renderSkull;
 import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadId;
@@ -28,7 +27,14 @@ public class CustomHeadLayerMixin {
     boolean customSkullRendering(Direction direction, float yaw, float animationProgress, PoseStack matrices, MultiBufferSource vertexConsumers, int light, SkullModelBase model, RenderType renderType,
                                  @Local ItemStack stack, @Local SkullBlock.Type skullType, @Local ResolvableProfile profileComponent) {
         if (skullType == SkullBlock.Types.PLAYER) {
-            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadId(stack), null, new SkullRenderContext(RenderLocation.ON_HEAD, ItemDisplayContext.HEAD));
+            return renderSkull(
+                    direction, yaw, animationProgress, matrices, vertexConsumers, light,
+                    new SkullRenderContext(
+                            getHeadId(stack), profileComponent,
+                            RenderLocation.ON_HEAD, ItemDisplayContext.HEAD,
+                            null
+                    )
+            );
         }
         return true;
     }
