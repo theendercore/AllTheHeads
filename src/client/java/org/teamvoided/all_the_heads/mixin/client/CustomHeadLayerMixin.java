@@ -3,6 +3,7 @@ package org.teamvoided.all_the_heads.mixin.client;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
+import net.minecraft.world.item.ItemDisplayContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -14,6 +15,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ResolvableProfile;
+import org.teamvoided.all_the_heads.client.data.AdditionRenderData;
 import org.teamvoided.all_the_heads.client.data.RenderLocation;
 
 import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
@@ -26,7 +28,7 @@ public class CustomHeadLayerMixin {
     boolean customSkullRendering(Direction direction, float yaw, float animationProgress, PoseStack matrices, MultiBufferSource vertexConsumers, int light, SkullModelBase model, RenderType renderType,
                                  @Local ItemStack stack, @Local SkullBlock.Type skullType, @Local ResolvableProfile profileComponent) {
         if (skullType == SkullBlock.Types.PLAYER) {
-            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadData(stack), null, RenderLocation.ON_HEAD);
+            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadData(stack), null, new AdditionRenderData(RenderLocation.ON_HEAD, ItemDisplayContext.HEAD));
         }
         return true;
     }

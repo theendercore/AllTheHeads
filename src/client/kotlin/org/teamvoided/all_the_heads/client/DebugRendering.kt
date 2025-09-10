@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
 import net.minecraft.world.level.block.entity.SkullBlockEntity
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
+import org.teamvoided.all_the_heads.client.data.AdditionRenderData
 import org.teamvoided.all_the_heads.client.data.RenderLocation
 
 @JvmField
@@ -26,7 +27,7 @@ fun debugRenderer(
     light: Int,
     id: ResourceLocation?,
     be: SkullBlockEntity?,
-    renderLoc: RenderLocation,
+    renderData: AdditionRenderData,
 ) {
     if (!clientConfig.enableDebugRendering) return
 
@@ -37,9 +38,9 @@ fun debugRenderer(
     )
 
     matrices.pushPose()
-    val yOffset = if (renderLoc == RenderLocation.ON_HEAD) 0.8f else 1.3f
+    val yOffset = if (renderData.location == RenderLocation.ON_HEAD) 0.8f else 1.3f
     matrices.translate(.5f, yOffset, .5f)
-    if (renderLoc == RenderLocation.IN_WORLD) {
+    if (renderData.location == RenderLocation.IN_WORLD) {
         matrices.mulPose(Minecraft.getInstance().entityRenderDispatcher.cameraOrientation())
     }
     matrices.scale(0.025f, -0.025f, 0.025f)

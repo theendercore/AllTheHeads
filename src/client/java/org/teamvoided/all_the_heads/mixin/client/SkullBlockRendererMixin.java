@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.teamvoided.all_the_heads.client.DebugRenderingKt;
+import org.teamvoided.all_the_heads.client.data.AdditionRenderData;
 import org.teamvoided.all_the_heads.client.data.RenderLocation;
 
 import java.util.Map;
@@ -34,7 +35,7 @@ public abstract class SkullBlockRendererMixin {
                                  @Local(argsOnly = true) SkullBlockEntity skullBlockEntity, @Local SkullBlock.Type skullType) {
         if (skullType == SkullBlock.Types.PLAYER) {
             DebugRenderingKt.models = modelByType;
-            return renderSkull(direction, yaw, animationProgress, matrices, bufferSource, light, skullBlockEntity.getAttached(HEAD_ATTACHMENT), skullBlockEntity, RenderLocation.IN_WORLD);
+            return renderSkull(direction, yaw, animationProgress, matrices, bufferSource, light, skullBlockEntity.getAttached(HEAD_ATTACHMENT), skullBlockEntity, new AdditionRenderData(RenderLocation.IN_WORLD));
         }
 
         return true;

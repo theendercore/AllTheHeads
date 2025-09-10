@@ -8,13 +8,14 @@ import net.minecraft.core.Direction
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
 import net.minecraft.world.level.block.entity.SkullBlockEntity
+import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.config.HeadRenderMode
-import org.teamvoided.all_the_heads.client.data.RenderLocation
+import org.teamvoided.all_the_heads.client.data.AdditionRenderData
 
 @Suppress("DEPRECATION")
 fun renderSkull(
-    direction: Direction?,
+    direction: Direction,
     yaw: Float,
     animationProgress: Float,
     matrices: PoseStack,
@@ -22,7 +23,7 @@ fun renderSkull(
     light: Int,
     id: ResourceLocation?,
     be: SkullBlockEntity?,
-    renderLoc: RenderLocation,
+    renderLoc: AdditionRenderData,
 ): Boolean {
     if (id == null) return true
     val data = fetchSkullData(id) ?: return true
@@ -32,7 +33,7 @@ fun renderSkull(
         if (clientConfig.headRenderMode.get() == HeadRenderMode.NAME_BASED) models[SkullBlock.Types.PIGLIN]
         else models[SkullBlock.Types.DRAGON]
     val renderLayer = RenderType.entityCutoutNoCullZOffset(
-        ResourceLocation.tryParse(
+        tryParseId(
             if (clientConfig.headRenderMode.get() == HeadRenderMode.NAME_BASED) "textures/entity/piglin/piglin.png"
             else "textures/entity/enderdragon/dragon.png"
         )!!
