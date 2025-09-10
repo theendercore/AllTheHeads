@@ -5,13 +5,13 @@ import me.fzzyhmstrs.fzzy_config.config.Config
 import me.fzzyhmstrs.fzzy_config.config.ConfigGroup
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedNumber.WidgetType.TEXTBOX_WITH_BUTTONS
-import org.teamvoided.all_the_heads.AllTheHeads.MODID
 import org.teamvoided.all_the_heads.AllTheHeads.id
 
 @Suppress("unused")
-class AllTheHeadsConfig : Config(id(MODID)) {
+class AllTheHeadsConfig : Config(id("server")) {
     var groupName = ConfigGroup("group_id", false)
     var commonEntry = ValidatedInt(0, 10, -10, TEXTBOX_WITH_BUTTONS)
+
     @NonSync
     @ConfigGroup.Pop
     var clientEntry = true

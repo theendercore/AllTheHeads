@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ResolvableProfile;
 
-import static org.teamvoided.all_the_heads.RenderKt.renderSkull;
+import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
 import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadData;
 
 @Mixin(CustomHeadLayer.class)

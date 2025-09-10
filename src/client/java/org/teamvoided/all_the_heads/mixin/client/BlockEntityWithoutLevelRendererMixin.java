@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.SkullBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static org.teamvoided.all_the_heads.RenderKt.renderSkull;
+import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
 import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadData;
 
 @Mixin(BlockEntityWithoutLevelRenderer.class)

@@ -14,12 +14,12 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.teamvoided.all_the_heads.RenderKt;
+import org.teamvoided.all_the_heads.client.DebugKt;
 
 import java.util.Map;
 
 import static org.teamvoided.all_the_heads.AllTheHeads.HEAD_DATA;
-import static org.teamvoided.all_the_heads.RenderKt.renderSkull;
+import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
 
 @Mixin(SkullBlockRenderer.class)
 public abstract class SkullBlockRendererMixin {
@@ -32,7 +32,7 @@ public abstract class SkullBlockRendererMixin {
     boolean customSkullRendering(Direction direction, float yaw, float animationProgress, PoseStack matrices, MultiBufferSource bufferSource, int light, SkullModelBase model, RenderType renderType,
                                  @Local(argsOnly = true) SkullBlockEntity skullBlockEntity, @Local SkullBlock.Type skullType) {
         if (skullType == SkullBlock.Types.PLAYER) {
-            RenderKt.models = modelByType;
+            DebugKt.models = modelByType;
             return renderSkull(direction, yaw, animationProgress, matrices, bufferSource, light, skullBlockEntity.getAttached(HEAD_DATA), skullBlockEntity);
         }
 
