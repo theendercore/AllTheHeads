@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType
 import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
@@ -90,4 +91,7 @@ object AllTheHeads {
     }
 
     fun id(path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(MODID, path)
+
+
+    fun isDev() = FabricLoader.getInstance().isDevelopmentEnvironment
 }

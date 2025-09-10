@@ -21,8 +21,8 @@ fun renderSkull(
     be: SkullBlockEntity?,
 ): Boolean {
     if (id == null) return true
-    if (be != null) renderDebugText(matrices, vertexConsumers, be, id)
     val data = fetchSkullData(id) ?: return true
+    debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, id, be)
 
     matrices.pushPose()
     if (direction == null) matrices.translate(0.5f, 0.0f, 0.5f)

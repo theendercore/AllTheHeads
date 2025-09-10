@@ -5,20 +5,29 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Font
 import net.minecraft.client.model.SkullModelBase
 import net.minecraft.client.renderer.MultiBufferSource
+import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
 import net.minecraft.world.level.block.entity.SkullBlockEntity
+import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 
 @JvmField
 var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
 
-fun renderDebugText(
+@Suppress("unused")
+fun debugRenderer(
+    direction: Direction?,
+    yaw: Float,
+    animationProgress: Float,
     matrices: PoseStack,
     vertexConsumers: MultiBufferSource,
-    be: SkullBlockEntity,
+    light: Int,
     id: ResourceLocation?,
+    be: SkullBlockEntity?,
 ) {
+    if (!clientConfig.enableDebugRendering) return
+
     val font = Minecraft.getInstance().font
     val textList = mutableListOf(
         "Skull",
