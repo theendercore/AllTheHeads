@@ -14,7 +14,7 @@ object AllTheHeadsClient {
 
     val errors = mutableSetOf<String>()
 
-    fun addError(err: String) {
+    fun sendError(err: String) {
         if (errors.contains(err)) return
 
         log.error(err)
