@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.SkullBlock
 import net.minecraft.world.level.block.entity.SkullBlockEntity
 import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
-import org.teamvoided.all_the_heads.client.config.HeadRenderMode
+import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.AdditionRenderData
 
 @Suppress("DEPRECATION")

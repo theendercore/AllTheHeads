@@ -7,6 +7,7 @@ import me.fzzyhmstrs.fzzy_config.config.Config
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedEnum
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedEnum.WidgetType
 import org.teamvoided.all_the_heads.AllTheHeads.id
+import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.utils.isDev
 
 @Suppress("unused")
@@ -26,5 +27,3 @@ Data based one will only work if the mod is also installed one the server"""
     @Comment("Enabled debug info. Not recommended in everyday use")
     var enableDebugRendering = isDev()
 }
-
-enum class HeadRenderMode { NAME_BASED, DATA_BASED }
