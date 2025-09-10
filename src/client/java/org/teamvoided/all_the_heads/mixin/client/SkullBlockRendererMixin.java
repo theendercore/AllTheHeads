@@ -14,14 +14,14 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.teamvoided.all_the_heads.client.DebugRenderingKt;
 import org.teamvoided.all_the_heads.client.data.AdditionRenderData;
 import org.teamvoided.all_the_heads.client.data.RenderLocation;
+import org.teamvoided.all_the_heads.client.rendering.DebugRenderingKt;
 
 import java.util.Map;
 
 import static org.teamvoided.all_the_heads.AllTheHeads.HEAD_ATTACHMENT;
-import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
+import static org.teamvoided.all_the_heads.client.rendering.SkullRenderingKt.renderSkull;
 
 @Mixin(SkullBlockRenderer.class)
 public abstract class SkullBlockRendererMixin {

@@ -18,7 +18,7 @@ import net.minecraft.world.item.component.ResolvableProfile;
 import org.teamvoided.all_the_heads.client.data.AdditionRenderData;
 import org.teamvoided.all_the_heads.client.data.RenderLocation;
 
-import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
+import static org.teamvoided.all_the_heads.client.rendering.SkullRenderingKt.renderSkull;
 import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadId;
 
 @Mixin(CustomHeadLayer.class)

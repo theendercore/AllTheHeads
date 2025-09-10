@@ -1,4 +1,4 @@
-package org.teamvoided.all_the_heads.client
+package org.teamvoided.all_the_heads.client.rendering
 
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.Minecraft
