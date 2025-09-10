@@ -12,7 +12,7 @@ object AllTheHeadsClient {
     fun init() {
     }
 
-    val errors = mutableSetOf<String>();
+    val errors = mutableSetOf<String>()
 
     fun addError(err: String) {
         if (errors.contains(err)) return

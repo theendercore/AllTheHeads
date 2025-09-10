@@ -22,8 +22,8 @@ fun renderSkull(
     ctx: SkullRenderContext,
 ): Boolean {
     if (ctx.skullId == null) return true
-    val data = fetchSkullData(ctx.skullId) ?: return true
     debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, ctx)
+    val data = fetchSkullData(ctx.skullId) ?: return true
 
     val customModel =
         if (clientConfig.headRenderMode.get() == HeadRenderMode.NAME_BASED) models[SkullBlock.Types.PIGLIN]
