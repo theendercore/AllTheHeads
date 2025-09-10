@@ -81,6 +81,15 @@ loom {
     }
 }
 
+//sourceSets {
+//    create("datagen") {
+//
+//        java.srcDir("src/datagen/java")
+//        java.srcDir("src/datagen/kotlin")
+//        resources.srcDir("src/datagen/resources")
+//    }
+//}
+
 sourceSets["main"].resources.srcDir("src/main/generated")
 
 tasks {
