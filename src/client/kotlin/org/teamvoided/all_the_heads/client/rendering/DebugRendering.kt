@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
 import net.minecraft.world.level.block.entity.SkullBlockEntity
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
-import org.teamvoided.all_the_heads.client.data.AdditionRenderData
+import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 import org.teamvoided.all_the_heads.client.data.RenderLocation
 
 @JvmField
@@ -27,7 +27,7 @@ fun debugRenderer(
     light: Int,
     id: ResourceLocation?,
     be: SkullBlockEntity?,
-    renderData: AdditionRenderData,
+    renderData: SkullRenderContext,
 ) {
     if (!clientConfig.enableDebugRendering) return
 

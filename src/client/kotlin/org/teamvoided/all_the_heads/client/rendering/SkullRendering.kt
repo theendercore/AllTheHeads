@@ -11,11 +11,11 @@ import net.minecraft.world.level.block.entity.SkullBlockEntity
 import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
-import org.teamvoided.all_the_heads.client.data.AdditionRenderData
+import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 
 @Suppress("DEPRECATION")
 fun renderSkull(
-    direction: Direction,
+    direction: Direction?,
     yaw: Float,
     animationProgress: Float,
     matrices: PoseStack,
@@ -23,7 +23,7 @@ fun renderSkull(
     light: Int,
     id: ResourceLocation?,
     be: SkullBlockEntity?,
-    renderLoc: AdditionRenderData,
+    renderLoc: SkullRenderContext,
 ): Boolean {
     if (id == null) return true
     val data = fetchSkullData(id) ?: return true
