@@ -20,7 +20,7 @@ import org.teamvoided.all_the_heads.client.data.AdditionRenderData;
 import org.teamvoided.all_the_heads.client.data.RenderLocation;
 
 import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
-import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadData;
+import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadId;
 
 @Mixin(BlockEntityWithoutLevelRenderer.class)
 public class BlockEntityWithoutLevelRendererMixin {
@@ -30,7 +30,7 @@ public class BlockEntityWithoutLevelRendererMixin {
                                  @Local(argsOnly = true) ItemStack stack,@Local(argsOnly = true) ItemDisplayContext itemDisplayContext,
                                  @Local AbstractSkullBlock abstractSkullBlock, @Local ResolvableProfile profileComponent) {
         if (abstractSkullBlock.getType() == SkullBlock.Types.PLAYER) {
-            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadData(stack), null, new AdditionRenderData(RenderLocation.INVENTORY, itemDisplayContext));
+            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadId(stack), null, new AdditionRenderData(RenderLocation.INVENTORY, itemDisplayContext));
         }
 
         return true;

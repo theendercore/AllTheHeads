@@ -10,6 +10,5 @@ object AllTheHeadsClient{
     @JvmField
     var clientConfig = ConfigApi.registerAndLoadConfig(::AllTheHeadsClientConfig, RegisterType.CLIENT)
     fun init() {
-        log.info("Hello from Client")
     }
 }

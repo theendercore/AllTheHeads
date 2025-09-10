@@ -18,6 +18,7 @@ fun initDebug() {
     }
 }
 
+@Suppress("UnstableApiUsage")
 fun debugUse(
     player: Player,
     world: Level,

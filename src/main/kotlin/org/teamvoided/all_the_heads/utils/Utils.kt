@@ -9,12 +9,12 @@ import org.teamvoided.all_the_heads.AllTheHeads.HEAD_ID
 import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 
 
-fun getHeadData(stack: ItemStack): ResourceLocation? {
+fun getHeadId(stack: ItemStack): ResourceLocation? {
     val nbt = stack.get(DataComponents.CUSTOM_DATA) ?: return null
-    return getHeadData(nbt)
+    return getHeadId(nbt)
 }
 
-fun getHeadData(comp: CustomData?): ResourceLocation? {
+fun getHeadId(comp: CustomData?): ResourceLocation? {
     if (comp == null || comp.isEmpty) return null
     if (!comp.contains(HEAD_ID)) return null
     val id = comp.copyTag().getString(HEAD_ID) ?: return null

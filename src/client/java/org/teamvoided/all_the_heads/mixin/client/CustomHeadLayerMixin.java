@@ -19,7 +19,7 @@ import org.teamvoided.all_the_heads.client.data.AdditionRenderData;
 import org.teamvoided.all_the_heads.client.data.RenderLocation;
 
 import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
-import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadData;
+import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadId;
 
 @Mixin(CustomHeadLayer.class)
 public class CustomHeadLayerMixin {
@@ -28,7 +28,7 @@ public class CustomHeadLayerMixin {
     boolean customSkullRendering(Direction direction, float yaw, float animationProgress, PoseStack matrices, MultiBufferSource vertexConsumers, int light, SkullModelBase model, RenderType renderType,
                                  @Local ItemStack stack, @Local SkullBlock.Type skullType, @Local ResolvableProfile profileComponent) {
         if (skullType == SkullBlock.Types.PLAYER) {
-            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadData(stack), null, new AdditionRenderData(RenderLocation.ON_HEAD, ItemDisplayContext.HEAD));
+            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadId(stack), null, new AdditionRenderData(RenderLocation.ON_HEAD, ItemDisplayContext.HEAD));
         }
         return true;
     }
