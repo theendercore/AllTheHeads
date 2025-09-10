@@ -12,6 +12,7 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient.sendError
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
+import org.teamvoided.all_the_heads.client.init.ModelsManager
 
 @Suppress("DEPRECATION")
 fun renderSkull(
@@ -34,7 +35,7 @@ fun renderSkull(
     }
 
     matrices.scale(-1.0f, -1.0f, 1.0f)
-    val customModel = data.model
+    val customModel = data.model()
     customModel.setupAnim(animationProgress, yaw, 0.0f)
     customModel.renderToBuffer(
         matrices,
@@ -49,16 +50,16 @@ fun renderSkull(
 fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
     when (clientConfig.headRenderMode.get()) {
         HeadRenderMode.PROFILE -> {
-            val profile = ctx.skullOwner?.gameProfile
-            if (profile == null) return null
-            val model = models[SkullBlock.Types.PIGLIN]
-            if (model == null) {
-                sendError("Could not find model for ${SkullBlock.Types.PIGLIN}")
+            val texture = ctx.skullOwner?.getTexture()
+            if (texture == null) return null
+            val data = ModelsManager.models[texture]
+            if (data == null) {
+                sendError("Could not find model for texture $texture")
 
                 return null
             }
 
-            return SkullRenderData(model, rType("textures/entity/piglin/piglin.png"))
+            return data
         }
 
         HeadRenderMode.CUSTOM_DATA -> {
@@ -70,7 +71,7 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
 
                 return null
             }
-            return SkullRenderData(model, rType("textures/entity/enderdragon/dragon.png"))
+            return SkullRenderData({ model }, rType("textures/entity/enderdragon/dragon.png"))
         }
     }
 }

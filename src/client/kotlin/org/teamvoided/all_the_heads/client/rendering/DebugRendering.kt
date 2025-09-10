@@ -73,13 +73,11 @@ fun debugRenderer(
 fun ResolvableProfile.readableString(): String = buildString {
     append("[")
     if (name.isPresent) append("Name: ${name.get()}, ")
-    if (Screen.hasAltDown() && id.isPresent) append("Id: ${id.get()}, ")
     if (Screen.hasAltDown()) {
-        append("Properties: ${properties.readableString()}")
+        append("GameProfile: ${gameProfile.readableString()}")
     } else {
-        append("Texture: ${properties.get("textures").first().value.substring(0, 12)}..., ")
+        append("Texture: ${properties.get("textures").first().value.substring(0, 8)}...")
     }
-    append("GameProfile: ${gameProfile.readableString()}")
     append("]")
 }
 
@@ -103,6 +101,5 @@ fun Property.readableString(): String = buildString {
 fun GameProfile.readableString(): String = buildString {
     append("[")
     append("Name: $name")
-    if (Screen.hasAltDown()) append(", Id: $id")
     append("]")
 }

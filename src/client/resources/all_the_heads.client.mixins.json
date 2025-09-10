@@ -6,7 +6,8 @@
   "client": [
     "client.BlockEntityWithoutLevelRendererMixin",
     "client.CustomHeadLayerMixin",
-    "client.SkullBlockRendererMixin"
+    "client.SkullBlockRendererMixin",
+    "client.ModelLoader"
   ],
   "injectors": {
     "defaultRequire": 1
