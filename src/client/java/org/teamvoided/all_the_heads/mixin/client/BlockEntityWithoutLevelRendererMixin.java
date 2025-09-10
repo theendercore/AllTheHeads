@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.AbstractSkullBlock;
 import net.minecraft.world.level.block.SkullBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.teamvoided.all_the_heads.client.data.RenderLocation;
 
 import static org.teamvoided.all_the_heads.client.SkullRenderingKt.renderSkull;
 import static org.teamvoided.all_the_heads.utils.UtilsKt.getHeadData;
@@ -26,7 +27,7 @@ public class BlockEntityWithoutLevelRendererMixin {
     boolean customSkullRendering(Direction direction, float yaw, float animationProgress, PoseStack matrices, MultiBufferSource vertexConsumers, int light, SkullModelBase model, RenderType renderType,
                                  @Local(argsOnly = true) ItemStack stack, @Local AbstractSkullBlock abstractSkullBlock, @Local ResolvableProfile profileComponent) {
         if (abstractSkullBlock.getType() == SkullBlock.Types.PLAYER) {
-            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadData(stack), null);
+            return renderSkull(direction, yaw, animationProgress, matrices, vertexConsumers, light, getHeadData(stack), null, RenderLocation.INVENTORY);
         }
 
         return true;

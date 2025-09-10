@@ -7,7 +7,7 @@ import me.fzzyhmstrs.fzzy_config.config.Config
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedEnum
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedEnum.WidgetType
 import org.teamvoided.all_the_heads.AllTheHeads.id
-import org.teamvoided.all_the_heads.AllTheHeads.isDev
+import org.teamvoided.all_the_heads.utils.isDev
 
 @Suppress("unused")
 class AllTheHeadsClientConfig : Config(id("client")) {

@@ -8,6 +8,9 @@ import net.minecraft.core.Direction
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
 import net.minecraft.world.level.block.entity.SkullBlockEntity
+import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
+import org.teamvoided.all_the_heads.client.config.HeadRenderMode
+import org.teamvoided.all_the_heads.client.data.RenderLocation
 
 @Suppress("DEPRECATION")
 fun renderSkull(
@@ -19,10 +22,21 @@ fun renderSkull(
     light: Int,
     id: ResourceLocation?,
     be: SkullBlockEntity?,
+    renderLoc: RenderLocation,
 ): Boolean {
     if (id == null) return true
     val data = fetchSkullData(id) ?: return true
-    debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, id, be)
+    debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, id, be, renderLoc)
+
+    val customModel =
+        if (clientConfig.headRenderMode.get() == HeadRenderMode.NAME_BASED) models[SkullBlock.Types.PIGLIN]
+        else models[SkullBlock.Types.DRAGON]
+    val renderLayer = RenderType.entityCutoutNoCullZOffset(
+        ResourceLocation.tryParse(
+            if (clientConfig.headRenderMode.get() == HeadRenderMode.NAME_BASED) "textures/entity/piglin/piglin.png"
+            else "textures/entity/enderdragon/dragon.png"
+        )!!
+    )
 
     matrices.pushPose()
     if (direction == null) matrices.translate(0.5f, 0.0f, 0.5f)
@@ -32,10 +46,7 @@ fun renderSkull(
     }
 
     matrices.scale(-1.0f, -1.0f, 1.0f)
-    val customModel = models[SkullBlock.Types.DRAGON]
     customModel?.setupAnim(animationProgress, yaw, 0.0f)
-    val renderLayer =
-        RenderType.entityCutoutNoCullZOffset(ResourceLocation.tryParse("textures/entity/enderdragon/dragon.png")!!)
     customModel?.renderToBuffer(
         matrices,
         vertexConsumers.getBuffer(renderLayer),

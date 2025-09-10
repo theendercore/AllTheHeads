@@ -1,5 +1,6 @@
 package org.teamvoided.all_the_heads.utils
 
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.core.component.DataComponents
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
@@ -19,3 +20,5 @@ fun getHeadData(comp: CustomData?): ResourceLocation? {
 
     return ResourceLocation.tryParse(id)
 }
+
+fun isDev() = FabricLoader.getInstance().isDevelopmentEnvironment
