@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.component.CustomData
 import org.teamvoided.all_the_heads.AllTheHeads.HEAD_ID
+import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 
 
 fun getHeadData(stack: ItemStack): ResourceLocation? {
@@ -15,10 +16,16 @@ fun getHeadData(stack: ItemStack): ResourceLocation? {
 
 fun getHeadData(comp: CustomData?): ResourceLocation? {
     if (comp == null || comp.isEmpty) return null
-    if (!comp.contains(HEAD_ID.toString())) return null
-    val id = comp.copyTag().getString(HEAD_ID.toString()) ?: return null
+    if (!comp.contains(HEAD_ID)) return null
+    val id = comp.copyTag().getString(HEAD_ID) ?: return null
 
-    return ResourceLocation.tryParse(id)
+    return tryParseId(id)
 }
+
+// (ender) In case the sync causes problem only send to players with mod
+/*fun canSync(): AttachmentSyncPredicate =AttachmentSyncPredicate { target: AttachmentTarget?, player: ServerPlayer? ->
+    ServerPlayNetworking.canSend()
+    false
+}*/
 
 fun isDev() = FabricLoader.getInstance().isDevelopmentEnvironment

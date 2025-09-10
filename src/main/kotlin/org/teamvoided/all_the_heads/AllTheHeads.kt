@@ -17,6 +17,7 @@ import org.teamvoided.all_the_heads.utils.initDebug
 @Suppress("unused")
 object AllTheHeads {
     const val MODID = "all_the_heads"
+    const val HEAD_ID = "$MODID:head"
 
     @JvmField
     val log: Logger = LoggerFactory.getLogger(AllTheHeads::class.simpleName)
@@ -37,16 +38,14 @@ object AllTheHeads {
     }
 
     @JvmField
-    val HEAD_ID = id("head")
-
-    @JvmField
     @Suppress("UnstableApiUsage")
-    val HEAD_ATTACHMENT: AttachmentType<ResourceLocation> = AttachmentRegistry.create(HEAD_ID) { builder ->
+    val HEAD_ATTACHMENT: AttachmentType<ResourceLocation> = AttachmentRegistry.create(tryParseId(HEAD_ID)) { builder ->
         builder
             .persistent(ResourceLocation.CODEC)
             .syncWith(ResourceLocation.STREAM_CODEC, AttachmentSyncPredicate.all())
     }
 
     fun id(path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(MODID, path)
-
+    fun id(namespace: String, path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(namespace, path)
+    fun tryParseId(id: String) = ResourceLocation.tryParse(id)
 }

@@ -34,9 +34,14 @@ public abstract class SkullBlockEntityMixin extends BlockEntity {
     void addCustomComponents(DataComponentMap.Builder builder, CallbackInfo ci) {
         var headData = this.getAttached(HEAD_ATTACHMENT);
         if (headData != null) {
-            var nbt = builder.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.of(new CompoundTag())).getUnsafe();
-            nbt.putString(HEAD_ID.toString(), headData.toString());
+            var nbt = builder.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.of(new CompoundTag())).copyTag();
+            nbt.putString(HEAD_ID, headData.toString());
             builder.set(DataComponents.CUSTOM_DATA, CustomData.of(nbt));
         }
+    }
+
+    @Inject(method = "removeComponentsFromTag", at = @At("TAIL"))
+    void removeCustomComponents(CompoundTag compoundTag, CallbackInfo ci) {
+        compoundTag.remove(HEAD_ID);
     }
 }

@@ -9,10 +9,5 @@ import org.teamvoided.all_the_heads.AllTheHeads.id
 
 @Suppress("unused")
 class AllTheHeadsConfig : Config(id("server")) {
-    var groupName = ConfigGroup("group_id", false)
-    var commonEntry = ValidatedInt(0, 10, -10, TEXTBOX_WITH_BUTTONS)
-
-    @NonSync
-    @ConfigGroup.Pop
-    var clientEntry = true
+    var test = false
 }
