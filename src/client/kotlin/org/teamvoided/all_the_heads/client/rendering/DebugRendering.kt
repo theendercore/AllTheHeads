@@ -9,7 +9,6 @@ import net.minecraft.client.model.SkullModelBase
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.component.ResolvableProfile
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
@@ -32,13 +31,17 @@ fun debugRenderer(
     if (!clientConfig.enableDebugRendering) return
 
     val font = Minecraft.getInstance().font
-    val textList = mutableListOf(
-        "Skull",
-        ctx.skullId?.toString() ?: "[No Id]",
-        ctx.skullOwner?.readableString() ?: "[No Owner]",
-        ctx.renderLocation.toString(),
-    )
-    ctx.itemCtx?.let { textList.add("ItemCtx: [ $it ]") }
+    val textList = buildList {
+        add("Skull")
+        add(ctx.skullId?.toString() ?: "[No Id]")
+        add(ctx.skullOwner?.readableString() ?: "[No Owner]")
+
+        if (Screen.hasShiftDown()) {
+            add(ctx.renderLocation.toString())
+            ctx.itemCtx?.let { add("ItemCtx: [ $it ]") }
+        }
+    }
+
 
     matrices.pushPose()
     val yOffset = if (ctx.renderLocation == RenderLocation.ON_HEAD) 0.8f else 1.3f
@@ -76,6 +79,3 @@ fun GameProfile.readableString(): String = buildString {
     if (Screen.hasAltDown()) append(", Id: $id")
     append("]")
 }
-
-
-fun fetchSkullData(id: ResourceLocation): ResourceLocation? = id
