@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.teamvoided.all_the_heads.config.AllTheHeadsConfig
 import org.teamvoided.all_the_heads.utils.initDebug
 
 @Suppress("unused")
@@ -22,8 +21,8 @@ object AllTheHeads {
     @JvmField
     val log: Logger = LoggerFactory.getLogger(AllTheHeads::class.simpleName)
 
-    @JvmField
-    var config = ConfigApi.registerAndLoadConfig(::AllTheHeadsConfig)
+//    @JvmField
+//    var config = ConfigApi.registerAndLoadConfig(::AllTheHeadsConfig)
 
     fun init() {
         initDebug()
