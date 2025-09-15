@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
 import com.mojang.authlib.properties.PropertyMap
 import com.mojang.blaze3d.vertex.PoseStack
+import me.fzzyhmstrs.fzzy_config.nullCast
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Font
 import net.minecraft.client.gui.screens.Screen
@@ -17,6 +18,8 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.RenderLocation
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
+import org.teamvoided.all_the_heads.client.data.SkullRenderData
+import org.teamvoided.all_the_heads.client.model.ATHModel
 
 @JvmField
 var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
@@ -30,6 +33,7 @@ fun debugRenderer(
     vertexConsumers: MultiBufferSource,
     light: Int,
     ctx: SkullRenderContext,
+    data: SkullRenderData?,
 ) {
     if (!clientConfig.enableDebugRendering) return
 
@@ -44,6 +48,9 @@ fun debugRenderer(
         if (Screen.hasShiftDown()) {
             add(ctx.renderLocation.toString())
             ctx.itemCtx?.let { add("ItemCtx: [ $it ]") }
+        }
+        if (data != null) {
+            add("Model: ${data.model().nullCast<ATHModel>()?.getId()}")
         }
     }
 

@@ -24,8 +24,9 @@ fun renderSkull(
     light: Int,
     ctx: SkullRenderContext,
 ): Boolean {
-    debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, ctx)
-    val data = fetchSkullRenderInfo(ctx) ?: return true
+    val data = fetchSkullRenderInfo(ctx)
+    debugRenderer(direction, yaw, animationProgress, matrices, vertexConsumers, light, ctx, data)
+    if (data == null) return true
 
     matrices.pushPose()
     if (direction == null) matrices.translate(0.5f, 0.0f, 0.5f)

@@ -30,6 +30,7 @@ fun debugUse(
     hand: InteractionHand,
     hitResult: BlockHitResult?,
 ): Boolean {
+    if (!player.isShiftKeyDown) return false
     val stack = player.mainHandItem
     if (!stack.isEmpty) return false
     if (hitResult == null) return false
@@ -37,8 +38,6 @@ fun debugUse(
 
     val be = world.getBlockEntity(pos)
     if (be !is SkullBlockEntity) return false
-
-    return false
 
     if (player is ServerPlayer) {
         val text = getCopyText(be)
