@@ -6,13 +6,12 @@
   "client": [
     "client.BlockEntityWithoutLevelRendererMixin",
     "client.CustomHeadLayerMixin",
+    "client.ModelLoader",
     "client.SkullBlockRendererMixin",
-    "client.ModelLoader"
+    "client.AbstractSkullBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
-  "mixins": [
-    "client.AbstractSkullBlockMixin"
-  ]
+  "mixins": []
 }

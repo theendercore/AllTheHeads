@@ -33,6 +33,8 @@ object AllTheHeads {
                 )
             }
         }
+
+        ATHNet.init()
     }
 
     @JvmField

@@ -2,12 +2,12 @@ package org.teamvoided.all_the_heads.client
 
 import me.fzzyhmstrs.fzzy_config.api.ConfigApi
 import me.fzzyhmstrs.fzzy_config.api.RegisterType
-import net.minecraft.client.Minecraft
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
 import net.minecraft.network.chat.Component
 import org.teamvoided.all_the_heads.AllTheHeads.log
+import org.teamvoided.all_the_heads.CopyToClipboardPayload
 import org.teamvoided.all_the_heads.client.config.AllTheHeadsClientConfig
 import org.teamvoided.all_the_heads.client.init.ATHModels
-import org.teamvoided.all_the_heads.utils.CLIENT_SUPPLIER
 
 @Suppress("unused")
 object AllTheHeadsClient {
@@ -15,13 +15,13 @@ object AllTheHeadsClient {
     var clientConfig = ConfigApi.registerAndLoadConfig(::AllTheHeadsClientConfig, RegisterType.CLIENT)
     fun init() {
         ATHModels.init()
-        CLIENT_SUPPLIER = { profile ->
-            if (profile != null) {
-                val mc = Minecraft.getInstance()
-                mc.keyboardHandler.clipboard = profile.properties.get("textures").first().value
-                mc.player?.displayClientMessage(Component.literal("Copied Head Texture!"), true)
-            }
-        }
+        ClientPlayNetworking.registerGlobalReceiver(CopyToClipboardPayload.ID, ::copyClipboard)
+    }
+
+    fun copyClipboard(payload: CopyToClipboardPayload, ctx: ClientPlayNetworking.Context) {
+        val mc = ctx.client() ?: return
+        mc.keyboardHandler.clipboard = payload.content
+        mc.player?.displayClientMessage(Component.literal("Copied ${payload.message} Head Texture!"), true)
     }
 
     val errors = mutableSetOf<String>()

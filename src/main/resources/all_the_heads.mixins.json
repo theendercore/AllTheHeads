@@ -4,6 +4,7 @@
   "package": "org.teamvoided.all_the_heads.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "SkullBlockEntityAccessor",
     "SkullBlockEntityMixin"
   ],
   "injectors": {
