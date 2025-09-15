@@ -284,7 +284,7 @@ object VTTextures {
     // region VEX
     const val VEX =
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjk1MzhmMjgzMGM0ZGVhNjk5NmVkNzQ0Nzg1NTA0ZTMyZTBlMjBkODY2M2VkYWI2YjAyMjJmMmMwMjIwNzdiZCJ9fX0="
-    const val ANGRY_VEX =
+    const val VEX_CHARGING =
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGE0ZTUxOGUxNmU0YjVjMTE0YWNiZDljNjFjZDE4MjkyZGE5ZWY2MDU1MGE0ZmNhZTI3ZDM5YWUyOTNlNDc3YSJ9fX0="
     // endregion
 
