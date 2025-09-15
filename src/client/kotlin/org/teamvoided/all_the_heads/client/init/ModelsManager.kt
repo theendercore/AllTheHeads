@@ -9,6 +9,7 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
 import org.teamvoided.all_the_heads.client.data.VTTextures
 import org.teamvoided.all_the_heads.client.model.AllayHeadModel
+import org.teamvoided.all_the_heads.client.model.ArmadilloHeadModel
 import org.teamvoided.all_the_heads.client.model.PhantomHeadModel
 import org.teamvoided.all_the_heads.client.model.TurtleHeadModel
 import org.teamvoided.all_the_heads.client.model.WardenHeadModel
@@ -22,6 +23,8 @@ object ModelsManager {
 
     val models = mapOf(
         VTTextures.ALLAY to builtIn(AllayHeadModel.ID, "allay/allay"),
+        VTTextures.ARMADILLO to builtIn(ArmadilloHeadModel.ID, "armadillo"),
+
         VTTextures.VEX to builtIn(AllayHeadModel.ID, "illager/vex"),
         VTTextures.VEX_CHARGING to builtIn(AllayHeadModel.ID, "illager/vex_charging"),
         VTTextures.PHANTOM to builtIn(PhantomHeadModel.ID, "phantom"),
