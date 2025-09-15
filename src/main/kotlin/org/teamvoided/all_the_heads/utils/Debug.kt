@@ -38,6 +38,8 @@ fun debugUse(
     val be = world.getBlockEntity(pos)
     if (be !is SkullBlockEntity) return false
 
+    return false
+
     if (player is ServerPlayer) {
         val text = getCopyText(be)
         if (text != null) {
