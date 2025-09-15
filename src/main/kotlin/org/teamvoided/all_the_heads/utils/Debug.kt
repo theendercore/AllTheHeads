@@ -33,16 +33,10 @@ fun debugUse(
     if (hitResult == null) return false
     val pos = hitResult.blockPos
 
-//        if (world.getBlockState(pos).isIn(BlockTags.OVERWORLD_CARVER_REPLACEABLES)){
-//        }
-
     val be = world.getBlockEntity(pos)
     if (be !is SkullBlockEntity) return false
 
-    if (world.isClientSide) {
-        val ticks = be.getAnimation(1f)
-//        player.sendSystemMessage(Component.literal("Ticks: $ticks"))
-    } else {
+    if (!world.isClientSide) {
         CLIENT_SUPPLIER(be.ownerProfile)
         val data = be.getAttached(AllTheHeads.HEAD_ATTACHMENT)
         if (data != null) {

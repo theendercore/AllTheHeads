@@ -1,32 +1,27 @@
 package org.teamvoided.all_the_heads.client.init
 
-import net.minecraft.client.model.SkullModelBase
-import net.minecraft.client.model.geom.EntityModelSet
-import net.minecraft.resources.ResourceLocation
+import org.teamvoided.all_the_heads.client.init.helpers.layer
+import org.teamvoided.all_the_heads.client.init.helpers.mainLayer
+import org.teamvoided.all_the_heads.client.init.helpers.register
 import org.teamvoided.all_the_heads.client.model.AllayHeadModel
 import org.teamvoided.all_the_heads.client.model.PhantomHeadModel
 import org.teamvoided.all_the_heads.client.model.TurtleHeadModel
 import org.teamvoided.all_the_heads.client.model.WardenHeadModel
 
 object ATHModels {
-    private val MODELS_TO_LOAD = mutableMapOf<ResourceLocation, (EntityModelSet) -> SkullModelBase>()
+
+    val ALLAY_HEAD = mainLayer("allay_head")
+    val TURTLE_HEAD = mainLayer("turtle_head")
+    val PHANTOM_HEAD = mainLayer("phantom_head")
+    val WARDEN_HEAD = mainLayer("warden_head")
+
+    // Temp
+    val BOGGED_HEAD_OVERLAY = layer("bogged_head", "overlay")
 
     fun init() {
-        register(AllayHeadModel.ID) { AllayHeadModel(it.bakeLayer(ATHModelLayers.ALLAY_HEAD)) }
-        register(TurtleHeadModel.ID) { TurtleHeadModel(it.bakeLayer(ATHModelLayers.TURTLE_HEAD)) }
-        register(PhantomHeadModel.ID) { PhantomHeadModel(it.bakeLayer(ATHModelLayers.PHANTOM_HEAD)) }
-        register(WardenHeadModel.ID) { PhantomHeadModel(it.bakeLayer(ATHModelLayers.WARDEN_HEAD)) }
-    }
-
-    private fun register(id: ResourceLocation, loader: (EntityModelSet) -> SkullModelBase): ResourceLocation {
-        MODELS_TO_LOAD[id] = loader
-        return id
-    }
-
-    @JvmStatic
-    internal fun loadModels(modelSet: EntityModelSet) {
-        for ((id, model) in MODELS_TO_LOAD) {
-            ModelsManager.BUILT_IN_MODELS[id] = model(modelSet)
-        }
+        register(AllayHeadModel.ID, ALLAY_HEAD, AllayHeadModel::head, ::AllayHeadModel)
+        register(TurtleHeadModel.ID, TURTLE_HEAD, TurtleHeadModel::head, ::TurtleHeadModel)
+        register(PhantomHeadModel.ID, PHANTOM_HEAD, PhantomHeadModel::head, ::PhantomHeadModel)
+        register(WardenHeadModel.ID, WARDEN_HEAD, WardenHeadModel::head, ::PhantomHeadModel)
     }
 }

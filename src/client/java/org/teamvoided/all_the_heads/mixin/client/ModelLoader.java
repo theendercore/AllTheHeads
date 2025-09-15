@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.teamvoided.all_the_heads.client.init.ATHModels;
+import org.teamvoided.all_the_heads.client.init.helpers.ModelRegistryKt;
 
 import java.util.Map;
 
@@ -25,6 +25,6 @@ public abstract class ModelLoader {
     @Inject(method = "<init>", at = @At("TAIL"))
     void x(BlockEntityRendererProvider.Context context, CallbackInfo ci) {
         VANILLA_MODEL_ACCESS = modelByType;
-        ATHModels.loadModels$all_the_heads_client(context.getModelSet());
+        ModelRegistryKt.loadModels(context.getModelSet());
     }
 }

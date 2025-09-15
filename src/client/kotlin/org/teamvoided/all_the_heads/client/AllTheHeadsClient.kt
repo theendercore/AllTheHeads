@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft
 import net.minecraft.network.chat.Component
 import org.teamvoided.all_the_heads.AllTheHeads.log
 import org.teamvoided.all_the_heads.client.config.AllTheHeadsClientConfig
-import org.teamvoided.all_the_heads.client.init.ATHModelLayers
 import org.teamvoided.all_the_heads.client.init.ATHModels
 import org.teamvoided.all_the_heads.utils.CLIENT_SUPPLIER
 
@@ -15,7 +14,6 @@ object AllTheHeadsClient {
     @JvmField
     var clientConfig = ConfigApi.registerAndLoadConfig(::AllTheHeadsClientConfig, RegisterType.CLIENT)
     fun init() {
-        ATHModelLayers.init()
         ATHModels.init()
         CLIENT_SUPPLIER = { profile ->
             if (profile != null) {
