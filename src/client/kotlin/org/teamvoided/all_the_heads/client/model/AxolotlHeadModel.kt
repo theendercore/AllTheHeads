@@ -31,7 +31,7 @@ class AxolotlHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val def = CubeDeformation(0.001f)
             val head = mesh.root.addOrReplaceChild(
                 "head", create().texOffs(0, 1).addBox(-4.0f, -3.0f, -5.0f, 8.0f, 5.0f, 5.0f, def),
-                PartPose.offset(0.0f, 0.0f, -9.0f)
+                PartPose.offset(0.0f, -2.0f, 0.0f)
             )
             head.addOrReplaceChild(
                 "top_gills", create().texOffs(3, 37).addBox(-4.0f, -3.0f, 0.0f, 8.0f, 3.0f, 0.0f, def),

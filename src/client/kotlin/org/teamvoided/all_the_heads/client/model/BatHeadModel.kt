@@ -30,7 +30,7 @@ class BatHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val head = mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create().texOffs(0, 7).addBox(-2.0f, -3.0f, -1.0f, 4.0f, 3.0f, 2.0f),
-                PartPose.offset(0.0f, 17.0f, 0.0f)
+                PartPose.offset(0.0f, 0.0f, 0.0f)
             )
             head.addOrReplaceChild(
                 "right_ear",

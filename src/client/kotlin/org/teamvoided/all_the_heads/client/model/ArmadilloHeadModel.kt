@@ -32,7 +32,7 @@ class ArmadilloHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val head = mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create(),
-                PartPose.offset(0.0f, -2.0f, -11.0f)
+                PartPose.offset(0.0f, -4.0f, 0.0f)
             )
             head.addOrReplaceChild(
                 "head_cube",
