@@ -10,6 +10,7 @@ import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.sendError
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
+import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
 import org.teamvoided.all_the_heads.client.init.ModelsManager
@@ -50,18 +51,21 @@ fun renderSkull(
 
 fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
     when (clientConfig.headRenderMode.get()) {
-        HeadRenderMode.PROFILE -> {
-            val texture = ctx.skullOwner?.getTexture()
-            if (texture == null) return null
-            val data = ModelsManager.models[texture]
-            if (data == null) {
-                sendError("Could not find model for texture $texture")
-
-                return null
+        HeadRenderMode.PROFILE -> when (clientConfig.profileDataMode.get()) {
+            ProfileDataMode.TEXTURE -> {
+                val texture = ctx.skullOwner?.getTexture()
+                if (texture == null) return null
+                val data = ModelsManager.models[texture]
+                if (data == null) {
+                    sendError("Could not find model for texture $texture")
+                    return null
+                }
+                return data
             }
 
-            return data
+            ProfileDataMode.ID, ProfileDataMode.NAME -> return null
         }
+
 
         HeadRenderMode.CUSTOM_DATA -> {
             val id = ctx.skullId
