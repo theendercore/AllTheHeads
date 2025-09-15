@@ -3,6 +3,7 @@ package org.teamvoided.all_the_heads.client
 import me.fzzyhmstrs.fzzy_config.api.ConfigApi
 import me.fzzyhmstrs.fzzy_config.api.RegisterType
 import net.minecraft.client.Minecraft
+import net.minecraft.network.chat.Component
 import org.teamvoided.all_the_heads.AllTheHeads.log
 import org.teamvoided.all_the_heads.client.config.AllTheHeadsClientConfig
 import org.teamvoided.all_the_heads.client.init.ATHModelLayers
@@ -17,8 +18,11 @@ object AllTheHeadsClient {
         ATHModelLayers.init()
         ATHModels.init()
         CLIENT_SUPPLIER = { profile ->
-            if (profile != null) Minecraft.getInstance().keyboardHandler.clipboard =
-                profile.properties.get("textures").first().value
+            if (profile != null) {
+                val mc = Minecraft.getInstance()
+                mc.keyboardHandler.clipboard = profile.properties.get("textures").first().value
+                mc.player?.displayClientMessage(Component.literal("Copied Head Texture!"), true)
+            }
         }
     }
 

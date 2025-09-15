@@ -41,11 +41,13 @@ fun debugUse(
 
     if (world.isClientSide) {
         val ticks = be.getAnimation(1f)
-        player.sendSystemMessage(Component.literal("Ticks: $ticks"))
+//        player.sendSystemMessage(Component.literal("Ticks: $ticks"))
     } else {
-        val data = be.getAttached(AllTheHeads.HEAD_ATTACHMENT)
-        player.sendSystemMessage(Component.literal(data.toString()))
         CLIENT_SUPPLIER(be.ownerProfile)
+        val data = be.getAttached(AllTheHeads.HEAD_ATTACHMENT)
+        if (data != null) {
+            player.sendSystemMessage(Component.literal(data.toString()))
+        }
     }
 
     return true
