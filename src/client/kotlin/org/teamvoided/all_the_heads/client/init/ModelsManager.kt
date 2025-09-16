@@ -8,16 +8,7 @@ import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
 import org.teamvoided.all_the_heads.client.data.VTTextures
-import org.teamvoided.all_the_heads.client.model.AllayHeadModel
-import org.teamvoided.all_the_heads.client.model.ArmadilloHeadModel
-import org.teamvoided.all_the_heads.client.model.AxolotlHeadModel
-import org.teamvoided.all_the_heads.client.model.BatHeadModel
-import org.teamvoided.all_the_heads.client.model.BeeHeadModel
-import org.teamvoided.all_the_heads.client.model.CamelHeadModel
-import org.teamvoided.all_the_heads.client.model.OcelotHeadModel
-import org.teamvoided.all_the_heads.client.model.PhantomHeadModel
-import org.teamvoided.all_the_heads.client.model.TurtleHeadModel
-import org.teamvoided.all_the_heads.client.model.WardenHeadModel
+import org.teamvoided.all_the_heads.client.model.*
 
 object ModelsManager {
     @JvmField
@@ -35,12 +26,14 @@ object ModelsManager {
         VTTextures.GOLD_AXOLOTL to builtIn(AxolotlHeadModel.ID, "axolotl/axolotl_gold"),
         VTTextures.CYAN_AXOLOTL to builtIn(AxolotlHeadModel.ID, "axolotl/axolotl_cyan"),
         VTTextures.BLUE_AXOLOTL to builtIn(AxolotlHeadModel.ID, "axolotl/axolotl_blue"),
+
         VTTextures.BAT to builtIn(BatHeadModel.ID, "bat"),
         // Bee
         VTTextures.BEE to builtIn(BeeHeadModel.ID, "bee/bee"),
         VTTextures.POLLINATED_BEE to builtIn(BeeHeadModel.ID, "bee/bee_nectar"),
         VTTextures.ANGRY_BEE to builtIn(BeeHeadModel.ID, "bee/bee_angry"),
         VTTextures.ANGRY_POLLINATED_BEE to builtIn(BeeHeadModel.ID, "bee/bee_angry_nectar"),
+
         VTTextures.CAMEL to builtIn(CamelHeadModel.ID, "camel/camel"),
         // Cat
         VTTextures.TABBY_CAT to builtIn(OcelotHeadModel.ID, "cat/tabby"),
@@ -54,6 +47,8 @@ object ModelsManager {
         VTTextures.WHITE_CAT to builtIn(OcelotHeadModel.ID, "cat/white"),
         VTTextures.JELLIE_CAT to builtIn(OcelotHeadModel.ID, "cat/jellie"),
         VTTextures.BLACK_CAT to builtIn(OcelotHeadModel.ID, "cat/all_black"),
+
+        VTTextures.CHICKEN to builtIn(ChickenHeadModel.ID, "chicken"),
 
 
         VTTextures.OCELOT to builtIn(OcelotHeadModel.ID, "cat/ocelot"),
