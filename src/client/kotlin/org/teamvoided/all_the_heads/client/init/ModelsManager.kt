@@ -49,6 +49,7 @@ object ModelsManager {
         VTTextures.BLACK_CAT to builtIn(OcelotHeadModel.ID, "cat/all_black"),
 
         VTTextures.CHICKEN to builtIn(ChickenHeadModel.ID, "chicken"),
+        VTTextures.COD to builtIn(CodHeadModel.ID, "fish/cod"),
 
 
         VTTextures.OCELOT to builtIn(OcelotHeadModel.ID, "cat/ocelot"),
