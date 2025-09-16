@@ -13,6 +13,7 @@ import org.teamvoided.all_the_heads.client.model.ArmadilloHeadModel
 import org.teamvoided.all_the_heads.client.model.AxolotlHeadModel
 import org.teamvoided.all_the_heads.client.model.BatHeadModel
 import org.teamvoided.all_the_heads.client.model.BeeHeadModel
+import org.teamvoided.all_the_heads.client.model.CamelHeadModel
 import org.teamvoided.all_the_heads.client.model.PhantomHeadModel
 import org.teamvoided.all_the_heads.client.model.TurtleHeadModel
 import org.teamvoided.all_the_heads.client.model.WardenHeadModel
@@ -37,6 +38,7 @@ object ModelsManager {
         VTTextures.POLLINATED_BEE to builtIn(BeeHeadModel.ID, "bee/bee_nectar"),
         VTTextures.ANGRY_BEE to builtIn(BeeHeadModel.ID, "bee/bee_angry"),
         VTTextures.ANGRY_POLLINATED_BEE to builtIn(BeeHeadModel.ID, "bee/bee_angry_nectar"),
+        VTTextures.CAMEL to builtIn(CamelHeadModel.ID, "camel/camel"),
 
         VTTextures.VEX to builtIn(AllayHeadModel.ID, "illager/vex"),
         VTTextures.VEX_CHARGING to builtIn(AllayHeadModel.ID, "illager/vex_charging"),
