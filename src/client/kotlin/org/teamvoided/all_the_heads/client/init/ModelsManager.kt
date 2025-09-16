@@ -50,6 +50,7 @@ object ModelsManager {
 
         VTTextures.CHICKEN to builtIn(ChickenHeadModel.ID, "chicken"),
         VTTextures.COD to builtIn(CodHeadModel.ID, "fish/cod"),
+        VTTextures.COW to builtIn(CowHeadModel.ID, "cow/cow"),
 
 
         VTTextures.OCELOT to builtIn(OcelotHeadModel.ID, "cat/ocelot"),

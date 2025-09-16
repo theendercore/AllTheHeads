@@ -16,6 +16,7 @@ object ATHModels {
     val OCELOT_HEAD = mainLayer("ocelot_head")
     val CHICKEN_HEAD = mainLayer("chicken_head")
     val COD_HEAD = mainLayer("cod_head")
+    val COW_HEAD = mainLayer("cow_head")
 
 
 //    val _HEAD = mainLayer("_head")
@@ -37,6 +38,7 @@ object ATHModels {
         register(OcelotHeadModel.ID, OCELOT_HEAD, OcelotHeadModel::head, ::OcelotHeadModel)
         register(ChickenHeadModel.ID, CHICKEN_HEAD, ChickenHeadModel::head, ::ChickenHeadModel)
         register(CodHeadModel.ID, COD_HEAD, CodHeadModel::head, ::CodHeadModel)
+        register(CowHeadModel.ID, COW_HEAD, CowHeadModel::head, ::CowHeadModel)
 //        register(Model.ID, HEAD, Model::head, ::Model)
 
         register(TurtleHeadModel.ID, TURTLE_HEAD, TurtleHeadModel::head, ::TurtleHeadModel)
