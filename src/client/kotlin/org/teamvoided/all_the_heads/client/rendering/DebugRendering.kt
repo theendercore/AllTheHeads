@@ -14,6 +14,7 @@ import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.component.ResolvableProfile
 import net.minecraft.world.level.block.SkullBlock
+import net.minecraft.world.phys.BlockHitResult
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.RenderLocation
@@ -36,8 +37,15 @@ fun debugRenderer(
     data: SkullRenderData?,
 ) {
     if (!clientConfig.enableDebugRendering) return
+    val mc = Minecraft.getInstance()
 
-    val font = Minecraft.getInstance().font
+    if (clientConfig.lookAtMode && ctx.renderLocation == RenderLocation.IN_WORLD) {
+        val hit = mc.hitResult
+        if (hit !is BlockHitResult) return
+        if (hit.blockPos != ctx.blockEntity?.blockPos) return
+    }
+
+    val font = mc.font
     val textList = buildList {
         add("Skull")
         if (clientConfig.headRenderMode.get() == HeadRenderMode.PROFILE)
@@ -49,9 +57,13 @@ fun debugRenderer(
             add(ctx.renderLocation.toString())
             ctx.itemCtx?.let { add("ItemCtx: [ $it ]") }
         }
-        if (data != null) {
-            add("Model: ${data.model().nullCast<ATHModel>()?.getId()}")
-        }
+        if (data != null) add(
+            "Model: ${
+                data.model().nullCast<ATHModel>()?.getId()
+                    ?: data.model().javaClass.simpleName
+            }"
+        )
+
     }
 
 
@@ -59,7 +71,7 @@ fun debugRenderer(
     val yOffset = if (ctx.renderLocation == RenderLocation.ON_HEAD) 0.8f else 1.3f
     matrices.translate(.5f, yOffset, .5f)
     if (ctx.renderLocation == RenderLocation.IN_WORLD) {
-        matrices.mulPose(Minecraft.getInstance().entityRenderDispatcher.cameraOrientation())
+        matrices.mulPose(mc.entityRenderDispatcher.cameraOrientation())
     }
     matrices.scale(0.025f, -0.025f, 0.025f)
 
