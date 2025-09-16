@@ -24,7 +24,7 @@ class CowHeadModel(modelPart: ModelPart) : HeadModelBase() {
     }
 
     companion object {
-        val ID = AllTheHeads.id("allay")
+        val ID = AllTheHeads.id("cow")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
@@ -36,9 +36,9 @@ class CowHeadModel(modelPart: ModelPart) : HeadModelBase() {
                     .addBox("right_horn", -5.0f, -5.0f, -4.0f, 1.0f, 3.0f, 1.0f)
                     .texOffs(22, 0)
                     .addBox("left_horn", 4.0f, -5.0f, -4.0f, 1.0f, 3.0f, 1.0f),
-                PartPose.offset(0.0f, 4.0f, -8.0f)
+                PartPose.offset(0.0f, -4.0f, 0.0f)
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            return LayerDefinition.create(mesh, 64, 32)
         }
     }
 }

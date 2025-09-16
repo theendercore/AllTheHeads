@@ -36,9 +36,9 @@ class OcelotHeadModel(modelPart: ModelPart) : HeadModelBase() {
                     .addBox("nose", -1.5f, -0.001f, -4.0f, 3, 2, 2, def, 0, 24)
                     .addBox("ear1", -2.0f, -3.0f, 0.0f, 1, 1, 2, def, 0, 10)
                     .addBox("ear2", 1.0f, -3.0f, 0.0f, 1, 1, 2, def, 6, 10),
-                PartPose.offset(0.0f, 15.0f, -9.0f)
+                PartPose.offset(0.0f, -2.0f, 0.0f)
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            return LayerDefinition.create(mesh, 64, 32)
         }
     }
 }

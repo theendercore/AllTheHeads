@@ -13,13 +13,10 @@ import org.teamvoided.all_the_heads.AllTheHeads
 class CodHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID
     private val head: ModelPart = modelPart.getChild("head")
-    private val nose: ModelPart = modelPart.getChild("nose")
 
     override fun setupAnim(f: Float, g: Float, h: Float) {
         head.yRot = g * (Math.PI / 180.0).toFloat()
         head.xRot = h * (Math.PI / 180.0).toFloat()
-        nose.yRot = head.yRot
-        nose.xRot = head.xRot
     }
 
     override fun renderToBuffer(poseStack: PoseStack, vertexConsumer: VertexConsumer, i: Int, j: Int, k: Int) {
@@ -30,12 +27,16 @@ class CodHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("cod")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
-                "head", CubeListBuilder.create().texOffs(11, 0).addBox(-1.0F, -2.0F, -3.0F, 2.0F, 4.0F, 3.0F), PartPose.offset(0.0F, 22.0F, 0.0F)
-            );
-            mesh.root.addOrReplaceChild(
-                "nose", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 3.0F, 1.0F), PartPose.offset(0.0F, 22.0F, -3.0F)
-            );
+            val head = mesh.root.addOrReplaceChild(
+                "head",
+                CubeListBuilder.create().texOffs(11, 0).addBox(-1.0F, -2.0F, -3.0F, 2.0F, 4.0F, 3.0F),
+                PartPose.offset(0.0F, -2.0F, 0.0F)
+            )
+            head.addOrReplaceChild(
+                "nose",
+                CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 3.0F, 1.0F),
+                PartPose.offset(0.0F, -0.0F, -3.0F)
+            )
             return LayerDefinition.create(mesh, 32, 32)
         }
     }

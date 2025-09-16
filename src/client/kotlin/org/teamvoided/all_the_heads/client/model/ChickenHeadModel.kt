@@ -28,6 +28,8 @@ class ChickenHeadModel(modelPart: ModelPart) : HeadModelBase() {
 
     override fun renderToBuffer(poseStack: PoseStack, vertexConsumer: VertexConsumer, i: Int, j: Int, k: Int) {
         head.render(poseStack, vertexConsumer, i, j, k)
+        beak.render(poseStack, vertexConsumer, i, j, k)
+        redThing.render(poseStack, vertexConsumer, i, j, k)
     }
 
     companion object {
@@ -38,17 +40,17 @@ class ChickenHeadModel(modelPart: ModelPart) : HeadModelBase() {
             root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create().texOffs(0, 0).addBox(-2.0f, -6.0f, -2.0f, 4.0f, 6.0f, 3.0f),
-                PartPose.offset(0.0f, 15.0f, -4.0f)
+                PartPose.offset(0.0f, 0.0f, 0.0f)
             )
             root.addOrReplaceChild(
                 "beak",
                 CubeListBuilder.create().texOffs(14, 0).addBox(-2.0f, -4.0f, -4.0f, 4.0f, 2.0f, 2.0f),
-                PartPose.offset(0.0f, 15.0f, -4.0f)
+                PartPose.offset(0.0f, 0.0f, 0.0f)
             )
             root.addOrReplaceChild(
                 "red_thing",
                 CubeListBuilder.create().texOffs(14, 4).addBox(-1.0f, -2.0f, -3.0f, 2.0f, 2.0f, 2.0f),
-                PartPose.offset(0.0f, 15.0f, -4.0f)
+                PartPose.offset(0.0f, 0.0f, 0.0f)
             )
             return LayerDefinition.create(mesh, 64, 32)
         }
