@@ -53,11 +53,14 @@ object ModelsManager {
         VTTextures.COW to builtIn(CowHeadModel.ID, "cow/cow"),
 
 
+        VTTextures.RED_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
+        VTTextures.BROWN_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
         VTTextures.OCELOT to builtIn(OcelotHeadModel.ID, "cat/ocelot"),
+        VTTextures.PHANTOM to builtIn(PhantomHeadModel.ID, "phantom"),
+        VTTextures.PIGLIN_BRUTE to vanilla(SkullBlock.Types.PIGLIN, "piglin/piglin_brute"),
+        VTTextures.TURTLE to builtIn(TurtleHeadModel.ID, "turtle/big_sea_turtle"),
         VTTextures.VEX to builtIn(AllayHeadModel.ID, "illager/vex"),
         VTTextures.VEX_CHARGING to builtIn(AllayHeadModel.ID, "illager/vex_charging"),
-        VTTextures.PHANTOM to builtIn(PhantomHeadModel.ID, "phantom"),
-        VTTextures.TURTLE to builtIn(TurtleHeadModel.ID, "turtle/big_sea_turtle"),
         VTTextures.WARDEN to builtIn(WardenHeadModel.ID, "warden/warden"),
         VTTextures.ZOMBIFIED_PIGLIN to vanilla(SkullBlock.Types.PIGLIN, "piglin/zombified_piglin"),
     )
