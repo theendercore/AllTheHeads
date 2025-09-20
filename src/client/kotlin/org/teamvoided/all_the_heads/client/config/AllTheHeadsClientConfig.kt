@@ -24,11 +24,10 @@ Custom Data mode is using the this mods custom ntb data and will only work if th
     )
     var headRenderMode = ValidatedEnum(HeadRenderMode.PROFILE, WidgetType.CYCLING)
 
-    var profileDataMode = ValidatedEnum(ProfileDataMode.TEXTURE, WidgetType.CYCLING)
-        .toCondition(
-            { headRenderMode.get() == HeadRenderMode.PROFILE }, { ProfileDataMode.TEXTURE },
-            Component.translatable("Only used for Profile Mode!")
-        )
+    var profileDataMode = ValidatedEnum(ProfileDataMode.TEXTURE, WidgetType.CYCLING).toCondition(
+        { headRenderMode.get() == HeadRenderMode.PROFILE }, { ProfileDataMode.TEXTURE },
+        Component.translatable("Only used for Profile Mode!")
+    )
 
 
     @Comment("Enabled debug info. Not recommended in everyday use")
