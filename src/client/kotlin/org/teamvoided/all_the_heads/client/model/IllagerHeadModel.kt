@@ -29,7 +29,7 @@ class IllagerHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val head = mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -10.0f, -4.0f, 8.0f, 10.0f, 8.0f),
-                PartPose.offset(0.0f, 0.0f, 0.0f)
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "hat",

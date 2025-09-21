@@ -41,17 +41,17 @@ class ChickenHeadModel(modelPart: ModelPart) : HeadModelBase() {
             root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create().texOffs(0, 0).addBox(-2.0f, -6.0f, -2.0f, 4.0f, 6.0f, 3.0f),
-                PartPose.offset(0.0f, 0.0f, 0.0f)
+                PartPose.ZERO
             )
             root.addOrReplaceChild(
                 "beak",
                 CubeListBuilder.create().texOffs(14, 0).addBox(-2.0f, -4.0f, -4.0f, 4.0f, 2.0f, 2.0f),
-                PartPose.offset(0.0f, 0.0f, 0.0f)
+                PartPose.ZERO
             )
             root.addOrReplaceChild(
                 "red_thing",
                 CubeListBuilder.create().texOffs(14, 4).addBox(-1.0f, -2.0f, -3.0f, 2.0f, 2.0f, 2.0f),
-                PartPose.offset(0.0f, 0.0f, 0.0f)
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 32)
         }

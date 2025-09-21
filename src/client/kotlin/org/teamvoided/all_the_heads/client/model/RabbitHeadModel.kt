@@ -31,7 +31,7 @@ class RabbitHeadModel(modelPart: ModelPart) : HeadModelBase() {
             mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create().texOffs(32, 0).addBox(-2.5F, -4.0F, -5.0F, 5.0F, 4.0F, 5.0F),
-                PartPose.offset(0.0F, 0.0F, 0.0F)
+                PartPose.ZERO
             )
             /*mesh.root.addOrReplaceChild(
                 "right_ear",

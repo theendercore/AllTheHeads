@@ -30,7 +30,7 @@ class PufferfishHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F),
-                PartPose.offset(0.0F, 0.0F, 0.0F)
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 32, 32)
         }

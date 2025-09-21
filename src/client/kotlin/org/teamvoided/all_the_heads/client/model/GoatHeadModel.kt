@@ -39,17 +39,17 @@ class GoatHeadModel(modelPart: ModelPart) : HeadModelBase() {
                     .addBox("left ear", 2.0f, -11.0f, -10.0f, 3.0f, 2.0f, 1.0f)
                     .texOffs(23, 52)
                     .addBox("goatee", -0.5f, -3.0f, -14.0f, 0.0f, 7.0f, 5.0f),
-                PartPose.offset(0.0f, 0.0f, 0.0f)
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "left_horn",
                 CubeListBuilder.create().texOffs(12, 55).addBox(-0.01f, -16.0f, -10.0f, 2.0f, 7.0f, 2.0f),
-                PartPose.offset(0.0f, 0.0f, 0.0f)
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "right_horn",
                 CubeListBuilder.create().texOffs(12, 55).addBox(-2.99f, -16.0f, -10.0f, 2.0f, 7.0f, 2.0f),
-                PartPose.offset(0.0f, 0.0f, 0.0f)
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "nose",

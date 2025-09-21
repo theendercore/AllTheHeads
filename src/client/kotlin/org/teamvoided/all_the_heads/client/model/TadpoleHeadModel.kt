@@ -31,7 +31,7 @@ class TadpoleHeadModel(modelPart: ModelPart) : HeadModelBase() {
             mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create().texOffs(0, 0).addBox(-1.5f, -1.0f, 0.0f, 3.0f, 2.0f, 3.0f),
-                PartPose.offset(0.0f, 0.0f, 0.0f)
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 16, 16)
         }
