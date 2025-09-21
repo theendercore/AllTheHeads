@@ -4,7 +4,6 @@ import org.teamvoided.all_the_heads.client.init.helpers.layer
 import org.teamvoided.all_the_heads.client.init.helpers.mainLayer
 import org.teamvoided.all_the_heads.client.init.helpers.register
 import org.teamvoided.all_the_heads.client.model.*
-import org.teamvoided.all_the_heads.client.model.nw.*
 
 object ATHModels {
 

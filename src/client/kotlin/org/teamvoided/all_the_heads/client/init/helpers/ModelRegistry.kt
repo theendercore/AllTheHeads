@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.AllTheHeads.log
 import org.teamvoided.all_the_heads.client.init.ModelsManager
-import org.teamvoided.all_the_heads.client.model.HeadModelBase
+import org.teamvoided.all_the_heads.client.model.utils.HeadModelBase
 import org.teamvoided.all_the_heads.utils.isDev
 
 

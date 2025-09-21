@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.model.utils.HeadModelBase
 
-class AllayHeadModel(modelPart: ModelPart) : HeadModelBase() {
+class SilverfishHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID
     private val head: ModelPart = modelPart.getChild("head")
 
@@ -26,7 +26,7 @@ class AllayHeadModel(modelPart: ModelPart) : HeadModelBase() {
     }
 
     companion object {
-        val ID = AllTheHeads.id("allay")
+        val ID = AllTheHeads.id("silverfish")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
@@ -35,7 +35,7 @@ class AllayHeadModel(modelPart: ModelPart) : HeadModelBase() {
                     .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
                 PartPose.ZERO
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            return LayerDefinition.create(mesh, 64, 32)
         }
     }
 }

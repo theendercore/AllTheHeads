@@ -4,15 +4,14 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.model.geom.ModelPart
 import net.minecraft.client.model.geom.PartPose
-import net.minecraft.client.model.geom.builders.CubeDeformation
-import net.minecraft.client.model.geom.builders.CubeListBuilder.create
+import net.minecraft.client.model.geom.builders.CubeListBuilder
 import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
 import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.model.utils.HeadModelBase
 
-class AxolotlHeadModel(modelPart: ModelPart) : HeadModelBase() {
+class GoatHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID
     private val head: ModelPart = modelPart.getChild("head")
 
@@ -26,25 +25,36 @@ class AxolotlHeadModel(modelPart: ModelPart) : HeadModelBase() {
     }
 
     companion object {
-        val ID = AllTheHeads.id("axolotl")
+        val ID = AllTheHeads.id("goat")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            val def = CubeDeformation(0.001f)
+
             val head = mesh.root.addOrReplaceChild(
-                "head", create().texOffs(0, 1).addBox(-4.0f, -3.0f, -5.0f, 8.0f, 5.0f, 5.0f, def),
-                PartPose.offset(0.0f, -2.0f, 0.0f)
+                "head",
+                CubeListBuilder.create()
+                    .texOffs(2, 61)
+                    .addBox("right ear", -6.0f, -11.0f, -10.0f, 3.0f, 2.0f, 1.0f)
+                    .texOffs(2, 61)
+                    .mirror()
+                    .addBox("left ear", 2.0f, -11.0f, -10.0f, 3.0f, 2.0f, 1.0f)
+                    .texOffs(23, 52)
+                    .addBox("goatee", -0.5f, -3.0f, -14.0f, 0.0f, 7.0f, 5.0f),
+                PartPose.offset(0.0f, 0.0f, 0.0f)
             )
             head.addOrReplaceChild(
-                "top_gills", create().texOffs(3, 37).addBox(-4.0f, -3.0f, 0.0f, 8.0f, 3.0f, 0.0f, def),
-                PartPose.offset(0.0f, -3.0f, -1.0f)
+                "left_horn",
+                CubeListBuilder.create().texOffs(12, 55).addBox(-0.01f, -16.0f, -10.0f, 2.0f, 7.0f, 2.0f),
+                PartPose.offset(0.0f, 0.0f, 0.0f)
             )
             head.addOrReplaceChild(
-                "left_gills", create().texOffs(0, 40).addBox(-3.0f, -5.0f, 0.0f, 3.0f, 7.0f, 0.0f, def),
-                PartPose.offset(-4.0f, 0.0f, -1.0f)
+                "right_horn",
+                CubeListBuilder.create().texOffs(12, 55).addBox(-2.99f, -16.0f, -10.0f, 2.0f, 7.0f, 2.0f),
+                PartPose.offset(0.0f, 0.0f, 0.0f)
             )
             head.addOrReplaceChild(
-                "right_gills", create().texOffs(11, 40).addBox(0.0f, -5.0f, 0.0f, 3.0f, 7.0f, 0.0f, def),
-                PartPose.offset(4.0f, 0.0f, -1.0f)
+                "nose",
+                CubeListBuilder.create().texOffs(34, 46).addBox(-3.0f, -4.0f, -8.0f, 5.0f, 7.0f, 10.0f),
+                PartPose.offsetAndRotation(0.0f, -8.0f, -8.0f, 0.9599f, 0.0f, 0.0f)
             )
             return LayerDefinition.create(mesh, 64, 64)
         }

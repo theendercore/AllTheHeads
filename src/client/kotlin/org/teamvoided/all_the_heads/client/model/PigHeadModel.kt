@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.model.utils.HeadModelBase
 
-class AllayHeadModel(modelPart: ModelPart) : HeadModelBase() {
+class PigHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID
     private val head: ModelPart = modelPart.getChild("head")
 
@@ -26,16 +26,19 @@ class AllayHeadModel(modelPart: ModelPart) : HeadModelBase() {
     }
 
     companion object {
-        val ID = AllTheHeads.id("allay")
+        val ID = AllTheHeads.id("pig")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
-                PartPose.ZERO
+                CubeListBuilder.create()
+                    .texOffs(0, 0)
+                    .addBox(-4.0F, -4.0F, -8.0F, 8.0F, 8.0F, 8.0F, CubeDeformation.NONE)
+                    .texOffs(16, 16)
+                    .addBox(-2.0F, 0.0F, -9.0F, 4.0F, 3.0F, 1.0F, CubeDeformation.NONE),
+                PartPose.offset(0.0F, -4.0F, 0.0F)
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            return LayerDefinition.create(mesh, 64, 32)
         }
     }
 }

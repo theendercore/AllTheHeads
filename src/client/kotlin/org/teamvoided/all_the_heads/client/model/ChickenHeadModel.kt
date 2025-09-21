@@ -9,6 +9,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
 import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
+import org.teamvoided.all_the_heads.client.model.utils.HeadModelBase
 
 class ChickenHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID

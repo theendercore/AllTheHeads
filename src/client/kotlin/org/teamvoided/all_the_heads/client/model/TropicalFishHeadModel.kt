@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.model.utils.HeadModelBase
 
-class AllayHeadModel(modelPart: ModelPart) : HeadModelBase() {
+class TropicalFishHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID
     private val head: ModelPart = modelPart.getChild("head")
 
@@ -26,7 +26,7 @@ class AllayHeadModel(modelPart: ModelPart) : HeadModelBase() {
     }
 
     companion object {
-        val ID = AllTheHeads.id("allay")
+        val ID = AllTheHeads.id("tropical_fish")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(

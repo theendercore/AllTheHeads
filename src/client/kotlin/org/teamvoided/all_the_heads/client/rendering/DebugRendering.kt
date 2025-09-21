@@ -20,7 +20,7 @@ import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.RenderLocation
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
-import org.teamvoided.all_the_heads.client.model.ATHModel
+import org.teamvoided.all_the_heads.client.model.utils.ATHModel
 
 @JvmField
 var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()

@@ -9,7 +9,6 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
 import org.teamvoided.all_the_heads.client.data.VTTextures
 import org.teamvoided.all_the_heads.client.model.*
-import org.teamvoided.all_the_heads.client.model.nw.*
 
 object ModelsManager {
     @JvmField
