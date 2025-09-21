@@ -156,6 +156,8 @@ object ModelsManager {
         VTTextures.ZOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/zoglin"),
         VTTextures.ZOMBIE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_zombie"),
         VTTextures.ZOMBIFIED_PIGLIN to vanilla(SkullBlock.Types.PIGLIN, "piglin/zombified_piglin"),
+
+        VTTextures.TEST_TEX to builtIn(IllagerHeadModel.ID, "illager/illusioner"),
     )
 
     fun vanilla(id: SkullBlock.Type, texture: String) = SkullRenderData(getVanilla(id), entityType(texture))
@@ -179,4 +181,6 @@ object ModelsManager {
 
     fun basicType(texture: String): RenderType = RenderType.entityCutoutNoCullZOffset(AllTheHeads.tryParseId(texture)!!)
     fun entityType(texture: String): RenderType = basicType("textures/entity/${texture}.png")
-}
+
+
+  }
