@@ -28,12 +28,12 @@ class DolphinHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             val head: PartDefinition = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -3.0f, -3.0f, 8.0f, 7.0f, 6.0f),
-                PartPose.offset(0f, -4f, 0f)
+                CubeListBuilder.create().texOffs(0, 0).addBox(-4f, -7f, -3f, 8f, 7f, 6f),
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "nose",
-                CubeListBuilder.create().texOffs(0, 13).addBox(-1.0f, 2.0f, -7.0f, 2.0f, 2.0f, 4.0f),
+                CubeListBuilder.create().texOffs(0, 13).addBox(-1f, -2f, -7f, 2f, 2f, 4f),
                 PartPose.ZERO
             )
 
