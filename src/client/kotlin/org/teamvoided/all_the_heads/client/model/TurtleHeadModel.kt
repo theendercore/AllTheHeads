@@ -30,8 +30,8 @@ class TurtleHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(3, 0).addBox(-3.0f, -5.0f, -3.0f, 6.0f, 5.0f, 6.0f),
-                PartPose.offset(0.0f, 0f, 0.0f)
+                CubeListBuilder.create().texOffs(3, 0).addBox(-3f, -5f, -3f, 6f, 5f, 6f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 128, 64)
         }
