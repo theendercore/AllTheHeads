@@ -9,6 +9,7 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
 import org.teamvoided.all_the_heads.client.data.VTTextures
 import org.teamvoided.all_the_heads.client.model.*
+import org.teamvoided.all_the_heads.client.model.nw.*
 
 object ModelsManager {
     @JvmField
@@ -51,17 +52,110 @@ object ModelsManager {
         VTTextures.CHICKEN to builtIn(ChickenHeadModel.ID, "chicken"),
         VTTextures.COD to builtIn(CodHeadModel.ID, "fish/cod"),
         VTTextures.COW to builtIn(CowHeadModel.ID, "cow/cow"),
+        VTTextures.DOLPHIN to builtIn(DolphinHeadModel.ID, "dolphin"),
+        VTTextures.DONKEY to builtIn(DonkeyHeadModel.ID, "horse/donkey"),
+        VTTextures.ENDERMITE to builtIn(EndermiteHeadModel.ID, "endermite"),
+        VTTextures.EVOKER to builtIn(IllagerHeadModel.ID, "illager/evoker"),
+        // Fox
+        VTTextures.FOX to builtIn(FoxHeadModel.ID, "fox/fox"),
+        VTTextures.SNOW_FOX to builtIn(FoxHeadModel.ID, "fox/snow_fox"),
+        // Frog
+        VTTextures.TEMPERATE_FROG to builtIn(FrogHeadModel.ID, "frog/temperate_frog"),
+        VTTextures.WARM_FROG to builtIn(FrogHeadModel.ID, "frog/warm_frog"),
+        VTTextures.COLD_FROG to builtIn(FrogHeadModel.ID, "frog/cold_frog"),
 
+        VTTextures.GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
+//        VTTextures.SCREAMING_GOAT to builtIn(GoatHeadModel.ID, "goat"),
+        VTTextures.HOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/hoglin"),
+        // Horse
+        VTTextures.WHITE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_white"),
+        VTTextures.CREAMY_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_creamy"),
+        VTTextures.CHESTNUT_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_chestnut"),
+        VTTextures.BROWN_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_brown"),
+        VTTextures.BLACK_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_black"),
+        VTTextures.GRAY_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_gray"),
+        VTTextures.DARK_BROWN_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_darkbrown"),
 
+        VTTextures.IRON_GOLEM to builtIn(IronGolemHeadModel.ID, "iron_golem/iron_golem"),
+        // Llama
+        VTTextures.CREAMY_LLAMA to builtIn(LlamaHeadModel.ID, "llama/creamy"),
+        VTTextures.WHITE_LLAMA to builtIn(LlamaHeadModel.ID, "llama/white"),
+        VTTextures.BROWN_LLAMA to builtIn(LlamaHeadModel.ID, "llama/brown"),
+        VTTextures.GRAY_LLAMA to builtIn(LlamaHeadModel.ID, "llama/gray"),
+
+        VTTextures.MAGMA_CUBE to builtIn(MagmaCubeHeadModel.ID, "slime/magmacube"),
         VTTextures.RED_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
         VTTextures.BROWN_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
+        VTTextures.MULE to builtIn(DonkeyHeadModel.ID, "horse/mule"),
         VTTextures.OCELOT to builtIn(OcelotHeadModel.ID, "cat/ocelot"),
+        // Panda
+        VTTextures.PANDA to builtIn(PandaHeadModel.ID, "panda/panda"),
+        VTTextures.LAZY_PANDA to builtIn(PandaHeadModel.ID, "panda/lazy_panda"),
+        VTTextures.WORRIED_PANDA to builtIn(PandaHeadModel.ID, "panda/worried_panda"),
+        VTTextures.PLAYFUL_PANDA to builtIn(PandaHeadModel.ID, "panda/playful_panda"),
+        VTTextures.BROWN_PANDA to builtIn(PandaHeadModel.ID, "panda/brown_panda"),
+        VTTextures.WEAK_PANDA to builtIn(PandaHeadModel.ID, "panda/weak_panda"),
+        VTTextures.AGGRESSIVE_PANDA to builtIn(PandaHeadModel.ID, "panda/aggressive_panda"),
+        // Parrot
+        VTTextures.RED_PARROT to builtIn(ParrotHeadModel.ID, "parrot/parrot_red_blue"),
+        VTTextures.BLUE_PARROT to builtIn(ParrotHeadModel.ID, "parrot/parrot_blue"),
+        VTTextures.GREEN_PARROT to builtIn(ParrotHeadModel.ID, "parrot/parrot_green"),
+        VTTextures.LIGHT_BLUE_PARROT to builtIn(ParrotHeadModel.ID, "parrot/parrot_yellow_blue"),
+        VTTextures.GRAY_PARROT to builtIn(ParrotHeadModel.ID, "parrot/parrot_grey"),
+
         VTTextures.PHANTOM to builtIn(PhantomHeadModel.ID, "phantom"),
+        VTTextures.PIG to builtIn(PigHeadModel.ID, "pig/pig"),
         VTTextures.PIGLIN_BRUTE to vanilla(SkullBlock.Types.PIGLIN, "piglin/piglin_brute"),
+        VTTextures.PILLAGER to builtIn(IllagerHeadModel.ID, "illager/pillager"),
+        VTTextures.POLAR_BEAR to builtIn(PolarBearHeadModel.ID, "bear/polarbear"),
+        VTTextures.PUFFERFISH to builtIn(PufferfishHeadModel.ID, "fish/pufferfish"),
+        // Rabbit
+        VTTextures.BROWN_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/brown"),
+        VTTextures.WHITE_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/white"),
+        VTTextures.BLACK_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/black"),
+        VTTextures.BLACK_AND_WHITE_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/black_and_white"),
+        VTTextures.GOLD_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/gold"),
+        VTTextures.SALT_AND_PEPPER_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/salt_and_pepper"),
+
+        VTTextures.RAVAGER to builtIn(RavagerHeadModel.ID, "illager/ravager"),
+        VTTextures.SALMON to builtIn(SalmonHeadModel.ID, "fish/salmon"),
+        // TODO
+        // Sheep
+//        VTTextures.SHEEP to builtIn(SheepHeadModel.ID, "sheep"),
+
+        VTTextures.SHULKER to builtIn(ShulkerHeadModel.ID, "shulker/shulker"),
+        VTTextures.SILVERFISH to builtIn(SilverfishHeadModel.ID, "silverfish"),
+        VTTextures.SKELETON_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_skeleton"),
+        VTTextures.SLIME to builtIn(SlimeHeadModel.ID, "slime/slime"),
+        VTTextures.SNIFFER to builtIn(SnifferHeadModel.ID, "sniffer/sniffer"),
+        VTTextures.STRIDER to builtIn(StriderHeadModel.ID, "strider/strider"),
+        VTTextures.TADPOLE to builtIn(TadpoleHeadModel.ID, "tadpole/tadpole"),
+        // Trader Llama
+        VTTextures.CREAMY_TRADER_LLAMA to builtIn(LlamaHeadModel.ID, "llama/creamy"),
+        VTTextures.WHITE_TRADER_LLAMA to builtIn(LlamaHeadModel.ID, "llama/white"),
+        VTTextures.BROWN_TRADER_LLAMA to builtIn(LlamaHeadModel.ID, "llama/brown"),
+        VTTextures.GRAY_TRADER_LLAMA to builtIn(LlamaHeadModel.ID, "llama/gray"),
+
+        VTTextures.TROPICAL_FISH to builtIn(TropicalFishHeadModel.ID, "fish/tropical_b"),
         VTTextures.TURTLE to builtIn(TurtleHeadModel.ID, "turtle/big_sea_turtle"),
+        // Vex
         VTTextures.VEX to builtIn(AllayHeadModel.ID, "illager/vex"),
         VTTextures.VEX_CHARGING to builtIn(AllayHeadModel.ID, "illager/vex_charging"),
+        // TODO
+        // Villager
+//        VTTextures.VILLAGER to builtIn(VillagerHeadModel.ID, "villager"),
+
+        VTTextures.VINDICATOR to builtIn(IllagerHeadModel.ID, "illager/vindicator"),
+        VTTextures.WANDERING_TRADER to builtIn(VillagerHeadModel.ID, "wandering_trader"),
         VTTextures.WARDEN to builtIn(WardenHeadModel.ID, "warden/warden"),
+
+        VTTextures.WITCH to builtIn(WitchHeadModel.ID, "witch"),
+        // TODO
+        // Wolf
+//        VTTextures.WOLF to builtIn(WolfHeadModel.ID, "wolf"),
+
+        VTTextures.ZOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/zoglin"),
+        VTTextures.ZOMBIE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_zombie"),
         VTTextures.ZOMBIFIED_PIGLIN to vanilla(SkullBlock.Types.PIGLIN, "piglin/zombified_piglin"),
     )
 
