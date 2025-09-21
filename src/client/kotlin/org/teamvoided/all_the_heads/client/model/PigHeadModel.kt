@@ -33,10 +33,10 @@ class PigHeadModel(modelPart: ModelPart) : HeadModelBase() {
                 "head",
                 CubeListBuilder.create()
                     .texOffs(0, 0)
-                    .addBox(-4.0F, -4.0F, -8.0F, 8.0F, 8.0F, 8.0F, CubeDeformation.NONE)
+                    .addBox(-4f, -8f, -4f, 8f, 8f, 8f, CubeDeformation.NONE)
                     .texOffs(16, 16)
-                    .addBox(-2.0F, 0.0F, -9.0F, 4.0F, 3.0F, 1.0F, CubeDeformation.NONE),
-                PartPose.offset(0.0F, -4.0F, 0.0F)
+                    .addBox(-2f, -4f, -5f, 4f, 3f, 1f, CubeDeformation.NONE),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 32)
         }
