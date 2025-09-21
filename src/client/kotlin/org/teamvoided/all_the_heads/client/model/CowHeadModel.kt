@@ -32,12 +32,12 @@ class CowHeadModel(modelPart: ModelPart) : HeadModelBase() {
                 "head",
                 CubeListBuilder.create()
                     .texOffs(0, 0)
-                    .addBox(-4.0f, -4.0f, -6.0f, 8.0f, 8.0f, 6.0f)
+                    .addBox(-4f, -8f, -3f, 8f, 8f, 6f)
                     .texOffs(22, 0)
-                    .addBox("right_horn", -5.0f, -5.0f, -4.0f, 1.0f, 3.0f, 1.0f)
+                    .addBox("right_horn", -5f, -9f, -1f, 1f, 3f, 1f)
                     .texOffs(22, 0)
-                    .addBox("left_horn", 4.0f, -5.0f, -4.0f, 1.0f, 3.0f, 1.0f),
-                PartPose.offset(0.0f, -4.0f, 0.0f)
+                    .addBox("left_horn", 4f, -9f, -1f, 1f, 3f, 1f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 32)
         }
