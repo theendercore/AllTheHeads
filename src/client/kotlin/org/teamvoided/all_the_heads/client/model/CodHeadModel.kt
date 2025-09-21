@@ -30,13 +30,13 @@ class CodHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(11, 0).addBox(-1.0F, -2.0F, -3.0F, 2.0F, 4.0F, 3.0F),
-                PartPose.offset(0.0F, -2.0F, 0.0F)
+                CubeListBuilder.create().texOffs(11, 0).addBox(-1f, -4f, -1.5f, 2f, 4f, 3f),
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "nose",
-                CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 3.0F, 1.0F),
-                PartPose.offset(0.0F, -0.0F, -3.0F)
+                CubeListBuilder.create().texOffs(0, 0).addBox(-1f, -4f, -2.5f, 2f, 3f, 1f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 32, 32)
         }
