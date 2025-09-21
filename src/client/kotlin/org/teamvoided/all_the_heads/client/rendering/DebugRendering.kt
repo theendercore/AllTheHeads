@@ -100,6 +100,7 @@ fun ResolvableProfile.readableString(): String = buildString {
     append("]")
 }
 
+@Suppress("unused")
 fun PropertyMap.readableString(): String = buildString {
     append("[")
     this@readableString.forEach { key, value ->
