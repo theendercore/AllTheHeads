@@ -30,8 +30,8 @@ class ShulkerHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 52).addBox(-3.0F, 0.0F, -3.0F, 6.0F, 6.0F, 6.0F),
-                PartPose.offset(0.0F, -6.0F, 0.0F)
+                CubeListBuilder.create().texOffs(0, 52).addBox(-3f, -6f, -3f, 6f, 6f, 6f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 64)
         }
