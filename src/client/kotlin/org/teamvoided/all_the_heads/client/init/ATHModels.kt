@@ -4,6 +4,7 @@ import org.teamvoided.all_the_heads.client.init.helpers.layer
 import org.teamvoided.all_the_heads.client.init.helpers.mainLayer
 import org.teamvoided.all_the_heads.client.init.helpers.register
 import org.teamvoided.all_the_heads.client.model.*
+import org.teamvoided.all_the_heads.client.model.nw.*
 
 object ATHModels {
 
@@ -18,6 +19,38 @@ object ATHModels {
     val COD_HEAD = mainLayer("cod_head")
     val COW_HEAD = mainLayer("cow_head")
 
+    val DOLPHIN_HEAD = mainLayer("dolphin_head")
+    val DONKEY_HEAD = mainLayer("donkey_head")
+    val ENDERMITE_HEAD = mainLayer("endermite_head")
+    val FOX_HEAD = mainLayer("fox_head")
+    val FROG_HEAD = mainLayer("frog_head")
+    val GOAT_HEAD = mainLayer("goat_head")
+    val HOGLIN_HEAD = mainLayer("hoglin_head")
+    val HORSE_HEAD = mainLayer("horse_head")
+    val ILLAGER_HEAD = mainLayer("illager_head")
+    val IRON_GOLEM_HEAD = mainLayer("iron_golem_head")
+    val LLAMA_HEAD = mainLayer("llama_head")
+    val MAGMA_CUBE_HEAD = mainLayer("magma_cube_head")
+    val PANDA_HEAD = mainLayer("panda_head")
+    val PARROT_HEAD = mainLayer("parrot_head")
+    val PIG_HEAD = mainLayer("pig_head")
+    val POLAR_BEAR_HEAD = mainLayer("polar_bear_head")
+    val PUFFERFISH_HEAD = mainLayer("pufferfish_head")
+    val RABBIT_HEAD = mainLayer("rabbit_head")
+    val RAVAGER_HEAD = mainLayer("ravager_head")
+    val SALMON_HEAD = mainLayer("salmon_head")
+    val SHEEP_HEAD = mainLayer("sheep_head")
+    val SHULKER_HEAD = mainLayer("shulker_head")
+    val SILVERFISH_HEAD = mainLayer("silverfish_head")
+    val SLIME_HEAD = mainLayer("slime_head")
+    val SNIFFER_HEAD = mainLayer("sniffer_head")
+    val STRIDER_HEAD = mainLayer("strider_head")
+    val TADPOLE_HEAD = mainLayer("tadpole_head")
+    val TROPICAL_FISH_HEAD = mainLayer("tropical_fish_head")
+    val VILLAGER_HEAD = mainLayer("villager_head")
+    val WITCH_HEAD = mainLayer("witch_head")
+    val WOLF_HEAD = mainLayer("wolf_head")
+
 
 //    val _HEAD = mainLayer("_head")
 
@@ -26,6 +59,7 @@ object ATHModels {
     val WARDEN_HEAD = mainLayer("warden_head")
 
     // Temp
+    @Suppress("unused")
     val BOGGED_HEAD_OVERLAY = layer("bogged_head", "overlay")
 
     fun init() {
@@ -40,6 +74,38 @@ object ATHModels {
         register(CodHeadModel.ID, COD_HEAD, CodHeadModel::head, ::CodHeadModel)
         register(CowHeadModel.ID, COW_HEAD, CowHeadModel::head, ::CowHeadModel)
 //        register(Model.ID, HEAD, Model::head, ::Model)
+
+        register(DolphinHeadModel.ID, DOLPHIN_HEAD, DolphinHeadModel::head, ::DolphinHeadModel)
+        register(DonkeyHeadModel.ID, DONKEY_HEAD, DonkeyHeadModel::head, ::DonkeyHeadModel)
+        register(EndermiteHeadModel.ID, ENDERMITE_HEAD, EndermiteHeadModel::head, ::EndermiteHeadModel)
+        register(FoxHeadModel.ID, FOX_HEAD, FoxHeadModel::head, ::FoxHeadModel)
+        register(FrogHeadModel.ID, FROG_HEAD, FrogHeadModel::head, ::FrogHeadModel)
+        register(GoatHeadModel.ID, GOAT_HEAD, GoatHeadModel::head, ::GoatHeadModel)
+        register(HoglinHeadModel.ID, HOGLIN_HEAD, HoglinHeadModel::head, ::HoglinHeadModel)
+        register(HorseHeadModel.ID, HORSE_HEAD, HorseHeadModel::head, ::HorseHeadModel)
+        register(IllagerHeadModel.ID, ILLAGER_HEAD, IllagerHeadModel::head, ::IllagerHeadModel)
+        register(IronGolemHeadModel.ID, IRON_GOLEM_HEAD, IronGolemHeadModel::head, ::IronGolemHeadModel)
+        register(LlamaHeadModel.ID, LLAMA_HEAD, LlamaHeadModel::head, ::LlamaHeadModel)
+        register(MagmaCubeHeadModel.ID, MAGMA_CUBE_HEAD, MagmaCubeHeadModel::head, ::MagmaCubeHeadModel)
+        register(PandaHeadModel.ID, PANDA_HEAD, PandaHeadModel::head, ::PandaHeadModel)
+        register(ParrotHeadModel.ID, PARROT_HEAD, ParrotHeadModel::head, ::ParrotHeadModel)
+        register(PigHeadModel.ID, PIG_HEAD, PigHeadModel::head, ::PigHeadModel)
+        register(PolarBearHeadModel.ID, POLAR_BEAR_HEAD, PolarBearHeadModel::head, ::PolarBearHeadModel)
+        register(PufferfishHeadModel.ID, PUFFERFISH_HEAD, PufferfishHeadModel::head, ::PufferfishHeadModel)
+        register(RabbitHeadModel.ID, RABBIT_HEAD, RabbitHeadModel::head, ::RabbitHeadModel)
+        register(RavagerHeadModel.ID, RAVAGER_HEAD, RavagerHeadModel::head, ::RavagerHeadModel)
+        register(SalmonHeadModel.ID, SALMON_HEAD, SalmonHeadModel::head, ::SalmonHeadModel)
+        register(SheepHeadModel.ID, SHEEP_HEAD, SheepHeadModel::head, ::SheepHeadModel)
+        register(ShulkerHeadModel.ID, SHULKER_HEAD, ShulkerHeadModel::head, ::ShulkerHeadModel)
+        register(SilverfishHeadModel.ID, SILVERFISH_HEAD, SilverfishHeadModel::head, ::SilverfishHeadModel)
+        register(SlimeHeadModel.ID, SLIME_HEAD, SlimeHeadModel::head, ::SlimeHeadModel)
+        register(SnifferHeadModel.ID, SNIFFER_HEAD, SnifferHeadModel::head, ::SnifferHeadModel)
+        register(StriderHeadModel.ID, STRIDER_HEAD, StriderHeadModel::head, ::StriderHeadModel)
+        register(TadpoleHeadModel.ID, TADPOLE_HEAD, TadpoleHeadModel::head, ::TadpoleHeadModel)
+        register(TropicalFishHeadModel.ID, TROPICAL_FISH_HEAD, TropicalFishHeadModel::head, ::TropicalFishHeadModel)
+        register(VillagerHeadModel.ID, VILLAGER_HEAD, VillagerHeadModel::head, ::VillagerHeadModel)
+        register(WitchHeadModel.ID, WITCH_HEAD, WitchHeadModel::head, ::WitchHeadModel)
+        register(WolfHeadModel.ID, WOLF_HEAD, WolfHeadModel::head, ::WolfHeadModel)
 
         register(TurtleHeadModel.ID, TURTLE_HEAD, TurtleHeadModel::head, ::TurtleHeadModel)
         register(PhantomHeadModel.ID, PHANTOM_HEAD, PhantomHeadModel::head, ::PhantomHeadModel)

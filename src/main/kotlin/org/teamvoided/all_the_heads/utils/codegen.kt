@@ -1,9 +1,34 @@
+@file:Suppress("unused", "UnusedVariable")
+
 package org.teamvoided.all_the_heads.utils
 
 import java.io.File
 
 
 val list = listOf(
+    "Dolphin",
+    "Donkey",
+    "Endermite",
+    "Fox",
+    "Frog",
+    "Goat",
+    "Hoglin",
+    "Horse",
+    "Illager",
+    "Iron Golem",
+    "Llama",
+    "Magma Cube",
+    "Panda",
+    "Parrot",
+    "Pig",
+    "Polar Bear",
+    "Pufferfish",
+    "Rabbit",
+    "Ravager",
+    "Salmon",
+    "Sheep",
+    "Shulker",
+    "Silverfish",
     "Slime",
     "Sniffer",
     "Strider",
@@ -17,13 +42,27 @@ val list = listOf(
 fun main() {
     val rootDir = File("src/client/kotlin/org/teamvoided/all_the_heads/client/model/nw")
 
-    list.forEach {
-        val newFile = rootDir.resolve("${it.replace(" ", "")}HeadModel.kt")
-        newFile.createNewFile()
-        newFile.writeText(fileText(it))
+    val newFile = rootDir.resolve("Model.kt")
+    newFile.createNewFile()
+    newFile.writeText(modelsFile())
+}
 
+@Suppress("CanBeVal")
+fun modelsFile(): String {
+    var text = "\n\n\n"
+    var text2 = "\n\n\n"
+    list.forEach { rawName ->
+        val uppercase = rawName.replace(" ", "_").uppercase()
+        val lowercase = uppercase.lowercase()
+        val model = rawName.replace(" ", "") + "HeadModel"
+
+//        text += "val ${uppercase}_HEAD = mainLayer(\"${lowercase}_head\")\n"
+//        text2 += "register(${model}.ID, ${uppercase}_HEAD, ${model}::head, ::${model})\n"
+
+//        text+= "VTTextures.${uppercase} to builtIn(${model}.ID, \"${lowercase}\"),\n"
     }
 
+    return text + text2
 }
 
 fun fileText(name: String): String {

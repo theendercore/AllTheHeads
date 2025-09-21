@@ -11,7 +11,7 @@ object ATHNet {
         AllTheHeads.log.error("If you see this then the mod has debug networking enabled! Please contact ender to disable it")
         PayloadTypeRegistry.playS2C().register(CopyToClipboardPayload.ID, CopyToClipboardPayload.CODEC)
 
-        CommandRegistrationCallback.EVENT.register { dispatch, reg, env ->
+        CommandRegistrationCallback.EVENT.register { dispatch, _, _ ->
             val root = literal("ath").build()
             dispatch.root.addChild(root)
 

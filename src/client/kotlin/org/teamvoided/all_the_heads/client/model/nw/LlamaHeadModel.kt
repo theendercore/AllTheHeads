@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.model.HeadModelBase
 
-class LlamaModel(modelPart: ModelPart) : HeadModelBase() {
+class LlamaHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID
     private val head: ModelPart = modelPart.getChild("head")
 
