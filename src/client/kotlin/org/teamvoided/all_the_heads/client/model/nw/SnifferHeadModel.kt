@@ -1,4 +1,3 @@
-
 package org.teamvoided.all_the_heads.client.model.nw
 
 import com.mojang.blaze3d.vertex.PoseStack
@@ -30,13 +29,40 @@ class SnifferHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("sniffer")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
+            val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
-                PartPose.ZERO
+                CubeListBuilder.create()
+                    .texOffs(8, 15)
+                    .addBox(-6.5f, -7.5f, -11.5f, 13.0f, 18.0f, 11.0f, CubeDeformation(0.0f))
+                    .texOffs(8, 4)
+                    .addBox(-6.5f, 7.5f, -11.5f, 13.0f, 0.0f, 11.0f, CubeDeformation(0.0f)),
+                PartPose.offset(0f, -7.5f, 0f)
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            head.addOrReplaceChild(
+                "left_ear",
+                CubeListBuilder.create().texOffs(2, 0)
+                    .addBox(0.0f, 0.0f, -3.0f, 1.0f, 19.0f, 7.0f, CubeDeformation(0.0f)),
+                PartPose.offset(6.51f, -7.5f, -4.51f)
+            )
+            head.addOrReplaceChild(
+                "right_ear",
+                CubeListBuilder.create().texOffs(48, 0)
+                    .addBox(-1.0f, 0.0f, -3.0f, 1.0f, 19.0f, 7.0f, CubeDeformation(0.0f)),
+                PartPose.offset(-6.51f, -7.5f, -4.51f)
+            )
+            head.addOrReplaceChild(
+                "nose",
+                CubeListBuilder.create().texOffs(10, 45)
+                    .addBox(-6.5f, -2.0f, -9.0f, 13.0f, 2.0f, 9.0f, CubeDeformation(0.0f)),
+                PartPose.offset(0.0f, -4.5f, -11.5f)
+            )
+            head.addOrReplaceChild(
+                "lower_beak",
+                CubeListBuilder.create().texOffs(10, 57)
+                    .addBox(-6.5f, -7.0f, -8.0f, 13.0f, 12.0f, 9.0f, CubeDeformation(0.0f)),
+                PartPose.offset(0.0f, 2.5f, -12.5f)
+            )
+            return LayerDefinition.create(mesh, 192, 192)
         }
     }
 }

@@ -29,13 +29,21 @@ class LlamaHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("llama")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
+            val def = CubeDeformation.NONE
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
-                PartPose.ZERO
-            )
-            return LayerDefinition.create(mesh, 32, 32)
+                CubeListBuilder.create()
+                    .texOffs(0, 0)
+                    .addBox(-2.0F, -14.0F, -10.0F, 4.0F, 4.0F, 9.0F, def)
+                    .texOffs(0, 14)
+                    .addBox("neck", -4.0F, -16.0F, -6.0F, 8.0F, 18.0F, 6.0F, def)
+                    .texOffs(17, 0)
+                    .addBox("ear", -4.0F, -19.0F, -4.0F, 3.0F, 3.0F, 2.0F, def)
+                    .texOffs(17, 0)
+                    .addBox("ear", 1.0F, -19.0F, -4.0F, 3.0F, 3.0F, 2.0F, def),
+                PartPose.offset(0.0F, -2.0F, 0.0F)
+            );
+            return LayerDefinition.create(mesh, 128, 64)
         }
     }
 }

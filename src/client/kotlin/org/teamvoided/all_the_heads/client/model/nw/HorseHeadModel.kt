@@ -29,13 +29,25 @@ class HorseHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("horse")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
+            val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
+                CubeListBuilder.create().texOffs(0, 13)
+                    .addBox(-3.0f, -11.0f, -2.0f, 6.0f, 5.0f, 7.0f, CubeDeformation.NONE),
                 PartPose.ZERO
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            head.addOrReplaceChild(
+                "left_ear",
+                CubeListBuilder.create().texOffs(19, 16)
+                    .addBox(0.55f, -13.0f, 4.0f, 2.0f, 3.0f, 1.0f, CubeDeformation(-0.001f)),
+                PartPose.ZERO
+            )
+            head.addOrReplaceChild(
+                "right_ear",
+                CubeListBuilder.create().texOffs(19, 16)
+                    .addBox(-2.55f, -13.0f, 4.0f, 2.0f, 3.0f, 1.0f, CubeDeformation(-0.001f)),
+                PartPose.ZERO
+            )
+            return LayerDefinition.create(mesh, 64, 64)
         }
     }
 }

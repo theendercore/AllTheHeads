@@ -29,11 +29,30 @@ class ParrotHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("parrot")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
+            val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
-                PartPose.ZERO
+                CubeListBuilder.create().texOffs(2, 2).addBox(-1.0f, -1.5f, -1.0f, 2.0f, 3.0f, 2.0f),
+                PartPose.offset(0.0f, -1f, 0f)
+            )
+            head.addOrReplaceChild(
+                "head2",
+                CubeListBuilder.create().texOffs(10, 0).addBox(-1.0f, -0.5f, -2.0f, 2.0f, 1.0f, 4.0f),
+                PartPose.offset(0.0f, -2.0f, -1.0f)
+            )
+            head.addOrReplaceChild(
+                "beak1",
+                CubeListBuilder.create().texOffs(11, 7).addBox(-0.5f, -1.0f, -0.5f, 1.0f, 2.0f, 1.0f),
+                PartPose.offset(0.0f, -0.5f, -1.5f)
+            )
+            head.addOrReplaceChild(
+                "beak2",
+                CubeListBuilder.create().texOffs(16, 7).addBox(-0.5f, 0.0f, -0.5f, 1.0f, 2.0f, 1.0f),
+                PartPose.offset(0.0f, -1.75f, -2.45f)
+            )
+            head.addOrReplaceChild(
+                "feather",
+                CubeListBuilder.create().texOffs(2, 18).addBox(0.0f, -4.0f, -2.0f, 0.0f, 5.0f, 4.0f),
+                PartPose.offset(0.0f, -2.15f, 0.15f)
             )
             return LayerDefinition.create(mesh, 32, 32)
         }

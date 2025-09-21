@@ -1,4 +1,3 @@
-
 package org.teamvoided.all_the_heads.client.model.nw
 
 import com.mojang.blaze3d.vertex.PoseStack
@@ -30,13 +29,23 @@ class WolfHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("wolf")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
-                "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
+            val def = CubeDeformation.NONE
+            val head =
+                mesh.root.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offset(-1.0f, 13.5f, -7.0f))
+            head.addOrReplaceChild(
+                "real_head",
+                CubeListBuilder.create()
+                    .texOffs(0, 0)
+                    .addBox(-2.0f, -3.0f, -2.0f, 6.0f, 6.0f, 4.0f, def)
+                    .texOffs(16, 14)
+                    .addBox(-2.0f, -5.0f, 0.0f, 2.0f, 2.0f, 1.0f, def)
+                    .texOffs(16, 14)
+                    .addBox(2.0f, -5.0f, 0.0f, 2.0f, 2.0f, 1.0f, def)
+                    .texOffs(0, 10)
+                    .addBox(-0.5f, -0.001f, -5.0f, 3.0f, 3.0f, 4.0f, def),
                 PartPose.ZERO
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            return LayerDefinition.create(mesh, 64, 32)
         }
     }
 }

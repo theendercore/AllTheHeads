@@ -29,13 +29,37 @@ class DonkeyHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("donkey")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
+            val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
+                CubeListBuilder.create().texOffs(0, 13).addBox(-3.0f, -11.0f, -2.0f, 6.0f, 5.0f, 7.0f, CubeDeformation.NONE),
                 PartPose.ZERO
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            val cubeListBuilder2 = CubeListBuilder.create().texOffs(0, 12).addBox(-1.0f, -7.0f, 0.0f, 2.0f, 7.0f, 1.0f)
+            head.addOrReplaceChild(
+                "left_ear",
+                cubeListBuilder2,
+                PartPose.offsetAndRotation(
+                    1.25f,
+                    -10.0f,
+                    4.0f,
+                    (Math.PI / 12).toFloat(),
+                    0.0f,
+                    (Math.PI / 12).toFloat()
+                )
+            )
+            head.addOrReplaceChild(
+                "right_ear",
+                cubeListBuilder2,
+                PartPose.offsetAndRotation(
+                    -1.25f,
+                    -10.0f,
+                    4.0f,
+                    (Math.PI / 12).toFloat(),
+                    0.0f,
+                    (-Math.PI / 12).toFloat()
+                )
+            )
+            return LayerDefinition.create(mesh, 64, 64)
         }
     }
 }

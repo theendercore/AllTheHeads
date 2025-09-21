@@ -31,11 +31,11 @@ class IronGolemHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
-                PartPose.ZERO
+                CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -12.0f, -5.5f, 8.0f, 10.0f, 8.0f).texOffs(24, 0)
+                    .addBox(-1.0f, -5.0f, -7.5f, 2.0f, 4.0f, 2.0f),
+                PartPose.offset(0.0f, 2.0f, 0.0f)
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            return LayerDefinition.create(mesh, 128, 128)
         }
     }
 }

@@ -31,11 +31,18 @@ class PandaHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
-                PartPose.ZERO
-            )
-            return LayerDefinition.create(mesh, 32, 32)
+                CubeListBuilder.create()
+                    .texOffs(0, 6)
+                    .addBox(-6.5F, -5.0F, -4.0F, 13.0F, 10.0F, 9.0F)
+                    .texOffs(45, 16)
+                    .addBox("nose", -3.5F, 0.0F, -6.0F, 7.0F, 5.0F, 2.0F)
+                    .texOffs(52, 25)
+                    .addBox("left_ear", 3.5F, -8.0F, -1.0F, 5.0F, 4.0F, 1.0F)
+                    .texOffs(52, 25)
+                    .addBox("right_ear", -8.5F, -8.0F, -1.0F, 5.0F, 4.0F, 1.0F),
+                PartPose.offset(0.0F, -5F, 0.0F)
+            );
+            return LayerDefinition.create(mesh, 64, 64)
         }
     }
 }

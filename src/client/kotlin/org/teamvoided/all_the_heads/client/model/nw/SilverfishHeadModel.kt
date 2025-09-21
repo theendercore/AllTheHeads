@@ -35,7 +35,7 @@ class SilverfishHeadModel(modelPart: ModelPart) : HeadModelBase() {
                     .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
                 PartPose.ZERO
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            return LayerDefinition.create(mesh, 64, 32)
         }
     }
 }

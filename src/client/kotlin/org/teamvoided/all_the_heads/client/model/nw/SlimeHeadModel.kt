@@ -1,11 +1,9 @@
-
 package org.teamvoided.all_the_heads.client.model.nw
 
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.model.geom.ModelPart
 import net.minecraft.client.model.geom.PartPose
-import net.minecraft.client.model.geom.builders.CubeDeformation
 import net.minecraft.client.model.geom.builders.CubeListBuilder
 import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
@@ -30,13 +28,28 @@ class SlimeHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("slime")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
+            val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
+                CubeListBuilder.create().texOffs(0, 16).addBox(-3.0f, 0.0f, -3.0f, 6.0f, 6.0f, 6.0f),
+                PartPose.offset(0f, -7f, 0f)
+            )
+            head.addOrReplaceChild(
+                "right_eye",
+                CubeListBuilder.create().texOffs(32, 0).addBox(-3.25f, 1.0f, -3.5f, 2.0f, 2.0f, 2.0f),
                 PartPose.ZERO
             )
-            return LayerDefinition.create(mesh, 32, 32)
+            head.addOrReplaceChild(
+                "left_eye",
+                CubeListBuilder.create().texOffs(32, 4).addBox(1.25f, 1.0f, -3.5f, 2.0f, 2.0f, 2.0f),
+                PartPose.ZERO
+            )
+            head.addOrReplaceChild(
+                "mouth",
+                CubeListBuilder.create().texOffs(32, 8).addBox(0.0f, 4.0f, -3.5f, 1.0f, 1.0f, 1.0f),
+                PartPose.ZERO
+            )
+
+            return LayerDefinition.create(mesh, 64, 32)
         }
     }
 }
