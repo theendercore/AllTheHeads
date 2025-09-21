@@ -32,7 +32,7 @@ class AllayHeadModel(modelPart: ModelPart) : HeadModelBase() {
             mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
+                    .addBox(-2.5f, -5f, -2.5f, 5f, 5f, 5f, CubeDeformation(0f)),
                 PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 32, 32)
