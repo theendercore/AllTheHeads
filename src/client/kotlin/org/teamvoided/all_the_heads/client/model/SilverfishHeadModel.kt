@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.model.geom.ModelPart
 import net.minecraft.client.model.geom.PartPose
-import net.minecraft.client.model.geom.builders.CubeDeformation
 import net.minecraft.client.model.geom.builders.CubeListBuilder
 import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
@@ -29,10 +28,36 @@ class SilverfishHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("silverfish")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
+            val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
+                CubeListBuilder.create().texOffs(0, 0).addBox(0f, 0f, 0f, 0f, 0f, 0f),
+                PartPose.ZERO
+            )
+
+            head.addOrReplaceChild(
+                "segment0", // Eyes
+                CubeListBuilder.create().texOffs(0, 0).addBox(
+                    -1.5f, -2f, -2f,
+                    3f, 2f, 2f
+                ),
+                PartPose.ZERO
+            )
+
+            head.addOrReplaceChild(
+                "segment1",
+                CubeListBuilder.create().texOffs(0, 4).addBox(
+                    -2f, -3f, 0f,
+                    4f, 3f, 2f
+                ),
+                PartPose.ZERO
+            )
+
+            head.addOrReplaceChild(
+                "layer0",
+                CubeListBuilder.create().texOffs(20, 18).addBox(
+                    -3f, -5f, -0.5f,
+                    6f, 5f, 2f
+                ),
                 PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 32)
