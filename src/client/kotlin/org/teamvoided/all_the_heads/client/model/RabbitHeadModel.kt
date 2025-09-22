@@ -28,26 +28,38 @@ class RabbitHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("rabbit")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            mesh.root.addOrReplaceChild(
+            val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(32, 0).addBox(-2.5F, -4.0F, -5.0F, 5.0F, 4.0F, 5.0F),
+                CubeListBuilder.create().texOffs(32, 0).addBox(
+                    -2.5F, -4f, -2.5f,
+                    5f, 4f, 5f
+                ),
                 PartPose.ZERO
             )
-            /*mesh.root.addOrReplaceChild(
+            head.addOrReplaceChild(
                 "right_ear",
-                CubeListBuilder.create().texOffs(52, 0).addBox(-2.5f, -9.0f, -1.0f, 2.0f, 5.0f, 1.0f),
-                PartPose.offsetAndRotation(0.0f, 16.0f, -1.0f, 0.0f, (-Math.PI / 12).toFloat(), 0.0f)
+                CubeListBuilder.create().texOffs(52, 0).addBox(
+                    -2.5f, -9f, -1f,
+                    2f, 5f, 1f
+                ),
+                PartPose.offsetAndRotation(0f, 0f, 2.5f, 0f, (-Math.PI / 12f).toFloat(), 0f)
             )
-            mesh.root.addOrReplaceChild(
+            head.addOrReplaceChild(
                 "left_ear",
-                CubeListBuilder.create().texOffs(58, 0).addBox(0.5f, -9.0f, -1.0f, 2.0f, 5.0f, 1.0f),
-                PartPose.offsetAndRotation(0.0f, 16.0f, -1.0f, 0.0f, (Math.PI / 12).toFloat(), 0.0f)
+                CubeListBuilder.create().texOffs(58, 0).addBox(
+                    0.5f, -9f, -1f,
+                    2f, 5f, 1f
+                ),
+                PartPose.offsetAndRotation(0f, 0f, 2.5f, 0f, (Math.PI / 12f).toFloat(), 0f)
             )
-            mesh.root.addOrReplaceChild(
+            head.addOrReplaceChild(
                 "nose",
-                CubeListBuilder.create().texOffs(32, 9).addBox(-0.5f, -2.5f, -5.5f, 1.0f, 1.0f, 1.0f),
-                PartPose.offset(0.0f, 16.0f, -1.0f)
-            )*/
+                CubeListBuilder.create().texOffs(32, 9).addBox(
+                    -0.5f, -2.5f, -3f,
+                    1f, 1f, 1f
+                ),
+                PartPose.ZERO
+            )
             return LayerDefinition.create(mesh, 64, 32)
         }
     }

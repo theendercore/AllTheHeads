@@ -112,9 +112,9 @@ object ModelsManager {
         VTTextures.BROWN_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/brown"),
         VTTextures.WHITE_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/white"),
         VTTextures.BLACK_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/black"),
-        VTTextures.BLACK_AND_WHITE_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/black_and_white"),
+        VTTextures.BLACK_AND_WHITE_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/white_splotched"),
         VTTextures.GOLD_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/gold"),
-        VTTextures.SALT_AND_PEPPER_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/salt_and_pepper"),
+        VTTextures.SALT_AND_PEPPER_RABBIT to builtIn(RabbitHeadModel.ID, "rabbit/salt"),
 
         VTTextures.RAVAGER to builtIn(RavagerHeadModel.ID, "illager/ravager"),
         VTTextures.SALMON to builtIn(SalmonHeadModel.ID, "fish/salmon"),
