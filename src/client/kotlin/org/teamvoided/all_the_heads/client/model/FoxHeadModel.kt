@@ -28,22 +28,22 @@ class FoxHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             val head  = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(1, 5).addBox(-3.0f, -2.0f, -5.0f, 8.0f, 6.0f, 6.0f),
-                PartPose.offset(0f, -4f, 0f)
+                CubeListBuilder.create().texOffs(1, 5).addBox(-4f, -6f, -3f, 8f, 6f, 6f),
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "right_ear",
-                CubeListBuilder.create().texOffs(8, 1).addBox(-3.0f, -4.0f, -4.0f, 2.0f, 2.0f, 1.0f),
+                CubeListBuilder.create().texOffs(8, 1).addBox(-4f, -8f, -2f, 2f, 2f, 1f),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "left_ear",
-                CubeListBuilder.create().texOffs(15, 1).addBox(3.0f, -4.0f, -4.0f, 2.0f, 2.0f, 1.0f),
+                CubeListBuilder.create().texOffs(15, 1).addBox(2f, -8f, -2f, 2f, 2f, 1f),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "nose",
-                CubeListBuilder.create().texOffs(6, 18).addBox(-1.0f, 2.01f, -8.0f, 4.0f, 2.0f, 3.0f),
+                CubeListBuilder.create().texOffs(6, 18).addBox(-2f, -2.01f, -6f, 4f, 2f, 3f),
                 PartPose.ZERO
             )
 
