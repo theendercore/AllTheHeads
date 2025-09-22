@@ -32,15 +32,15 @@ class PolarBearHeadModel(modelPart: ModelPart) : HeadModelBase() {
                 "head",
                 CubeListBuilder.create()
                     .texOffs(0, 0)
-                    .addBox(-3.5F, -3.0F, -3.0F, 7.0F, 7.0F, 7.0F)
+                    .addBox(-3.5F, -7f, -3.5f, 7f, 7f, 7f)
                     .texOffs(0, 44)
-                    .addBox("mouth", -2.5F, 1.0F, -6.0F, 5.0F, 3.0F, 3.0F)
+                    .addBox("mouth", -2.5F, -3f, -6.5f, 5f, 3f, 3f)
                     .texOffs(26, 0)
-                    .addBox("right_ear", -4.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F)
+                    .addBox("right_ear", -4.5F, -8f, -1.5f, 2f, 2f, 1f)
                     .texOffs(26, 0)
                     .mirror()
-                    .addBox("left_ear", 2.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F),
-                PartPose.offset(0.0F, -4.0F, 0.0F)
+                    .addBox("left_ear", 2.5F, -8f, -1.5f, 2f, 2f, 1f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 128, 64)
         }
