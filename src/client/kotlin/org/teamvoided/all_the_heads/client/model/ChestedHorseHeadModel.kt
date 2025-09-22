@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.model.geom.ModelPart
 import net.minecraft.client.model.geom.PartPose
-import net.minecraft.client.model.geom.builders.CubeDeformation
 import net.minecraft.client.model.geom.builders.CubeListBuilder
 import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
@@ -12,7 +11,7 @@ import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.model.utils.HeadModelBase
 
-class DonkeyHeadModel(modelPart: ModelPart) : HeadModelBase() {
+class ChestedHorseHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID
     private val head: ModelPart = modelPart.getChild("head")
 
@@ -26,38 +25,24 @@ class DonkeyHeadModel(modelPart: ModelPart) : HeadModelBase() {
     }
 
     companion object {
-        val ID = AllTheHeads.id("donkey")
+        val ID = AllTheHeads.id("chested_horse")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
             val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 13).addBox(-3.0f, -11.0f, -2.0f, 6.0f, 5.0f, 7.0f, CubeDeformation.NONE),
+                CubeListBuilder.create().texOffs(0, 13).addBox(-3f, -5f, -3.5f, 6f, 5f, 7f),
                 PartPose.ZERO
             )
-            val cubeListBuilder2 = CubeListBuilder.create().texOffs(0, 12).addBox(-1.0f, -7.0f, 0.0f, 2.0f, 7.0f, 1.0f)
+            val earBox = CubeListBuilder.create().texOffs(0, 12).addBox(-1f, -10.3f, 3.5f, 2f, 7f, 1f)
+            val rot = (Math.PI / 12).toFloat()
+            head.addOrReplaceChild("left_ear", earBox, PartPose.offsetAndRotation(0.25f, 0f, 0f, rot, 0f, rot))
             head.addOrReplaceChild(
-                "left_ear",
-                cubeListBuilder2,
-                PartPose.offsetAndRotation(
-                    1.25f,
-                    -10.0f,
-                    4.0f,
-                    (Math.PI / 12).toFloat(),
-                    0.0f,
-                    (Math.PI / 12).toFloat()
-                )
+                "right_ear", earBox, PartPose.offsetAndRotation(-0.25f, 0f, 0f, rot, 0f, (-Math.PI / 12f).toFloat())
             )
             head.addOrReplaceChild(
-                "right_ear",
-                cubeListBuilder2,
-                PartPose.offsetAndRotation(
-                    -1.25f,
-                    -10.0f,
-                    4.0f,
-                    (Math.PI / 12).toFloat(),
-                    0.0f,
-                    (-Math.PI / 12).toFloat()
-                )
+                "upper_mouth",
+                CubeListBuilder.create().texOffs(0, 25).addBox(-2f, -5f, -8.5f, 4f, 5f, 5f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 64)
         }

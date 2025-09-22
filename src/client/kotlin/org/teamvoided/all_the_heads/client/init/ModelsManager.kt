@@ -52,7 +52,7 @@ object ModelsManager {
         VTTextures.COD to builtIn(CodHeadModel.ID, "fish/cod"),
         VTTextures.COW to builtIn(CowHeadModel.ID, "cow/cow"),
         VTTextures.DOLPHIN to builtIn(DolphinHeadModel.ID, "dolphin"),
-        VTTextures.DONKEY to builtIn(DonkeyHeadModel.ID, "horse/donkey"),
+        VTTextures.DONKEY to builtIn(ChestedHorseHeadModel.ID, "horse/donkey"),
         VTTextures.ENDERMITE to builtIn(EndermiteHeadModel.ID, "endermite"),
         VTTextures.EVOKER to builtIn(IllagerHeadModel.ID, "illager/evoker"),
         // Fox
@@ -85,7 +85,7 @@ object ModelsManager {
         VTTextures.MAGMA_CUBE to builtIn(MagmaCubeHeadModel.ID, "slime/magmacube"),
         VTTextures.RED_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
         VTTextures.BROWN_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
-        VTTextures.MULE to builtIn(DonkeyHeadModel.ID, "horse/mule"),
+        VTTextures.MULE to builtIn(ChestedHorseHeadModel.ID, "horse/mule"),
         VTTextures.OCELOT to builtIn(OcelotHeadModel.ID, "cat/ocelot"),
         // Panda
         VTTextures.PANDA to builtIn(PandaHeadModel.ID, "panda/panda"),
