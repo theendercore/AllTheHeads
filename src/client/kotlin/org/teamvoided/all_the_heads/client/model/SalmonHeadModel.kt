@@ -30,8 +30,8 @@ class SalmonHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(22, 0).addBox(-1.0F, -2.0F, -3.0F, 2.0F, 4.0F, 3.0F),
-                PartPose.offset(0.0F, -2.0F, 0.0F)
+                CubeListBuilder.create().texOffs(22, 0).addBox(-1f, -4f, -1.5F, 2f, 4f, 3f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 32, 32)
         }
