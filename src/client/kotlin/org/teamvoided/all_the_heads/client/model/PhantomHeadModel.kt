@@ -30,8 +30,8 @@ class PhantomHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -2.0F, -5.0F, 7.0F, 3.0F, 5.0F),
-                PartPose.offset(-0.5f, -1.0f, -2.5f)
+                CubeListBuilder.create().texOffs(0, 0).addBox(-3.5f, -3f, -2.5f, 7f, 3f, 5f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 64)
         }
