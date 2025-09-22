@@ -30,18 +30,18 @@ class BatHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 7).addBox(-2.0f, -3.0f, -1.0f, 4.0f, 3.0f, 2.0f),
+                CubeListBuilder.create().texOffs(0, 7).addBox(-2f, -3f, -1f, 4f, 3f, 2f),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "right_ear",
-                CubeListBuilder.create().texOffs(1, 15).addBox(-2.5f, -4.0f, 0.0f, 3.0f, 5.0f, 0.0f),
-                PartPose.offset(-1.5f, -2.0f, 0.0f)
+                CubeListBuilder.create().texOffs(1, 15).addBox(-4f, -6f, 0f, 3f, 5f, 0.001f),
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "left_ear",
-                CubeListBuilder.create().texOffs(8, 15).addBox(-0.1f, -3.0f, 0.0f, 3.0f, 5.0f, 0.0f),
-                PartPose.offset(1.1f, -3.0f, 0.0f)
+                CubeListBuilder.create().texOffs(8, 15).addBox(1f, -6f, 0f, 3f, 5f, 0.001f),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 32, 32)
         }
