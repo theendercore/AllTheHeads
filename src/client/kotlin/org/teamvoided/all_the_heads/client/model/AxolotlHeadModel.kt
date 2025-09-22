@@ -31,20 +31,20 @@ class AxolotlHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             val def = CubeDeformation(0.001f)
             val head = mesh.root.addOrReplaceChild(
-                "head", create().texOffs(0, 1).addBox(-4.0f, -3.0f, -5.0f, 8.0f, 5.0f, 5.0f, def),
-                PartPose.offset(0.0f, -2.0f, 0.0f)
+                "head", create().texOffs(0, 1).addBox(-4f, -5f, -2.5f, 8f, 5f, 5f, def),
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
-                "top_gills", create().texOffs(3, 37).addBox(-4.0f, -3.0f, 0.0f, 8.0f, 3.0f, 0.0f, def),
-                PartPose.offset(0.0f, -3.0f, -1.0f)
+                "top_gills", create().texOffs(3, 37).addBox(-4f, -8f, 1.5f, 8f, 3f, 0f, def),
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
-                "left_gills", create().texOffs(0, 40).addBox(-3.0f, -5.0f, 0.0f, 3.0f, 7.0f, 0.0f, def),
-                PartPose.offset(-4.0f, 0.0f, -1.0f)
+                "left_gills", create().texOffs(0, 40).addBox(-7f, -7f, 1.5f, 3f, 7f, 0f, def),
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
-                "right_gills", create().texOffs(11, 40).addBox(0.0f, -5.0f, 0.0f, 3.0f, 7.0f, 0.0f, def),
-                PartPose.offset(4.0f, 0.0f, -1.0f)
+                "right_gills", create().texOffs(11, 40).addBox(4f, -7f, 1.5f, 3f, 7f, 0f, def),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 64)
         }
