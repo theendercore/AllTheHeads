@@ -30,7 +30,7 @@ class TadpoleHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0).addBox(-1.5f, -1.0f, 0.0f, 3.0f, 2.0f, 3.0f),
+                CubeListBuilder.create().texOffs(0, 0).addBox(-1.5f, -2f, -1.5f, 3f, 2f, 3f),
                 PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 16, 16)
