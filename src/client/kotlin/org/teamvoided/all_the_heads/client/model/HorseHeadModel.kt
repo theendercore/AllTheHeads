@@ -32,19 +32,29 @@ class HorseHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val head = mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create().texOffs(0, 13)
-                    .addBox(-3.0f, -11.0f, -2.0f, 6.0f, 5.0f, 7.0f, CubeDeformation.NONE),
+                    .addBox(-3f, -5f, -3.5f, 6f, 5f, 7f, CubeDeformation.NONE),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "left_ear",
                 CubeListBuilder.create().texOffs(19, 16)
-                    .addBox(0.55f, -13.0f, 4.0f, 2.0f, 3.0f, 1.0f, CubeDeformation(-0.001f)),
+                    .addBox(0.55f, -7f, 2.5f, 2f, 3f, 1f, CubeDeformation(-0.001f)),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "right_ear",
                 CubeListBuilder.create().texOffs(19, 16)
-                    .addBox(-2.55f, -13.0f, 4.0f, 2.0f, 3.0f, 1.0f, CubeDeformation(-0.001f)),
+                    .addBox(-2.55f, -7f, 2.5f, 2f, 3f, 1f, CubeDeformation(-0.001f)),
+                PartPose.ZERO
+            )
+            head.addOrReplaceChild(
+                "upper_mouth",
+                CubeListBuilder.create().texOffs(0, 25).addBox(-2f, -5f, -8.5f, 4f, 5f, 5f),
+                PartPose.ZERO
+            )
+            head.addOrReplaceChild(
+                "mane",
+                CubeListBuilder.create().texOffs(56, 36).addBox(-1f, -5f, 3.51f, 2f, 5f, 2f),
                 PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 64)
