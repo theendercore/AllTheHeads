@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.model.geom.ModelPart
 import net.minecraft.client.model.geom.PartPose
-import net.minecraft.client.model.geom.builders.CubeDeformation
 import net.minecraft.client.model.geom.builders.CubeListBuilder
 import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
@@ -31,8 +30,7 @@ class EndermiteHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0)
-                    .addBox(-2.5f, -5.0f, -2.5f, 5.0f, 5.0f, 5.0f, CubeDeformation(0.0f)),
+                CubeListBuilder.create().texOffs(0, 0).addBox(-2f, -3.0f, -1f, 4f, 3.0f, 2f),
                 PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 32)
