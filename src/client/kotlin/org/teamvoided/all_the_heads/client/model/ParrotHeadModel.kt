@@ -30,28 +30,28 @@ class ParrotHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(2, 2).addBox(-1.0f, -1.5f, -1.0f, 2.0f, 3.0f, 2.0f),
-                PartPose.offset(0.0f, -1f, 0f)
+                CubeListBuilder.create().texOffs(2, 2).addBox(-1f, -1.5f, -1f, 2f, 3f, 2f),
+                PartPose.offset(0f, -1f, 0f)
             )
             head.addOrReplaceChild(
                 "head2",
-                CubeListBuilder.create().texOffs(10, 0).addBox(-1.0f, -0.5f, -2.0f, 2.0f, 1.0f, 4.0f),
-                PartPose.offset(0.0f, -2.0f, -1.0f)
+                CubeListBuilder.create().texOffs(10, 0).addBox(-1f, -0.5f, -2f, 2f, 1f, 4f),
+                PartPose.offset(0f, -2f, -1f)
             )
             head.addOrReplaceChild(
                 "beak1",
-                CubeListBuilder.create().texOffs(11, 7).addBox(-0.5f, -1.0f, -0.5f, 1.0f, 2.0f, 1.0f),
-                PartPose.offset(0.0f, -0.5f, -1.5f)
+                CubeListBuilder.create().texOffs(11, 7).addBox(-0.5f, -1f, -0.5f, 1f, 2f, 1f),
+                PartPose.offset(0f, -0.5f, -1.5f)
             )
             head.addOrReplaceChild(
                 "beak2",
-                CubeListBuilder.create().texOffs(16, 7).addBox(-0.5f, 0.0f, -0.5f, 1.0f, 2.0f, 1.0f),
-                PartPose.offset(0.0f, -1.75f, -2.45f)
+                CubeListBuilder.create().texOffs(16, 7).addBox(-0.5f, 0f, -0.5f, 1f, 2f, 1f),
+                PartPose.offset(0f, -1.75f, -2.45f)
             )
             head.addOrReplaceChild(
                 "feather",
-                CubeListBuilder.create().texOffs(2, 18).addBox(0.0f, -4.0f, -2.0f, 0.0f, 5.0f, 4.0f),
-                PartPose.offset(0.0f, -2.15f, 0.15f)
+                CubeListBuilder.create().texOffs(2, 18).addBox(0f, -4f, -2f, 0f, 5f, 4f),
+                PartPose.offset(0f, -2.15f, 0.15f)
             )
             return LayerDefinition.create(mesh, 32, 32)
         }
