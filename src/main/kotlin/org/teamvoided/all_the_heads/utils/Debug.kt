@@ -11,11 +11,14 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.SkullBlockEntity
 import net.minecraft.world.phys.BlockHitResult
+import org.teamvoided.all_the_heads.ATHNet
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.CopyToClipboardPayload
 
 fun initDebug() {
     if (!isDev()) return
+
+    ATHNet.init()
     UseBlockCallback.EVENT.register { player, world, hand, hitResult ->
         if (debugUse(player, world, hand, hitResult)) InteractionResult.SUCCESS
         else InteractionResult.PASS
