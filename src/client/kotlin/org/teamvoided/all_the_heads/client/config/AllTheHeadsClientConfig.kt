@@ -32,5 +32,7 @@ Custom Data mode is using the this mods custom ntb data and will only work if th
 
     @Comment("Enabled debug info. Not recommended in everyday use")
     var enableDebugRendering = isDev()
+    var skullText = true
+    var noModelWarning = true
     var lookAtMode = true
 }

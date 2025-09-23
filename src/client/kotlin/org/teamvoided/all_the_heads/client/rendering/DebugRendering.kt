@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
 import com.mojang.authlib.properties.PropertyMap
 import com.mojang.blaze3d.vertex.PoseStack
+import com.mojang.math.Axis
 import me.fzzyhmstrs.fzzy_config.nullCast
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Font
@@ -12,6 +13,8 @@ import net.minecraft.client.model.SkullModelBase
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
+import net.minecraft.util.Mth.DEG_TO_RAD
+import net.minecraft.world.item.ItemDisplayContext
 import net.minecraft.world.item.component.ResolvableProfile
 import net.minecraft.world.level.block.SkullBlock
 import net.minecraft.world.phys.BlockHitResult
@@ -39,33 +42,49 @@ fun debugRenderer(
     if (!clientConfig.enableDebugRendering) return
     val mc = Minecraft.getInstance()
 
+    val font = mc.font
+    if (clientConfig.noModelWarning && data == null && ctx.itemCtx == ItemDisplayContext.GUI) {
+        matrices.pushPose()
+        val scale = .06f
+        matrices.scale(scale, -scale, scale)
+        matrices.rotateAround(Axis.YN.rotation(45f * DEG_TO_RAD), 0f, 0f, 0f)
+        matrices.rotateAround(Axis.XP.rotation(30f * DEG_TO_RAD), 0f, 0f, 0f)
+        matrices.translate(4f, -14f, 8f)
+        val text = Component.literal("❌")
+        font.drawInBatch(
+            text, 0f, 0f, 0xff_ff_00_00.toInt(),
+            true, matrices.last().pose(), vertexConsumers,
+            Font.DisplayMode.POLYGON_OFFSET, 0, 15728880
+        )
+        matrices.popPose()
+    }
+
     if (clientConfig.lookAtMode && ctx.renderLocation == RenderLocation.IN_WORLD) {
         val hit = mc.hitResult
         if (hit !is BlockHitResult) return
         if (hit.blockPos != ctx.blockEntity?.blockPos) return
     }
 
-    val font = mc.font
     val textList = buildList {
-        add("Skull")
-        if (clientConfig.headRenderMode.get() == HeadRenderMode.PROFILE)
-            add(ctx.skullOwner?.readableString() ?: "[No Owner]")
-        else
-            add(ctx.skullId?.toString() ?: "[No Id]")
+        if (clientConfig.skullText) {
+            add("Skull")
+            if (clientConfig.headRenderMode.get() == HeadRenderMode.PROFILE)
+                add(ctx.skullOwner?.readableString() ?: "[No Owner]")
+            else
+                add(ctx.skullId?.toString() ?: "[No Id]")
 
-        if (Screen.hasShiftDown()) {
-            add(ctx.renderLocation.toString())
-            ctx.itemCtx?.let { add("ItemCtx: [ $it ]") }
+            if (Screen.hasShiftDown()) {
+                add(ctx.renderLocation.toString())
+                ctx.itemCtx?.let { add("ItemCtx: [ $it ]") }
+            }
+            if (data != null) add(
+                "Model: ${
+                    data.model().nullCast<ATHModel>()?.getId()
+                        ?: data.model().javaClass.simpleName
+                }"
+            )
         }
-        if (data != null) add(
-            "Model: ${
-                data.model().nullCast<ATHModel>()?.getId()
-                    ?: data.model().javaClass.simpleName
-            }"
-        )
-
     }
-
 
     matrices.pushPose()
     val yOffset = if (ctx.renderLocation == RenderLocation.ON_HEAD) 0.8f else 1.3f
@@ -78,7 +97,6 @@ fun debugRenderer(
     val color = 0xff_ff_ff_ff.toInt()
     for ((idx, rawText) in textList.reversed().withIndex()) {
         val text = Component.literal(rawText)
-//            .append(Text.literal("${rawText.second}").formatted(Formatting.GREEN))
         font.drawInBatch(
             text, font.width(text) / -2f, idx * -(1f + font.lineHeight), color,
             true, matrices.last().pose(), vertexConsumers,
