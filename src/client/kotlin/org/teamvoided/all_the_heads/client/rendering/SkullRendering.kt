@@ -13,6 +13,7 @@ import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
+import org.teamvoided.all_the_heads.client.data.textures.MiscTextures.TEXTURE_BLACKLIST
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 
 @Suppress("DEPRECATION")
@@ -53,10 +54,10 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
     when (clientConfig.headRenderMode.get()) {
         HeadRenderMode.PROFILE -> when (clientConfig.profileDataMode.get()) {
             ProfileDataMode.TEXTURE -> {
-                val texture = ctx.skullOwner?.getTexture()
-                if (texture == null) return null
+                val texture = ctx.skullOwner?.getTexture() ?: return null
                 val data = ModelsManager.models[texture]
                 if (data == null) {
+                    if (TEXTURE_BLACKLIST.contains(texture)) return null
                     sendError("Could not find model for texture $texture")
                     return null
                 }
