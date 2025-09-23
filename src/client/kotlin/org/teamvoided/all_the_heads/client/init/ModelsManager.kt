@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
+import org.teamvoided.all_the_heads.client.data.textures.MiscTextures
 import org.teamvoided.all_the_heads.client.data.textures.VTTextures
 import org.teamvoided.all_the_heads.client.model.*
 
@@ -157,7 +158,7 @@ object ModelsManager {
         VTTextures.ZOMBIE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_zombie"),
         VTTextures.ZOMBIFIED_PIGLIN to vanilla(SkullBlock.Types.PIGLIN, "piglin/zombified_piglin"),
 
-        VTTextures.TEST_TEX to builtIn(LlamaWithNeckHeadModel.ID, "llama/gray"),
+        MiscTextures.TEST_TEX to builtIn(LlamaWithNeckHeadModel.ID, "llama/gray"),
     )
 
     fun vanilla(id: SkullBlock.Type, texture: String) = SkullRenderData(getVanilla(id), entityType(texture))
