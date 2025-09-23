@@ -1,4 +1,4 @@
-package org.teamvoided.all_the_heads.client.data
+package org.teamvoided.all_the_heads.client.data.textures
 
 object VTTextures {
     const val ALLAY =

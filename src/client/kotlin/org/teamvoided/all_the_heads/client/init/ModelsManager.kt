@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
-import org.teamvoided.all_the_heads.client.data.VTTextures
+import org.teamvoided.all_the_heads.client.data.textures.VTTextures
 import org.teamvoided.all_the_heads.client.model.*
 
 object ModelsManager {
