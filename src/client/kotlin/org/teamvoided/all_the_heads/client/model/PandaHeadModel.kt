@@ -31,15 +31,23 @@ class PandaHeadModel(modelPart: ModelPart) : HeadModelBase() {
             mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create()
-                    .texOffs(0, 6)
-                    .addBox(-6.5F, -5.0F, -4.0F, 13.0F, 10.0F, 9.0F)
-                    .texOffs(45, 16)
-                    .addBox("nose", -3.5F, 0.0F, -6.0F, 7.0F, 5.0F, 2.0F)
-                    .texOffs(52, 25)
-                    .addBox("left_ear", 3.5F, -8.0F, -1.0F, 5.0F, 4.0F, 1.0F)
-                    .texOffs(52, 25)
-                    .addBox("right_ear", -8.5F, -8.0F, -1.0F, 5.0F, 4.0F, 1.0F),
-                PartPose.offset(0.0F, -5F, 0.0F)
+                    .texOffs(0, 6).addBox(
+                        -6.5F, -10f, -4.5f,
+                        13f, 10f, 9f
+                    )
+                    .texOffs(45, 16).addBox(
+                        "nose", -3.5F, -5f, -6.5f,
+                        7f, 5f, 2f
+                    )
+                    .texOffs(52, 25).addBox(
+                        "left_ear", 3.5F, -13f, -1.5f,
+                        5f, 4f, 1f
+                    )
+                    .texOffs(52, 25).addBox(
+                        "right_ear", -8.5F, -13f, -1.5f,
+                        5f, 4f, 1f
+                    ),
+                PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 64)
         }
