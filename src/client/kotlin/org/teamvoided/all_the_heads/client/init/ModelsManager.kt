@@ -123,7 +123,6 @@ object ModelsManager {
 
         VTTextures.RAVAGER to builtIn(RavagerHeadModel.ID, "illager/ravager"),
         VTTextures.SALMON to builtIn(SalmonHeadModel.ID, "fish/salmon"),
-        // TODO
         // Sheep
         VTTextures.WHITE_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
         VTTextures.LIGHT_GRAY_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
@@ -163,16 +162,28 @@ object ModelsManager {
         // Vex
         VTTextures.VEX to builtIn(AllayHeadModel.ID, "illager/vex"),
         VTTextures.VEX_CHARGING to builtIn(AllayHeadModel.ID, "illager/vex_charging"),
-        // TODO
         // Villager
-//        VTTextures.VILLAGER to builtIn(VillagerHeadModel.ID, "villager"),
+        VTTextures.VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.ARMORER_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.BUTCHER_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.CARTOGRAPHER_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.CLERIC_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.FARMER_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.FISHERMAN_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.FLETCHER_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.LEATHERWORKER_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.LIBRARIAN_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.MASON_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.NITWIT_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.SHEPHERD_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.TOOLSMITH_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
+        VTTextures.WEAPONSMITH_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
 
         VTTextures.VINDICATOR to builtIn(IllagerHeadModel.ID, "illager/vindicator"),
         VTTextures.WANDERING_TRADER to builtIn(VillagerHeadModel.ID, "wandering_trader"),
         VTTextures.WARDEN to builtIn(WardenHeadModel.ID, "warden/warden"),
 
         VTTextures.WITCH to builtIn(WitchHeadModel.ID, "witch"),
-        // TODO
         // Wolf
         VTTextures.PALE_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf"),
         VTTextures.ANGRY_PALE_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_angry"),
@@ -195,6 +206,8 @@ object ModelsManager {
 
         VTTextures.ZOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/zoglin"),
         VTTextures.ZOMBIE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_zombie"),
+        // Zombie Villager
+
         VTTextures.ZOMBIFIED_PIGLIN to vanilla(SkullBlock.Types.PIGLIN, "piglin/zombified_piglin"),
 
         MiscTextures.TEST_TEX to builtIn(CamelWithNeckHeadModel.ID, "camel/camel"),

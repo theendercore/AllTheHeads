@@ -30,13 +30,13 @@ class VillagerHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -10.0f, -4.0f, 8.0f, 10.0f, 8.0f),
+                CubeListBuilder.create().texOffs(0, 0).addBox(-4f, -10f, -4f, 8f, 10f, 8f),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "nose",
-                CubeListBuilder.create().texOffs(24, 0).addBox(-1.0f, -1.0f, -6.0f, 2.0f, 4.0f, 2.0f),
-                PartPose.offset(0.0f, -2.0f, 0.0f)
+                CubeListBuilder.create().texOffs(24, 0).addBox(-1f, -1f, -6f, 2f, 4f, 2f),
+                PartPose.offset(0f, -2f, 0f)
             )
             return LayerDefinition.create(mesh, 64, 64)
         }
