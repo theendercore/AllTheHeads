@@ -207,6 +207,21 @@ object ModelsManager {
         VTTextures.ZOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/zoglin"),
         VTTextures.ZOMBIE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_zombie"),
         // Zombie Villager
+        VTTextures.ZOMBIE_VILLAGER to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_ARMORER to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_BUTCHER to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_CARTOGRAPHER to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_CLERIC to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_FARMER to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_FISHERMAN to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_FLETCHER to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_LEATHERWORKER to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_LIBRARIAN to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_MASON to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_NITWIT to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_SHEPHERD to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_TOOLSMITH to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
+        VTTextures.ZOMBIE_WEAPONSMITH to builtIn(VillagerHeadModel.ID, "zombie_villager/zombie_villager"),
 
         VTTextures.ZOMBIFIED_PIGLIN to vanilla(SkullBlock.Types.PIGLIN, "piglin/zombified_piglin"),
 
@@ -236,6 +251,7 @@ object ModelsManager {
     fun entityBasic(texture: String): RenderType = basicType("textures/entity/${texture}.png")
 
     fun translucentType(texture: String): RenderType = RenderType.entityTranslucent(AllTheHeads.tryParseId(texture)!!)
+    @Suppress("unused")
     fun entityTranslucent(texture: String): RenderType = translucentType("textures/entity/${texture}.png")
 
 }
