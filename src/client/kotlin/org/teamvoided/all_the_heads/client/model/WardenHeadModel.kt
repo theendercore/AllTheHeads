@@ -37,18 +37,18 @@ class WardenHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val mesh = MeshDefinition()
             val head = mesh.root.addOrReplaceChild(
                 "head",
-                CubeListBuilder.create().texOffs(0, 32).addBox(-8.0f, -16.0f, -5.0f, 16.0f, 16.0f, 10.0f),
+                CubeListBuilder.create().texOffs(0, 32).addBox(-8f, -16f, -5f, 16f, 16f, 10f),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "right_tendril",
-                CubeListBuilder.create().texOffs(52, 32).addBox(-16.0f, -13.0f, 0.0f, 16.0f, 16.0f, 0.0f),
-                PartPose.offset(-8.0f, -12.0f, 0.0f)
+                CubeListBuilder.create().texOffs(52, 32).addBox(-16f, -13f, 0f, 16f, 16f, 0f),
+                PartPose.offset(-8f, -12f, 0f)
             )
             head.addOrReplaceChild(
                 "left_tendril",
-                CubeListBuilder.create().texOffs(58, 0).addBox(0.0f, -13.0f, 0.0f, 16.0f, 16.0f, 0.0f),
-                PartPose.offset(8.0f, -12.0f, 0.0f)
+                CubeListBuilder.create().texOffs(58, 0).addBox(0f, -13f, 0f, 16f, 16f, 0f),
+                PartPose.offset(8f, -12f, 0f)
             )
             return LayerDefinition.create(mesh, 128, 128)
         }
