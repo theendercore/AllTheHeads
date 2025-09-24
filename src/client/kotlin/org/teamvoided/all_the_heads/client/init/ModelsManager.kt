@@ -161,7 +161,7 @@ object ModelsManager {
         MiscTextures.TEST_TEX to builtIn(LlamaWithNeckHeadModel.ID, "llama/gray"),
     )
 
-    fun vanilla(id: SkullBlock.Type, texture: String) = SkullRenderData(getVanilla(id), entityType(texture))
+    fun vanilla(id: SkullBlock.Type, texture: String) = SkullRenderData(getVanilla(id), entityBasic(texture))
     fun getVanilla(type: SkullBlock.Type): () -> SkullModelBase {
         if (type !is SkullBlock.Types) {
             AllTheHeadsClient.sendError("Supplied non vanilla SkullType! $type")
@@ -170,7 +170,7 @@ object ModelsManager {
         return { VANILLA_MODEL_ACCESS[type]!! }
     }
 
-    fun builtIn(id: ResourceLocation, texture: String) = SkullRenderData(getBuiltIn(id), entityType(texture))
+    fun builtIn(id: ResourceLocation, texture: String) = SkullRenderData(getBuiltIn(id), entityBasic(texture))
     fun getBuiltIn(id: ResourceLocation): () -> SkullModelBase = {
         val model = BUILT_IN_MODELS[id]
         if (model != null) model
@@ -181,7 +181,9 @@ object ModelsManager {
     }
 
     fun basicType(texture: String): RenderType = RenderType.entityCutoutNoCullZOffset(AllTheHeads.tryParseId(texture)!!)
-    fun entityType(texture: String): RenderType = basicType("textures/entity/${texture}.png")
+    fun entityBasic(texture: String): RenderType = basicType("textures/entity/${texture}.png")
 
+    fun translucentType(texture: String): RenderType = RenderType.entityTranslucent(AllTheHeads.tryParseId(texture)!!)
+    fun entityTranslucent(texture: String): RenderType = translucentType("textures/entity/${texture}.png")
 
   }
