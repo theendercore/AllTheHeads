@@ -10,6 +10,7 @@ import org.teamvoided.all_the_heads.CopyToClipboardPayload
 import org.teamvoided.all_the_heads.client.config.AllTheHeadsClientConfig
 import org.teamvoided.all_the_heads.client.init.ATHModels
 import org.teamvoided.all_the_heads.debug.ATHCommands.CLIENT_DISPATCHER
+import org.teamvoided.all_the_heads.debug.ATHDebugInit.CLIENT_USE
 import org.teamvoided.all_the_heads.utils.isDev
 
 @Suppress("unused")
@@ -26,6 +27,9 @@ object AllTheHeadsClient {
                 it.source.player?.sendSystemMessage(Component.literal("Reload your resources, NOW!"))
                 Minecraft.getInstance().reloadResourcePacks()
             }
+        }
+        CLIENT_USE = { player, stack, be ->
+            player.sendSystemMessage(Component.literal("AnimTicks: " + be.getAnimation(0f)))
         }
     }
 

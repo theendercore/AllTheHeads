@@ -8,13 +8,13 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.SkullBlockEntity
 import net.minecraft.world.phys.BlockHitResult
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.CopyToClipboardPayload
 import org.teamvoided.all_the_heads.utils.isDev
-import kotlin.collections.first
 
 object ATHDebugInit {
     fun init() {
@@ -27,6 +27,9 @@ object ATHDebugInit {
             else InteractionResult.PASS
         }
     }
+
+    @Suppress("unused")
+    var CLIENT_USE = { player: Player, stack: ItemStack, be: SkullBlockEntity -> }
 
     @Suppress("UnstableApiUsage", "unused")
     fun debugUse(
@@ -54,7 +57,7 @@ object ATHDebugInit {
             if (data != null) {
                 player.sendSystemMessage(Component.literal(data.toString()))
             }
-        }
+        } else CLIENT_USE(player, stack, be)
 
         return true
     }
