@@ -32,6 +32,9 @@ object ATHCommands {
 
         val dumpHeads = literal("dump_heads").executes(::dumpHeads).build()
         root.addChild(dumpHeads)
+
+        val custom = literal("custom").executes(::customCommand).build()
+        root.addChild(custom)
     }
 
 
@@ -39,6 +42,38 @@ object ATHCommands {
 
     fun athReload(ctx: CommandContext<CommandSourceStack>): Int {
         CLIENT_DISPATCHER(ctx)
+        return 0
+    }
+
+    fun customCommand(ctx: CommandContext<CommandSourceStack>): Int {
+        val src = ctx.source ?: return -1
+        val world = src.level ?: return -1
+        val server = src.server ?: return -1
+        val player = src.player ?: return -1
+
+       /* val tex =
+            "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAYRJREFUeJztmjFLxEAQhV82CRxYamdn428SK/H32YiNP8PW8sBOSyGwxFjIBW+5MLnk1jcx7+sGJneTt3mzk7AFDB6vnzsA+OzeAQB323sAQNu2AICyLPfih6sn/M6/eb0trP9gEsYkbdsXfHy99XHTNIgxDsZpvmdMAXYrCQBnxUW/0sDP6qdxmu+dakzSebjcu5m6rvtH/1Cc5nvG9Odms+mAYY/vbnSoR8QYl98DLI9bPcIzpgCWx60e4Z1RPcDyuNUjPFMdu8+nnk/jNN/qIew5IQDz9/klzwlh7j6/9DmhAubv80ueE4q5+7z1LuB9TghAfo97nhNCbo97nxMqIL/HPc8Jh/zXTbjmmOstpv7+pF4y6l3gPyMB2AWwKTDfs14Z1RNW/wRIAHYBbCQAuwA2EoBdABsJwC6AjQRgFyCEEEIIIYQQQgjx1+Q4n5PrfEGWs0Sr/yIkAdgFsDmFr1jnC07SE1b/BEgAdgFsJAC7ADYSgF0AGwnALoCNBGAXwOYbR7pEjQycuEAAAAAASUVORK5CYII="
+
+        val gson = GsonBuilder().registerTypeAdapter(UUID::class.java, UUIDTypeAdapter()).create()
+
+        val CREAMY_LLAMA =
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGQ2N2ZkNGJmZjI5MzI2OWNiOTA4OTc0ZGNhODNjMzM0ODVlNDM1ZWQ1YThlMWRiZDY1MjFjNjE2ODcxNDAifX19"
+
+        try {
+            val json = String(Base64.getDecoder().decode(CREAMY_LLAMA), StandardCharsets.UTF_8)
+            val result = gson.fromJson(json, MinecraftTexturesPayload::class.java)
+            println(result)
+
+        } catch (e: Exception) {
+            log.error("Could not decode textures payload", e)
+        }*/
+
+        /*val props = PropertyMap()
+
+        val stack = Items.PLAYER_HEAD.defaultInstance
+        stack.set(DataComponents.PROFILE, ResolvableProfile(Optional.empty(), Optional.empty(), props))
+
+        player.addItem(stack)*/
         return 0
     }
 
