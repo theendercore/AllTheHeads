@@ -124,7 +124,23 @@ object ModelsManager {
         VTTextures.SALMON to builtIn(SalmonHeadModel.ID, "fish/salmon"),
         // TODO
         // Sheep
-//        VTTextures.SHEEP to builtIn(SheepHeadModel.ID, "sheep"),
+        VTTextures.WHITE_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.LIGHT_GRAY_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.GRAY_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.BLACK_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.BROWN_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.RED_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.ORANGE_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.YELLOW_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.LIME_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.GREEN_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.CYAN_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.LIGHT_BLUE_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.BLUE_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.PURPLE_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.MAGENTA_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.PINK_SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
+        VTTextures.JEB__SHEEP to builtIn(SheepHeadModel.ID, "sheep/sheep"),
 
         VTTextures.SHULKER to builtIn(ShulkerHeadModel.ID, "shulker/shulker"),
         VTTextures.SILVERFISH to builtIn(SilverfishHeadModel.ID, "silverfish"),
@@ -155,7 +171,24 @@ object ModelsManager {
         VTTextures.WITCH to builtIn(WitchHeadModel.ID, "witch"),
         // TODO
         // Wolf
-//        VTTextures.WOLF to builtIn(WolfHeadModel.ID, "wolf"),
+        VTTextures.PALE_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf"),
+        VTTextures.ANGRY_PALE_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_angry"),
+        VTTextures.SPOTTY_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_spotted"),
+        VTTextures.ANGRY_SPOTTY_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_spotted_angry"),
+        VTTextures.SNOWY_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_snowy"),
+        VTTextures.ANGRY_SNOWY_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_snowy_angry"),
+        VTTextures.BLACK_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_black"),
+        VTTextures.ANGRY_BLACK_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_black_angry"),
+        VTTextures.ASHEN_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_ashen"),
+        VTTextures.ANGRY_ASHEN_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_ashen_angry"),
+        VTTextures.RUSTY_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_rusty"),
+        VTTextures.ANGRY_RUSTY_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_rusty_angry"),
+        VTTextures.WOODS_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_woods"),
+        VTTextures.ANGRY_WOODS_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_woods_angry"),
+        VTTextures.CHESTNUT_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_chestnut"),
+        VTTextures.ANGRY_CHESTNUT_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_chestnut_angry"),
+        VTTextures.STRIPED_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_striped"),
+        VTTextures.ANGRY_STRIPED_WOLF to builtIn(WolfHeadModel.ID, "wolf/wolf_striped_angry"),
 
         VTTextures.ZOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/zoglin"),
         VTTextures.ZOMBIE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_zombie"),
@@ -189,4 +222,4 @@ object ModelsManager {
     fun translucentType(texture: String): RenderType = RenderType.entityTranslucent(AllTheHeads.tryParseId(texture)!!)
     fun entityTranslucent(texture: String): RenderType = translucentType("textures/entity/${texture}.png")
 
-  }
+}

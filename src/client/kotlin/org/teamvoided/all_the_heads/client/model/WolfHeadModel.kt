@@ -30,19 +30,13 @@ class WolfHeadModel(modelPart: ModelPart) : HeadModelBase() {
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
             val def = CubeDeformation.NONE
-            val head =
-                mesh.root.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offset(-1.0f, 13.5f, -7.0f))
-            head.addOrReplaceChild(
-                "real_head",
+            mesh.root.addOrReplaceChild(
+                "head",
                 CubeListBuilder.create()
-                    .texOffs(0, 0)
-                    .addBox(-2.0f, -3.0f, -2.0f, 6.0f, 6.0f, 4.0f, def)
-                    .texOffs(16, 14)
-                    .addBox(-2.0f, -5.0f, 0.0f, 2.0f, 2.0f, 1.0f, def)
-                    .texOffs(16, 14)
-                    .addBox(2.0f, -5.0f, 0.0f, 2.0f, 2.0f, 1.0f, def)
-                    .texOffs(0, 10)
-                    .addBox(-0.5f, -0.001f, -5.0f, 3.0f, 3.0f, 4.0f, def),
+                    .texOffs(0, 0).addBox(-3f, -6f, -2f, 6f, 6f, 4f, def)
+                    .texOffs(16, 14).addBox(-3f, -8f, 0f, 2f, 2f, 1f, def)
+                    .texOffs(16, 14).addBox(1f, -8f, 0f, 2f, 2f, 1f, def)
+                    .texOffs(0, 10).addBox(-1.5f, -3.001f, -5f, 3f, 3f, 4f, def),
                 PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 32)

@@ -29,7 +29,7 @@ class SheepHeadModel(modelPart: ModelPart) : HeadModelBase() {
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
             mesh.root.addOrReplaceChild(
-                "head", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -4.0F, -6.0F, 6.0F, 6.0F, 8.0F),
+                "head", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -6.0F, -4.0F, 6.0F, 6.0F, 8.0F),
                 PartPose.ZERO
             )
             return LayerDefinition.create(mesh, 64, 32)
