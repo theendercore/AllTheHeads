@@ -36,7 +36,12 @@ class CamelHeadModel(modelPart: ModelPart) : HeadModelBase() {
                     .addBox(-3.5f, -7f, -3.5f, 7f, 7f, 7f)
                     .texOffs(50, 0)
                     .addBox(-2.5f, -7f, -9.5f, 5f, 5f, 6f),
-                PartPose.offset(0f, 0f, 0f)
+                PartPose.ZERO
+            )
+            head.addOrReplaceChild(
+                "neck",
+                CubeListBuilder.create().texOffs(72, 24).addBox(-3.5f, 0f, -3.5f, 7f, 0.01f, 7f),
+                PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "left_ear",
