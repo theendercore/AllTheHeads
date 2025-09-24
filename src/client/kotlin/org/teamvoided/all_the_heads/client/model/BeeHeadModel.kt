@@ -30,9 +30,9 @@ class BeeHeadModel(modelPart: ModelPart) : HeadModelBase() {
         bone.yRot = g * (Math.PI / 180.0).toFloat()
         bone.xRot = h * (Math.PI / 180.0).toFloat()
 
-        rightWing.xRot = 0.0f
-        leftAntenna.xRot = 0.0f
-        rightAntenna.xRot = 0.0f
+        rightWing.xRot = 0f
+        leftAntenna.xRot = 0f
+        rightAntenna.xRot = 0f
     }
 
     override fun renderToBuffer(poseStack: PoseStack, vertexConsumer: VertexConsumer, i: Int, j: Int, k: Int) {
@@ -43,53 +43,53 @@ class BeeHeadModel(modelPart: ModelPart) : HeadModelBase() {
         val ID = AllTheHeads.id("bee")
         fun head(): LayerDefinition {
             val mesh = MeshDefinition()
-            val bone = mesh.root.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offset(0.0f, -3.0f, 0.0f))
+            val bone = mesh.root.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offset(0f, -3f, 0f))
             val body = bone.addOrReplaceChild(
                 "body",
-                CubeListBuilder.create().texOffs(0, 0).addBox(-3.5f, -4.0f, -5.0f, 7.0f, 7.0f, 10.0f),
+                CubeListBuilder.create().texOffs(0, 0).addBox(-3.5f, -4f, -5f, 7f, 7f, 10f),
                 PartPose.ZERO
             )
             body.addOrReplaceChild(
                 "stinger",
-                CubeListBuilder.create().texOffs(26, 7).addBox(0.0f, -1.0f, 5.0f, 0.0f, 1.0f, 2.0f),
+                CubeListBuilder.create().texOffs(26, 7).addBox(0f, -1f, 5f, 0f, 1f, 2f),
                 PartPose.ZERO
             )
             body.addOrReplaceChild(
                 "left_antenna",
-                CubeListBuilder.create().texOffs(2, 0).addBox(1.5f, -2.0f, -3.0f, 1.0f, 2.0f, 3.0f),
-                PartPose.offset(0.0f, -2.0f, -5.0f)
+                CubeListBuilder.create().texOffs(2, 0).addBox(1.5f, -2f, -3f, 1f, 2f, 3f),
+                PartPose.offset(0f, -2f, -5f)
             )
             body.addOrReplaceChild(
                 "right_antenna",
-                CubeListBuilder.create().texOffs(2, 3).addBox(-2.5f, -2.0f, -3.0f, 1.0f, 2.0f, 3.0f),
-                PartPose.offset(0.0f, -2.0f, -5.0f)
+                CubeListBuilder.create().texOffs(2, 3).addBox(-2.5f, -2f, -3f, 1f, 2f, 3f),
+                PartPose.offset(0f, -2f, -5f)
             )
             val cubeDeformation = CubeDeformation(0.001f)
             bone.addOrReplaceChild(
                 "right_wing",
-                CubeListBuilder.create().texOffs(0, 18).addBox(-9.0f, 0.0f, 0.0f, 9.0f, 0.0f, 6.0f, cubeDeformation),
-                PartPose.offsetAndRotation(-1.5f, -4.0f, -3.0f, 0.0f, -0.2618f, 0.0f)
+                CubeListBuilder.create().texOffs(0, 18).addBox(-9f, 0f, 0f, 9f, 0f, 6f, cubeDeformation),
+                PartPose.offsetAndRotation(-1.5f, -4f, -3f, 0f, -0.2618f, 0f)
             )
             bone.addOrReplaceChild(
                 "left_wing",
                 CubeListBuilder.create().texOffs(0, 18).mirror()
-                    .addBox(0.0f, 0.0f, 0.0f, 9.0f, 0.0f, 6.0f, cubeDeformation),
-                PartPose.offsetAndRotation(1.5f, -4.0f, -3.0f, 0.0f, 0.2618f, 0.0f)
+                    .addBox(0f, 0f, 0f, 9f, 0f, 6f, cubeDeformation),
+                PartPose.offsetAndRotation(1.5f, -4f, -3f, 0f, 0.2618f, 0f)
             )
             bone.addOrReplaceChild(
                 "front_legs",
-                CubeListBuilder.create().addBox("front_legs", -5.0f, 0.0f, 0.0f, 7, 2, 0, 26, 1),
-                PartPose.offset(1.5f, 3.0f, -2.0f)
+                CubeListBuilder.create().addBox("front_legs", -5f, 0f, 0f, 7, 2, 0, 26, 1),
+                PartPose.offset(1.5f, 3f, -2f)
             )
             bone.addOrReplaceChild(
                 "middle_legs",
-                CubeListBuilder.create().addBox("middle_legs", -5.0f, 0.0f, 0.0f, 7, 2, 0, 26, 3),
-                PartPose.offset(1.5f, 3.0f, 0.0f)
+                CubeListBuilder.create().addBox("middle_legs", -5f, 0f, 0f, 7, 2, 0, 26, 3),
+                PartPose.offset(1.5f, 3f, 0f)
             )
             bone.addOrReplaceChild(
                 "back_legs",
-                CubeListBuilder.create().addBox("back_legs", -5.0f, 0.0f, 0.0f, 7, 2, 0, 26, 5),
-                PartPose.offset(1.5f, 3.0f, 2.0f)
+                CubeListBuilder.create().addBox("back_legs", -5f, 0f, 0f, 7, 2, 0, 26, 5),
+                PartPose.offset(1.5f, 3f, 2f)
             )
             return LayerDefinition.create(mesh, 64, 64)
         }
