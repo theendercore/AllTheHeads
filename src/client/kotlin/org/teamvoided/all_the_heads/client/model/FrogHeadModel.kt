@@ -4,10 +4,15 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.model.geom.ModelPart
 import net.minecraft.client.model.geom.PartPose
-import net.minecraft.client.model.geom.builders.*
+import net.minecraft.client.model.geom.builders.CubeListBuilder
+import net.minecraft.client.model.geom.builders.LayerDefinition
+import net.minecraft.client.model.geom.builders.MeshDefinition
+import net.minecraft.client.model.geom.builders.PartDefinition
 import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.client.model.utils.HeadModelBase
+import kotlin.math.abs
+import kotlin.math.sin
 
 class FrogHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun getId(): ResourceLocation = ID
@@ -17,14 +22,10 @@ class FrogHeadModel(modelPart: ModelPart) : HeadModelBase() {
     override fun setupAnim(f: Float, g: Float, h: Float) {
         head.yRot = g * (Math.PI / 180.0).toFloat()
         head.xRot = h * (Math.PI / 180.0).toFloat()
-        croakingBody.visible = f != 0f
-        /*  if (croakingBody.visible) {
-              val scale = sin(f * 0.1f) + 1f
-              Minecraft.getInstance().player?.displayClientMessage(Component.literal("Scale: $scale"), true)
-              croakingBody.xScale = scale
-              croakingBody.yScale = scale * 1.2f
-              croakingBody.zScale = scale
-          }*/
+        val scale = abs(sin(f * 0.2f)) * 1.5f
+        croakingBody.xScale = scale * 0.85f
+        croakingBody.yScale = scale
+        croakingBody.zScale = scale
     }
 
     override fun renderToBuffer(poseStack: PoseStack, vertexConsumer: VertexConsumer, i: Int, j: Int, k: Int) {
@@ -46,7 +47,7 @@ class FrogHeadModel(modelPart: ModelPart) : HeadModelBase() {
             head.addOrReplaceChild(
                 "croaking_body",
                 CubeListBuilder.create().texOffs(26, 5)
-                    .addBox(-3.5f, -2.0f, -4.5f, 7f, 2f, 3f, CubeDeformation(-0.1f)),
+                    .addBox(-3.5f, -2.01f, -4f, 7f, 2f, 3f),
                 PartPose.ZERO
             )
 
