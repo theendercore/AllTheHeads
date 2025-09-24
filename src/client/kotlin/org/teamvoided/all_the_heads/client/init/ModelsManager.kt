@@ -64,6 +64,7 @@ object ModelsManager {
         VTTextures.WARM_FROG to builtIn(FrogHeadModel.ID, "frog/warm_frog"),
         VTTextures.COLD_FROG to builtIn(FrogHeadModel.ID, "frog/cold_frog"),
 
+        VTTextures.GLOW_SQUID to builtIn(SquidHeadModel.ID, "squid/glow_squid"),
         VTTextures.GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
 //        VTTextures.SCREAMING_GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
         VTTextures.HOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/hoglin"),
@@ -147,6 +148,7 @@ object ModelsManager {
         VTTextures.SKELETON_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_skeleton"),
         VTTextures.SLIME to builtIn(SlimeHeadModel.ID, "slime/slime"),
         VTTextures.SNIFFER to builtIn(SnifferHeadModel.ID, "sniffer/sniffer"),
+        VTTextures.SQUID to builtIn(SquidHeadModel.ID, "squid/squid"),
         VTTextures.STRIDER to builtIn(StriderHeadModel.ID, "strider/strider"),
         VTTextures.TADPOLE to builtIn(TadpoleHeadModel.ID, "tadpole/tadpole"),
         // Trader Llama
