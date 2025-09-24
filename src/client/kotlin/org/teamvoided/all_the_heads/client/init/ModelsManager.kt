@@ -65,7 +65,7 @@ object ModelsManager {
         VTTextures.COLD_FROG to builtIn(FrogHeadModel.ID, "frog/cold_frog"),
 
         VTTextures.GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
-//        VTTextures.SCREAMING_GOAT to builtIn(GoatHeadModel.ID, "goat"),
+//        VTTextures.SCREAMING_GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
         VTTextures.HOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/hoglin"),
         // Horse
         VTTextures.WHITE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_white"),
@@ -77,6 +77,7 @@ object ModelsManager {
         VTTextures.DARK_BROWN_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_darkbrown"),
 
         VTTextures.IRON_GOLEM to builtIn(IronGolemHeadModel.ID, "iron_golem/iron_golem"),
+        VTTextures.ILLUSIONER to builtIn(IllagerHeadModel.ID, "illager/illusioner"),
         // Llama
         VTTextures.CREAMY_LLAMA to builtIn(LlamaHeadModel.ID, "llama/creamy"),
         VTTextures.WHITE_LLAMA to builtIn(LlamaHeadModel.ID, "llama/white"),
