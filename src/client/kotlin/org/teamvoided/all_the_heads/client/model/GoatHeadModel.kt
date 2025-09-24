@@ -33,28 +33,46 @@ class GoatHeadModel(modelPart: ModelPart) : HeadModelBase() {
                 "head",
                 CubeListBuilder.create()
                     .texOffs(2, 61)
-                    .addBox("right ear", -6.0f, -11.0f, -10.0f, 3.0f, 2.0f, 1.0f)
+                    .addBox(
+                        "right ear", -5.5f, -11f, 0f,
+                        3f, 2f, 1f
+                    )
                     .texOffs(2, 61)
                     .mirror()
-                    .addBox("left ear", 2.0f, -11.0f, -10.0f, 3.0f, 2.0f, 1.0f)
+                    .addBox(
+                        "left ear", 2.5f, -11f, 0f,
+                        3f, 2f, 1f
+                    )
                     .texOffs(23, 52)
-                    .addBox("goatee", -0.5f, -3.0f, -14.0f, 0.0f, 7.0f, 5.0f),
+                    .addBox(
+                        "goatee", 0f, -3f, -4f,
+                        0f, 7f, 5f
+                    ),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "left_horn",
-                CubeListBuilder.create().texOffs(12, 55).addBox(-0.01f, -16.0f, -10.0f, 2.0f, 7.0f, 2.0f),
+                CubeListBuilder.create().texOffs(12, 55).addBox(
+                    .49f, -16f, 0f,
+                    2f, 7f, 2f
+                ),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "right_horn",
-                CubeListBuilder.create().texOffs(12, 55).addBox(-2.99f, -16.0f, -10.0f, 2.0f, 7.0f, 2.0f),
+                CubeListBuilder.create().texOffs(12, 55).addBox(
+                    -2.49f, -16f, 0f,
+                    2f, 7f, 2f
+                ),
                 PartPose.ZERO
             )
             head.addOrReplaceChild(
                 "nose",
-                CubeListBuilder.create().texOffs(34, 46).addBox(-3.0f, -4.0f, -8.0f, 5.0f, 7.0f, 10.0f),
-                PartPose.offsetAndRotation(0.0f, -8.0f, -8.0f, 0.9599f, 0.0f, 0.0f)
+                CubeListBuilder.create().texOffs(34, 46).addBox(
+                    -3f, -4f, -8f,
+                    5f, 7f, 10f
+                ),
+                PartPose.offsetAndRotation(.5f, -8f, 2f, 0.9599f, 0f, 0f)
             )
             return LayerDefinition.create(mesh, 64, 64)
         }
