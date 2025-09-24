@@ -32,23 +32,21 @@ class CamelHeadModel(modelPart: ModelPart) : HeadModelBase() {
             val head: PartDefinition = mesh.root.addOrReplaceChild(
                 "head",
                 CubeListBuilder.create()
-                    .texOffs(60, 24)
-                    .addBox(-3.5f, -7.0f, -15.0f, 7.0f, 8.0f, 19.0f)
                     .texOffs(21, 0)
-                    .addBox(-3.5f, -21.0f, -15.0f, 7.0f, 14.0f, 7.0f)
+                    .addBox(-3.5f, -7f, -3.5f, 7f, 7f, 7f)
                     .texOffs(50, 0)
-                    .addBox(-2.5f, -21.0f, -21.0f, 5.0f, 5.0f, 6.0f),
-                PartPose.offset(0.0f, -1.0f, 0.0f)
+                    .addBox(-2.5f, -7f, -9.5f, 5f, 5f, 6f),
+                PartPose.offset(0f, 0f, 0f)
             )
             head.addOrReplaceChild(
                 "left_ear",
-                CubeListBuilder.create().texOffs(45, 0).addBox(-0.5f, 0.5f, -1.0f, 3.0f, 1.0f, 2.0f),
-                PartPose.offset(2.5f, -21.0f, -9.5f)
+                CubeListBuilder.create().texOffs(45, 0).addBox(-0.5f, 0.5f, -1f, 3f, 1f, 2f),
+                PartPose.offset(2.5f, -7f, 2f)
             )
             head.addOrReplaceChild(
                 "right_ear",
-                CubeListBuilder.create().texOffs(67, 0).addBox(-2.5f, 0.5f, -1.0f, 3.0f, 1.0f, 2.0f),
-                PartPose.offset(-2.5f, -21.0f, -9.5f)
+                CubeListBuilder.create().texOffs(67, 0).addBox(-2.5f, 0.5f, -1f, 3f, 1f, 2f),
+                PartPose.offset(-2.5f, -7f, 2f)
             )
             return LayerDefinition.create(mesh, 128, 128)
         }
