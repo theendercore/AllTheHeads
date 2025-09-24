@@ -158,7 +158,7 @@ object ModelsManager {
         VTTextures.ZOMBIE_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_zombie"),
         VTTextures.ZOMBIFIED_PIGLIN to vanilla(SkullBlock.Types.PIGLIN, "piglin/zombified_piglin"),
 
-        MiscTextures.TEST_TEX to builtIn(LlamaWithNeckHeadModel.ID, "llama/gray"),
+        MiscTextures.TEST_TEX to builtIn(CamelWithNeckHeadModel.ID, "camel/camel"),
     )
 
     fun vanilla(id: SkullBlock.Type, texture: String) = SkullRenderData(getVanilla(id), entityBasic(texture))

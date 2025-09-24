@@ -50,8 +50,11 @@ object ATHModels {
     val WARDEN_HEAD = mainLayer("warden_head")
     val WITCH_HEAD = mainLayer("witch_head")
     val WOLF_HEAD = mainLayer("wolf_head")
+
     // Extra
+    val CAMEL_WITH_NECK_HEAD = mainLayer("camel_with_neck_head")
     val LLAMA_WITH_NECK_HEAD = mainLayer("llama_with_neck_head")
+
     // Temp
     @Suppress("unused")
     val BOGGED_HEAD_OVERLAY = layer("bogged_head", "overlay")
@@ -102,6 +105,11 @@ object ATHModels {
         register(WitchHeadModel.ID, WITCH_HEAD, WitchHeadModel::head, ::WitchHeadModel)
         register(WolfHeadModel.ID, WOLF_HEAD, WolfHeadModel::head, ::WolfHeadModel)
         // Extra
-        register(LlamaWithNeckHeadModel.ID, LLAMA_WITH_NECK_HEAD, LlamaWithNeckHeadModel::head, ::LlamaWithNeckHeadModel)
+        register(
+            CamelWithNeckHeadModel.ID, CAMEL_WITH_NECK_HEAD, CamelWithNeckHeadModel::head, ::CamelWithNeckHeadModel
+        )
+        register(
+            LlamaWithNeckHeadModel.ID, LLAMA_WITH_NECK_HEAD, LlamaWithNeckHeadModel::head, ::LlamaWithNeckHeadModel
+        )
     }
 }
