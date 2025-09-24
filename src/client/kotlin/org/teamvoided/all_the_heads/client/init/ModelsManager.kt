@@ -150,6 +150,7 @@ object ModelsManager {
         VTTextures.SNIFFER to builtIn(SnifferHeadModel.ID, "sniffer/sniffer"),
         VTTextures.SQUID to builtIn(SquidHeadModel.ID, "squid/squid"),
         VTTextures.STRIDER to builtIn(StriderHeadModel.ID, "strider/strider"),
+        VTTextures.COLD_STRIDER to builtIn(StriderHeadModel.ID, "strider/strider_cold"),
         VTTextures.TADPOLE to builtIn(TadpoleHeadModel.ID, "tadpole/tadpole"),
         // Trader Llama
         VTTextures.CREAMY_TRADER_LLAMA to builtIn(LlamaHeadModel.ID, "llama/creamy"),
