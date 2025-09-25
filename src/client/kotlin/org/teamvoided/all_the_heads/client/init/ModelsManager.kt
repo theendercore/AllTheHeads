@@ -19,7 +19,7 @@ object ModelsManager {
     var BUILT_IN_MODELS = mutableMapOf<ResourceLocation, SkullModelBase>()
 
     val models = mapOf(
-        VTTextures.ALLAY to builtIn(AllayHeadModel.ID, "allay/allay"),
+        VTTextures.ALLAY to builtIn(AllayHeadModel.ID, "allay/allay", 15),
         VTTextures.ARMADILLO to builtIn(ArmadilloHeadModel.ID, "armadillo"),
         // Axolotl
         VTTextures.LUCY_AXOLOTL to builtIn(AxolotlHeadModel.ID, "axolotl/axolotl_lucy"),
@@ -34,6 +34,10 @@ object ModelsManager {
         VTTextures.POLLINATED_BEE to builtIn(BeeHeadModel.ID, "bee/bee_nectar"),
         VTTextures.ANGRY_BEE to builtIn(BeeHeadModel.ID, "bee/bee_angry"),
         VTTextures.ANGRY_POLLINATED_BEE to builtIn(BeeHeadModel.ID, "bee/bee_angry_nectar"),
+
+        VTTextures.BLAZE to vanilla(SkullBlock.Types.CREEPER, "blaze", 15),
+        VTTextures.BOGGED to vanilla(SkullBlock.Types.SKELETON, "skeleton/bogged"),
+        VTTextures.BREEZE to vanilla(SkullBlock.Types.SKELETON, "breeze/breeze"),
 
         VTTextures.CAMEL to builtIn(CamelHeadModel.ID, "camel/camel"),
         // Cat
@@ -54,6 +58,7 @@ object ModelsManager {
         VTTextures.COW to builtIn(CowHeadModel.ID, "cow/cow"),
         VTTextures.DOLPHIN to builtIn(DolphinHeadModel.ID, "dolphin"),
         VTTextures.DONKEY to builtIn(ChestedHorseHeadModel.ID, "horse/donkey"),
+        VTTextures.DROWNED to vanilla(SkullBlock.Types.ZOMBIE, "zombie/drowned"),
         VTTextures.ENDERMITE to builtIn(EndermiteHeadModel.ID, "endermite"),
         VTTextures.EVOKER to builtIn(IllagerHeadModel.ID, "illager/evoker"),
         // Fox
@@ -64,7 +69,7 @@ object ModelsManager {
         VTTextures.WARM_FROG to builtIn(FrogHeadModel.ID, "frog/warm_frog"),
         VTTextures.COLD_FROG to builtIn(FrogHeadModel.ID, "frog/cold_frog"),
 
-        VTTextures.GLOW_SQUID to builtIn(SquidHeadModel.ID, "squid/glow_squid"),
+        VTTextures.GLOW_SQUID to builtIn(SquidHeadModel.ID, "squid/glow_squid", 15),
         VTTextures.GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
 //        VTTextures.SCREAMING_GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
         VTTextures.HOGLIN to builtIn(HoglinHeadModel.ID, "hoglin/hoglin"),
@@ -77,6 +82,7 @@ object ModelsManager {
         VTTextures.GRAY_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_gray"),
         VTTextures.DARK_BROWN_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_darkbrown"),
 
+        VTTextures.HUSK to vanilla(SkullBlock.Types.ZOMBIE, "zombie/husk"),
         VTTextures.IRON_GOLEM to builtIn(IronGolemHeadModel.ID, "iron_golem/iron_golem"),
         VTTextures.ILLUSIONER to builtIn(IllagerHeadModel.ID, "illager/illusioner"),
         // Llama
@@ -85,7 +91,7 @@ object ModelsManager {
         VTTextures.BROWN_LLAMA to builtIn(LlamaHeadModel.ID, "llama/brown"),
         VTTextures.GRAY_LLAMA to builtIn(LlamaHeadModel.ID, "llama/gray"),
 
-        VTTextures.MAGMA_CUBE to builtIn(MagmaCubeHeadModel.ID, "slime/magmacube"),
+        VTTextures.MAGMA_CUBE to builtIn(MagmaCubeHeadModel.ID, "slime/magmacube", 15),
         VTTextures.RED_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
         VTTextures.BROWN_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
         VTTextures.MULE to builtIn(ChestedHorseHeadModel.ID, "horse/mule"),
@@ -147,7 +153,10 @@ object ModelsManager {
         VTTextures.SKELETON_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_skeleton"),
         VTTextures.SLIME to builtIn(SlimeHeadModel.ID, "slime/slime"),
         VTTextures.SNIFFER to builtIn(SnifferHeadModel.ID, "sniffer/sniffer"),
+        VTTextures.SNOW_GOLEM to vanilla(SkullBlock.Types.ZOMBIE, "snow_golem"),
+        VTTextures.SPIDER to vanilla(SkullBlock.Types.SKELETON, "spider/spider"),
         VTTextures.SQUID to builtIn(SquidHeadModel.ID, "squid/squid"),
+        VTTextures.STRAY to vanilla(SkullBlock.Types.SKELETON, "skeleton/stray"),
         VTTextures.STRIDER to builtIn(StriderHeadModel.ID, "strider/strider"),
         VTTextures.COLD_STRIDER to builtIn(StriderHeadModel.ID, "strider/strider_cold"),
         VTTextures.TADPOLE to builtIn(TadpoleHeadModel.ID, "tadpole/tadpole"),
@@ -228,7 +237,9 @@ object ModelsManager {
         MiscTextures.TEST_TEX to builtIn(CamelWithNeckHeadModel.ID, "camel/camel"),
     )
 
-    fun vanilla(id: SkullBlock.Type, texture: String) = SkullRenderData(getVanilla(id), entityBasic(texture), null)
+    fun vanilla(id: SkullBlock.Type, texture: String, lightLevel: Int? = null) =
+        SkullRenderData(getVanilla(id), entityBasic(texture), lightLevel)
+
     fun getVanilla(type: SkullBlock.Type): () -> SkullModelBase {
         if (type !is SkullBlock.Types) {
             AllTheHeadsClient.sendError("Supplied non vanilla SkullType! $type")
