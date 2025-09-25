@@ -70,6 +70,7 @@ object ModelsManager {
         VTTextures.WARM_FROG to builtIn(FrogHeadModel.ID, "frog/warm_frog"),
         VTTextures.COLD_FROG to builtIn(FrogHeadModel.ID, "frog/cold_frog"),
 
+        VTTextures.GHAST to builtIn(GhastHeadModel.ID, "ghast/ghast"),
         VTTextures.GLOW_SQUID to builtIn(SquidHeadModel.ID, "squid/glow_squid", 15),
         VTTextures.GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
 //        VTTextures.SCREAMING_GOAT to builtIn(GoatHeadModel.ID, "goat/goat"),
