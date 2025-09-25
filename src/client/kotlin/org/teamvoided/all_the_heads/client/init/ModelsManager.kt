@@ -56,6 +56,7 @@ object ModelsManager {
         VTTextures.CHICKEN to builtIn(ChickenHeadModel.ID, "chicken"),
         VTTextures.COD to builtIn(CodHeadModel.ID, "fish/cod"),
         VTTextures.COW to builtIn(CowHeadModel.ID, "cow/cow"),
+        VTTextures.CHARGED_CREEPER to vanilla(SkullBlock.Types.CREEPER, "creeper/creeper"),
         VTTextures.DOLPHIN to builtIn(DolphinHeadModel.ID, "dolphin"),
         VTTextures.DONKEY to builtIn(ChestedHorseHeadModel.ID, "horse/donkey"),
         VTTextures.DROWNED to vanilla(SkullBlock.Types.ZOMBIE, "zombie/drowned"),
