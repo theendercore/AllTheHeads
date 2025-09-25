@@ -5,5 +5,6 @@ import net.minecraft.client.renderer.RenderType
 
 data class SkullRenderData(
     val model: () -> SkullModelBase,
-    val renderType: RenderType
+    val renderType: RenderType,
+    val lightLevelOverride: Int?,
 )

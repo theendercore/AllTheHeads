@@ -160,8 +160,8 @@ object ModelsManager {
         VTTextures.TROPICAL_FISH to builtIn(TropicalFishHeadModel.ID, "fish/tropical_b"),
         VTTextures.TURTLE to builtIn(TurtleHeadModel.ID, "turtle/big_sea_turtle"),
         // Vex
-        VTTextures.VEX to builtIn(AllayHeadModel.ID, "illager/vex"),
-        VTTextures.VEX_CHARGING to builtIn(AllayHeadModel.ID, "illager/vex_charging"),
+        VTTextures.VEX to builtIn(AllayHeadModel.ID, "illager/vex", 15),
+        VTTextures.VEX_CHARGING to builtIn(AllayHeadModel.ID, "illager/vex_charging", 15),
         // Villager
         VTTextures.VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
         VTTextures.ARMORER_VILLAGER to builtIn(VillagerHeadModel.ID, "villager/villager"),
@@ -228,7 +228,7 @@ object ModelsManager {
         MiscTextures.TEST_TEX to builtIn(CamelWithNeckHeadModel.ID, "camel/camel"),
     )
 
-    fun vanilla(id: SkullBlock.Type, texture: String) = SkullRenderData(getVanilla(id), entityBasic(texture))
+    fun vanilla(id: SkullBlock.Type, texture: String) = SkullRenderData(getVanilla(id), entityBasic(texture), null)
     fun getVanilla(type: SkullBlock.Type): () -> SkullModelBase {
         if (type !is SkullBlock.Types) {
             AllTheHeadsClient.sendError("Supplied non vanilla SkullType! $type")
@@ -237,7 +237,9 @@ object ModelsManager {
         return { VANILLA_MODEL_ACCESS[type]!! }
     }
 
-    fun builtIn(id: ResourceLocation, texture: String) = SkullRenderData(getBuiltIn(id), entityBasic(texture))
+    fun builtIn(id: ResourceLocation, texture: String, lightLevel: Int? = null) =
+        SkullRenderData(getBuiltIn(id), entityBasic(texture), lightLevel)
+
     fun getBuiltIn(id: ResourceLocation): () -> SkullModelBase = {
         val model = BUILT_IN_MODELS[id]
         if (model != null) model
@@ -251,6 +253,7 @@ object ModelsManager {
     fun entityBasic(texture: String): RenderType = basicType("textures/entity/${texture}.png")
 
     fun translucentType(texture: String): RenderType = RenderType.entityTranslucent(AllTheHeads.tryParseId(texture)!!)
+
     @Suppress("unused")
     fun entityTranslucent(texture: String): RenderType = translucentType("textures/entity/${texture}.png")
 

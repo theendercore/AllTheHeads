@@ -83,6 +83,17 @@ fun debugRenderer(
                         ?: data.model().javaClass.simpleName
                 }"
             )
+            add(buildString {
+                append("Light: [Sky: ")
+                append(light shr 20)
+                append(", Block ")
+                append(light shr 4)
+                append(", Raw: ")
+                append(light)
+                append("]")
+                if (data?.lightLevelOverride != null) append(" Override{${data.lightLevelOverride}}")
+            })
+
         }
     }
 

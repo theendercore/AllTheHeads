@@ -43,11 +43,18 @@ fun renderSkull(
     customModel.renderToBuffer(
         matrices,
         vertexConsumers.getBuffer(data.renderType),
-        light,
+        getLightOverride(light, data),
         OverlayTexture.NO_OVERLAY
     )
     matrices.popPose()
     return false
+}
+
+fun getLightOverride(light: Int, data: SkullRenderData): Int {
+    val override = data.lightLevelOverride ?: return light
+    val sky = light shr 20
+    val block = if (light > 256) 0 else light shr 4
+    return if (sky < override || block < override) override shl 4 else light
 }
 
 fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
@@ -69,15 +76,14 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
 
 
         HeadRenderMode.CUSTOM_DATA -> {
-            val id = ctx.skullId
-            if (id == null) return null
+            val id = ctx.skullId ?: return null
             val model = models[SkullBlock.Types.DRAGON]
             if (model == null) {
                 sendError("Could not find model for ${SkullBlock.Types.DRAGON}")
 
                 return null
             }
-            return SkullRenderData({ model }, rType("textures/entity/enderdragon/dragon.png"))
+            return SkullRenderData({ model }, rType("textures/entity/enderdragon/dragon.png"), null)
         }
     }
 }
