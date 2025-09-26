@@ -15,6 +15,7 @@ import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures.TEXTURE_BLACKLIST
 import org.teamvoided.all_the_heads.client.init.ModelsManager
+import org.teamvoided.all_the_heads.client.utils.getTexture
 
 @Suppress("DEPRECATION")
 fun renderSkull(

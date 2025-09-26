@@ -1,4 +1,4 @@
-package org.teamvoided.all_the_heads.client.rendering
+package org.teamvoided.all_the_heads.client.utils
 
 import net.minecraft.world.item.component.ResolvableProfile
 
