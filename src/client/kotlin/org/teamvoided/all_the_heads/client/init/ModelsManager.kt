@@ -37,7 +37,7 @@ object ModelsManager {
 
         VTTextures.BLAZE to vanilla(SkullBlock.Types.CREEPER, "blaze", 15),
         VTTextures.BOGGED to vanilla(SkullBlock.Types.SKELETON, "skeleton/bogged"),
-        VTTextures.BREEZE to vanilla(SkullBlock.Types.SKELETON, "breeze/breeze"),
+        VTTextures.BREEZE to builtIn(BreezeHeadModel.ID, "breeze/breeze"),
 
         VTTextures.CAMEL to builtIn(CamelHeadModel.ID, "camel/camel"),
         // Cat
@@ -53,6 +53,7 @@ object ModelsManager {
         VTTextures.JELLIE_CAT to builtIn(OcelotHeadModel.ID, "cat/jellie"),
         VTTextures.BLACK_CAT to builtIn(OcelotHeadModel.ID, "cat/all_black"),
 
+        VTTextures.CAVE_SPIDER to builtIn(SpiderHeadModel.ID, "spider/cave_spider"),
         VTTextures.CHICKEN to builtIn(ChickenHeadModel.ID, "chicken"),
         VTTextures.COD to builtIn(CodHeadModel.ID, "fish/cod"),
         VTTextures.COW to builtIn(CowHeadModel.ID, "cow/cow"),
@@ -155,8 +156,8 @@ object ModelsManager {
         VTTextures.SKELETON_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_skeleton"),
         VTTextures.SLIME to builtIn(SlimeHeadModel.ID, "slime/slime"),
         VTTextures.SNIFFER to builtIn(SnifferHeadModel.ID, "sniffer/sniffer"),
-        VTTextures.SNOW_GOLEM to vanilla(SkullBlock.Types.ZOMBIE, "snow_golem"),
-        VTTextures.SPIDER to vanilla(SkullBlock.Types.SKELETON, "spider/spider"),
+        VTTextures.SNOW_GOLEM to builtIn(SnowGolemHeadModel.ID, "snow_golem"),
+        VTTextures.SPIDER to builtIn(SpiderHeadModel.ID, "spider/spider"),
         VTTextures.SQUID to builtIn(SquidHeadModel.ID, "squid/squid"),
         VTTextures.STRAY to vanilla(SkullBlock.Types.SKELETON, "skeleton/stray"),
         VTTextures.STRIDER to builtIn(StriderHeadModel.ID, "strider/strider"),
