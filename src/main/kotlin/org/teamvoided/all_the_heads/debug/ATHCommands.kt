@@ -22,6 +22,8 @@ import org.teamvoided.all_the_heads.mixin.LootItemAccessor
 import org.teamvoided.all_the_heads.mixin.NestedLootTableAccessor
 import org.teamvoided.all_the_heads.mixin.SetComponentsFunctionAccessor
 
+typealias ItemSpawner = (stack: ItemStack) -> Unit
+
 object ATHCommands {
     fun init() = CommandRegistrationCallback.EVENT.register { dispatch, _, _ ->
         val root = literal("ath").build()
@@ -138,7 +140,7 @@ object ATHCommands {
 
             is CompositeEntryBase -> {
                 for (container in (entry as CompositeEntryBaseAccessor).ath_getChildren()) {
-                    resolveEntryRecursionFx(tableRegistry, container, spawnItem)
+                    resolveEntry(tableRegistry, container, spawnItem)
                 }
             }
 
@@ -157,11 +159,6 @@ object ATHCommands {
             else -> println("Unknow Class: ${entry::class.simpleName}")
         }
     }
-
-    fun resolveEntryRecursionFx(
-        tableRegistry: Registry<LootTable>, entry: LootPoolEntryContainer, spawnItem: ItemSpawner,
-    ): Unit = resolveEntry(tableRegistry, entry, spawnItem)
-
 
     fun resolveFunction(func: LootItemFunction, stack: ItemStack): ItemStack {
         when (func) {

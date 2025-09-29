@@ -1,11 +1,9 @@
 package org.teamvoided.all_the_heads.debug
 
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry
-import net.minecraft.world.item.ItemStack
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.CopyToClipboardPayload
 
-typealias ItemSpawner = (stack: ItemStack) -> Unit
 
 object ATHNet {
     fun init() {

@@ -32,7 +32,7 @@ repositories {
 modSettings {
     entrypoint("main", "org.teamvoided.all_the_heads.AllTheHeads::init")
     entrypoint("client", "org.teamvoided.all_the_heads.client.AllTheHeadsClient::init")
-    entrypoint("fabric-datagen", "org.teamvoided.all_the_heads.data.gen.AllTheHeadsData")
+    entrypoint("fabric-datagen", "org.teamvoided.all_the_heads.client.data.gen.AllTheHeadsData")
 
     mixinFile("${modId()}.client.mixins.json")
     mixinFile("${modId()}.mixins.json")

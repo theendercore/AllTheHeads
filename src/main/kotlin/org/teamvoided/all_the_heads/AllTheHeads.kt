@@ -1,5 +1,7 @@
 package org.teamvoided.all_the_heads
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType
@@ -16,6 +18,9 @@ import org.teamvoided.all_the_heads.debug.ATHDebugInit
 object AllTheHeads {
     const val MODID = "all_the_heads"
     const val HEAD_ID = "$MODID:head"
+
+    @JvmField
+    val GSON: Gson = GsonBuilder().setPrettyPrinting().create()
 
     @JvmField
     val log: Logger = LoggerFactory.getLogger(AllTheHeads::class.simpleName)
