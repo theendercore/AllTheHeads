@@ -5,7 +5,6 @@ import com.mojang.authlib.properties.Property
 import com.mojang.authlib.properties.PropertyMap
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.math.Axis
-import me.fzzyhmstrs.fzzy_config.nullCast
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Font
 import net.minecraft.client.gui.screens.Screen
@@ -22,8 +21,7 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.RenderLocation
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
-import org.teamvoided.all_the_heads.client.data.SkullRenderData
-import org.teamvoided.all_the_heads.client.model.utils.ATHModel
+import org.teamvoided.all_the_heads.client.data.render_state.HeadRenderState
 
 @JvmField
 var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
@@ -32,7 +30,7 @@ var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
 fun debugRenderer(
     direction: Direction?, yaw: Float, animationProgress: Float,
     matrices: PoseStack, vertexConsumers: MultiBufferSource, light: Int,
-    ctx: SkullRenderContext, data: SkullRenderData?,
+    ctx: SkullRenderContext, data: HeadRenderState?,
 ) {
     if (!clientConfig.enableDebugRendering) return
     val mc = Minecraft.getInstance()
@@ -72,12 +70,12 @@ fun debugRenderer(
                 add(ctx.renderLocation.toString())
                 ctx.itemCtx?.let { add("ItemCtx: [ $it ]") }
             }
-            if (data != null) add(
-                "Model: ${
-                    data.model().nullCast<ATHModel>()?.getId()
-                        ?: data.model().javaClass.simpleName
-                }"
-            )
+//            if (data != null) add(
+//                "Model: ${
+//                    data.model().nullCast<ATHModel>()?.getId()
+//                        ?: data.model().javaClass.simpleName
+//                }"
+//            )
             add(buildString {
                 append("Light: [Sky: ")
                 append(light shr 20)
@@ -86,7 +84,7 @@ fun debugRenderer(
                 append(", Raw: ")
                 append(light)
                 append("]")
-                if (data?.lightLevelOverride != null) append(" Override{${data.lightLevelOverride}}")
+//                if (data?.lightLevelOverride != null) append(" Override{${data.lightLevelOverride}}")
             })
 
         }

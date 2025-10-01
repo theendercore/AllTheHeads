@@ -3,9 +3,13 @@ package org.teamvoided.all_the_heads.client.init
 import net.minecraft.client.model.SkullModelBase
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
-import org.teamvoided.all_the_heads.client.data.SkullRenderData
+import org.teamvoided.all_the_heads.client.data.render_state.BlockRenderState
+import org.teamvoided.all_the_heads.client.data.render_state.HeadRenderState
+import org.teamvoided.all_the_heads.client.data.render_state.MultiModelRenderState
+import org.teamvoided.all_the_heads.client.data.render_state.SingleModelRenderState
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures
 import org.teamvoided.all_the_heads.client.data.textures.VTTextures
 import org.teamvoided.all_the_heads.client.model.*
@@ -17,7 +21,7 @@ object ModelsManager {
     @JvmField
     var BUILT_IN_MODELS = mutableMapOf<ResourceLocation, SkullModelBase>()
 
-    val models = mapOf(
+    val models = mapOf<String, HeadRenderState>(
         VTTextures.ALLAY to builtIn(AllayHeadModel.ID, "allay/allay", 15),
         VTTextures.ARMADILLO to builtIn(ArmadilloHeadModel.ID, "armadillo"),
         // Axolotl
@@ -95,8 +99,14 @@ object ModelsManager {
         VTTextures.GRAY_LLAMA to builtIn(LlamaHeadModel.ID, "llama/gray"),
 
         VTTextures.MAGMA_CUBE to builtIn(MagmaCubeHeadModel.ID, "slime/magmacube", 15),
-        VTTextures.RED_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
-        VTTextures.BROWN_MOOSHROOM to builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
+        VTTextures.RED_MOOSHROOM to MultiModelRenderState(
+            builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
+            BlockRenderState(Blocks.RED_MUSHROOM.defaultBlockState())
+        ),
+        VTTextures.BROWN_MOOSHROOM to MultiModelRenderState(
+            builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
+            BlockRenderState(Blocks.BROWN_MUSHROOM.defaultBlockState())
+        ),
         VTTextures.MULE to builtIn(ChestedHorseHeadModel.ID, "horse/mule"),
         VTTextures.OCELOT to builtIn(OcelotHeadModel.ID, "cat/ocelot"),
         // Panda
@@ -241,7 +251,7 @@ object ModelsManager {
     )
 
     fun vanilla(id: SkullBlock.Type, texture: String, lightLevel: Int? = null) =
-        SkullRenderData(getVanilla(id), entityBasic(texture), lightLevel)
+        SingleModelRenderState(getVanilla(id), entityBasic(texture), lightLevel)
 
     fun getVanilla(type: SkullBlock.Type): () -> SkullModelBase {
         if (type !is SkullBlock.Types) {
@@ -252,7 +262,7 @@ object ModelsManager {
     }
 
     fun builtIn(id: ResourceLocation, texture: String, lightLevel: Int? = null) =
-        SkullRenderData(getBuiltIn(id), entityBasic(texture), lightLevel)
+        SingleModelRenderState(getBuiltIn(id), entityBasic(texture), lightLevel)
 
     fun getBuiltIn(id: ResourceLocation): () -> SkullModelBase = {
         val model = BUILT_IN_MODELS[id]

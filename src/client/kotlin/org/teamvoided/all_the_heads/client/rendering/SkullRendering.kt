@@ -3,7 +3,6 @@ package org.teamvoided.all_the_heads.client.rendering
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
-import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.core.Direction
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads.sendError
@@ -12,7 +11,8 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
-import org.teamvoided.all_the_heads.client.data.SkullRenderData
+import org.teamvoided.all_the_heads.client.data.render_state.HeadRenderState
+import org.teamvoided.all_the_heads.client.data.render_state.SingleModelRenderState
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures.TEXTURE_BLACKLIST
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 import org.teamvoided.all_the_heads.client.utils.getTexture
@@ -35,26 +35,12 @@ fun renderSkull(
     }
 
     matrices.scale(-1.0f, -1.0f, 1.0f)
-    val customModel = data.model()
-    customModel.setupAnim(animationProgress, yaw, 0.0f)
-    customModel.renderToBuffer(
-        matrices,
-        vertexConsumers.getBuffer(data.renderType),
-        getLightOverride(light, data),
-        OverlayTexture.NO_OVERLAY
-    )
+    data.render(animationProgress, yaw, 0.0f, matrices, vertexConsumers, light)
     matrices.popPose()
     return false
 }
 
-fun getLightOverride(light: Int, data: SkullRenderData): Int {
-    val override = data.lightLevelOverride ?: return light
-    val sky = light shr 20
-    val block = if (light > 256) 0 else light shr 4
-    return if (sky < override || block < override) override shl 4 else light
-}
-
-fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
+fun fetchSkullRenderInfo(ctx: SkullRenderContext): HeadRenderState? {
     when (clientConfig.headRenderMode.get()) {
         HeadRenderMode.PROFILE -> when (clientConfig.profileDataMode.get()) {
             ProfileDataMode.TEXTURE -> {
@@ -80,7 +66,7 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
 
                 return null
             }
-            return SkullRenderData({ model }, rType("textures/entity/enderdragon/dragon.png"), null)
+            return SingleModelRenderState({ model }, rType("textures/entity/enderdragon/dragon.png"), null)
         }
     }
 }
