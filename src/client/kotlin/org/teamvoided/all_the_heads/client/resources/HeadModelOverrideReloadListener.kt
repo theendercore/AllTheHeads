@@ -30,14 +30,14 @@ class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, D
             HeadModelOverride.CODEC.parse(JsonOps.INSTANCE, json)
                 .resultOrPartial { log.error("Failed to decode mob skull shader with ID {} - Error: {}", id, it) }
                 .ifPresent {
-                    val value = load(manager, id, it)
+                    val value = load(id, it)
                     if (value != null) HEAD_OVERRIDES[id] = value
                 }
         }
         log.info("List of all loaded data: {}", HEAD_OVERRIDES)
     }
 
-    fun load(manager: ResourceManager, id: ResourceLocation, data: HeadModelOverride): SkullRenderData? {
+    fun load(id: ResourceLocation, data: HeadModelOverride): SkullRenderData? {
         val modelId = data.modelId
         if (!ModelsManager.BUILT_IN_MODELS.contains(modelId)) {
             log.error("No such model [ {} ] for Head Override [ {} ]!", modelId, id)

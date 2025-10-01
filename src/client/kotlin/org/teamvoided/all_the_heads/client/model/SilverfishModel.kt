@@ -44,7 +44,7 @@ package org.teamvoided.all_the_heads.client.model
 //                intArrayOf(2, 1, 2),
 //                intArrayOf(1, 1, 2)
 //            )
-//            val bodyTexs = arrayOf(
+//            val bodyTex = arrayOf(
 //                intArrayOf(0, 0),
 //                intArrayOf(0, 4),
 //                intArrayOf(0, 9),
@@ -62,7 +62,7 @@ package org.teamvoided.all_the_heads.client.model
 //                root.addOrReplaceChild(
 //                    "segment$i",
 //                    CubeListBuilder.create()
-//                        .texOffs(bodyTexs[i][0], bodyTexs[i][1])
+//                        .texOffs(bodyTex[i][0], bodyTex[i][1])
 //                        .addBox(
 //                            bodySizes[i][0] * -0.5f,
 //                            0.0f,

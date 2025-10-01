@@ -77,7 +77,7 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
 
 
         HeadRenderMode.CUSTOM_DATA -> {
-            val id = ctx.skullId ?: return null
+//            val id = ctx.skullId ?: return null
             val model = models[SkullBlock.Types.DRAGON]
             if (model == null) {
                 sendError("Could not find model for ${SkullBlock.Types.DRAGON}", "No thanks")

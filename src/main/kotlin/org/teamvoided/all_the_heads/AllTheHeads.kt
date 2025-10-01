@@ -14,7 +14,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.teamvoided.all_the_heads.debug.ATHDebugInit
 
-@Suppress("unused")
 object AllTheHeads {
     const val MODID = "all_the_heads"
     const val HEAD_ID = "$MODID:head"

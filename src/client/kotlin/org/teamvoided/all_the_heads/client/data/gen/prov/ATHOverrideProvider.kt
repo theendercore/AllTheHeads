@@ -15,11 +15,11 @@ import org.teamvoided.all_the_heads.client.resources.HeadModelOverride
 class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvider(o, r) {
     override fun generateOverrides(lookup: HolderLookup.Provider, dataBuilder: CreationContext<HeadModelOverride>) {
         dataBuilder.create(
-            id("skeleon"),
+            id("ske"),
             HeadModelOverride(AllayHeadModel.ID, mc("entity_cutout_no_cull"), mc("textures/entity/allay.png"), 15)
         )
         dataBuilder.create(
-            id("skeleon2"),
+            id("ske2"),
             HeadModelOverride(SlimeHeadModel.ID, mc("entity_cutout_no_cull"), mc("textures/entity/slime/slime.png"))
         )
 

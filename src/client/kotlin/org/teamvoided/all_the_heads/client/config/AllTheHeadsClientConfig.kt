@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package org.teamvoided.all_the_heads.client.config
 
 import me.fzzyhmstrs.fzzy_config.annotations.Comment
@@ -12,7 +10,6 @@ import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.utils.isDev
 
-@Suppress("unused")
 class AllTheHeadsClientConfig : Config(id("client")) {
 //    var groupName = ConfigGroup("group_id", false)
 //    @ConfigGroup.Pop

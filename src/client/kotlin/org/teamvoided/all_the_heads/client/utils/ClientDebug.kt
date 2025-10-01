@@ -10,7 +10,7 @@ import org.teamvoided.all_the_heads.utils.isDev
 object ClientDebug {
     fun init() {
         if (!isDev()) return
-        ClientCommandRegistrationCallback.EVENT.register { dispatcher, ctx ->
+        ClientCommandRegistrationCallback.EVENT.register { dispatcher, _ ->
             val root = literal("cath").build()
             dispatcher.root.addChild(root)
 
@@ -22,9 +22,9 @@ object ClientDebug {
 
 fun runDataGen(ctx: CommandContext<FabricClientCommandSource>): Int {
     val src = ctx.source ?: return -1
-    val client = src.client ?: return -1
-    val player = src.player ?: return -1
-    val level = src.world ?: return -1
+//    val client = src.client ?: return -1
+//    val player = src.player ?: return -1
+//    val level = src.world ?: return -1
 
 
     src.sendFeedback(Component.literal("Ran Super Data Gen!"))
