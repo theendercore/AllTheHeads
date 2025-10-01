@@ -30,14 +30,9 @@ var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
 
 @Suppress("unused")
 fun debugRenderer(
-    direction: Direction?,
-    yaw: Float,
-    animationProgress: Float,
-    matrices: PoseStack,
-    vertexConsumers: MultiBufferSource,
-    light: Int,
-    ctx: SkullRenderContext,
-    data: SkullRenderData?,
+    direction: Direction?, yaw: Float, animationProgress: Float,
+    matrices: PoseStack, vertexConsumers: MultiBufferSource, light: Int,
+    ctx: SkullRenderContext, data: SkullRenderData?,
 ) {
     if (!clientConfig.enableDebugRendering) return
     val mc = Minecraft.getInstance()

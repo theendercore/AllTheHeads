@@ -19,12 +19,8 @@ import org.teamvoided.all_the_heads.client.utils.getTexture
 
 @Suppress("DEPRECATION")
 fun renderSkull(
-    direction: Direction?,
-    yaw: Float,
-    animationProgress: Float,
-    matrices: PoseStack,
-    vertexConsumers: MultiBufferSource,
-    light: Int,
+    direction: Direction?, yaw: Float, animationProgress: Float,
+    matrices: PoseStack, vertexConsumers: MultiBufferSource, light: Int,
     ctx: SkullRenderContext,
 ): Boolean {
     val data = fetchSkullRenderInfo(ctx)
