@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
-import org.teamvoided.all_the_heads.client.AllTheHeadsClient
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures
 import org.teamvoided.all_the_heads.client.data.textures.VTTextures
@@ -246,7 +245,7 @@ object ModelsManager {
 
     fun getVanilla(type: SkullBlock.Type): () -> SkullModelBase {
         if (type !is SkullBlock.Types) {
-            AllTheHeadsClient.sendError("Supplied non vanilla SkullType! $type")
+            AllTheHeads.sendError("Supplied non vanilla SkullType! $type", type)
             return { VANILLA_MODEL_ACCESS[SkullBlock.Types.PLAYER]!! }
         }
         return { VANILLA_MODEL_ACCESS[type]!! }
@@ -259,7 +258,7 @@ object ModelsManager {
         val model = BUILT_IN_MODELS[id]
         if (model != null) model
         else {
-            AllTheHeadsClient.sendError("Failed to load model for Id! $id")
+            AllTheHeads.sendError("Failed to load model for Id! $id", id)
             VANILLA_MODEL_ACCESS[SkullBlock.Types.PLAYER]!!
         }
     }

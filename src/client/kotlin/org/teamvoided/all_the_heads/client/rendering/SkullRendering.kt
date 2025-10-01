@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.core.Direction
 import net.minecraft.world.level.block.SkullBlock
+import org.teamvoided.all_the_heads.AllTheHeads.sendError
 import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
-import org.teamvoided.all_the_heads.client.AllTheHeadsClient.sendError
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
@@ -66,7 +66,7 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
                 val data = ModelsManager.models[texture]
                 if (data == null) {
                     if (TEXTURE_BLACKLIST.contains(texture)) return null
-                    sendError("Could not find model for texture $texture")
+                    sendError("Could not find model for texture $texture", texture)
                     return null
                 }
                 return data
@@ -80,7 +80,7 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): SkullRenderData? {
             val id = ctx.skullId ?: return null
             val model = models[SkullBlock.Types.DRAGON]
             if (model == null) {
-                sendError("Could not find model for ${SkullBlock.Types.DRAGON}")
+                sendError("Could not find model for ${SkullBlock.Types.DRAGON}", "No thanks")
 
                 return null
             }

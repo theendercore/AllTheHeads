@@ -1,5 +1,7 @@
 package org.teamvoided.all_the_heads.debug
 
+import com.mojang.authlib.properties.Property
+import com.mojang.authlib.properties.PropertyMap
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.serialization.JsonOps
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
@@ -8,19 +10,23 @@ import net.fabricmc.fabric.mixin.loot.LootTableAccessor
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands.literal
 import net.minecraft.core.Registry
+import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
+import net.minecraft.world.item.component.ResolvableProfile
 import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.entries.*
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction
 import net.minecraft.world.level.storage.loot.functions.SetComponentsFunction
+import org.teamvoided.all_the_heads.AllTheHeads.errors
 import org.teamvoided.all_the_heads.mixin.CompositeEntryBaseAccessor
 import org.teamvoided.all_the_heads.mixin.LootItemAccessor
 import org.teamvoided.all_the_heads.mixin.NestedLootTableAccessor
 import org.teamvoided.all_the_heads.mixin.SetComponentsFunctionAccessor
+import java.util.*
 
 typealias ItemSpawner = (stack: ItemStack) -> Unit
 
@@ -35,8 +41,11 @@ object ATHCommands {
         val dumpHeads = literal("dump_heads").executes(::dumpHeads).build()
         root.addChild(dumpHeads)
 
-        val custom = literal("custom").executes(::customCommand).build()
-        root.addChild(custom)
+        val test = literal("test").executes(::testCommand).build()
+        root.addChild(test)
+
+        val missingHeads = literal("missing_heads").executes(::missingHeads).build()
+        root.addChild(missingHeads)
     }
 
 
@@ -47,7 +56,7 @@ object ATHCommands {
         return 0
     }
 
-    fun customCommand(ctx: CommandContext<CommandSourceStack>): Int {
+    fun testCommand(ctx: CommandContext<CommandSourceStack>): Int {
         val src = ctx.source ?: return -1
         val world = src.level ?: return -1
         val server = src.server ?: return -1
@@ -85,6 +94,30 @@ object ATHCommands {
 
         player.addItem(stack)*/
         return 0
+    }
+
+    fun missingHeads(ctx: CommandContext<CommandSourceStack>): Int {
+        val src = ctx.source ?: return -1
+        val world = src.level ?: return -1
+        val player = src.player ?: return -1
+
+        val pos = player.position()
+        var items = 0
+
+        errors.filterKeys { it.startsWith("Could not find model") }.forEach { (_, tex) ->
+            val stack = Items.PLAYER_HEAD.defaultInstance
+            val props = PropertyMap()
+            props.put("textures", Property("textures", tex))
+            stack.set(
+                DataComponents.PROFILE, ResolvableProfile(Optional.empty(), Optional.empty(), props)
+            )
+            stack.set(DataComponents.ITEM_NAME, Component.literal("Missing Head"))
+            world.addFreshEntity(ItemEntity(world, pos.x, pos.y, pos.z, stack))
+            items++
+        }
+
+        src.sendSystemMessage(Component.literal("Spawned $items heads!"))
+        return items
     }
 
     fun dumpHeads(ctx: CommandContext<CommandSourceStack>): Int {

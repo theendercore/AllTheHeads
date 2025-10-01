@@ -49,6 +49,15 @@ object AllTheHeads {
     }
 
     fun id(path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(MODID, path)
+    fun mc(path: String): ResourceLocation = ResourceLocation.withDefaultNamespace(path)
     fun id(namespace: String, path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(namespace, path)
     fun tryParseId(id: String) = ResourceLocation.tryParse(id)
+
+    val errors = mutableMapOf<String, String>()
+    fun sendError(err: String, value: Any) {
+        if (errors.contains(err)) return
+
+        log.error(err)
+        errors[err] = value.toString()
+    }
 }
