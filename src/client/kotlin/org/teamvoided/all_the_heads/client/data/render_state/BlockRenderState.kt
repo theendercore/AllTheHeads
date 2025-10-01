@@ -1,6 +1,7 @@
 package org.teamvoided.all_the_heads.client.data.render_state
 
 import com.mojang.blaze3d.vertex.PoseStack
+import com.mojang.math.Axis
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.block.BlockRenderDispatcher
@@ -16,10 +17,15 @@ data class BlockRenderState(
         animationProgress: Float, yaw: Float, pitch: Float,
         matrices: PoseStack, vertexConsumers: MultiBufferSource, light: Int,
     ) {
+        matrices.pushPose()
+        matrices.translate(-.5f, 0f, -.5f)
+        matrices.rotateAround(Axis.YP.rotationDegrees(yaw), .5f, 0f, .5f)
+        matrices.rotateAround(Axis.XP.rotationDegrees(180f), .5f, 0f, .5f)
         blockRenderer.renderSingleBlock(
             blockState, matrices, vertexConsumers,
             getLightOverride(light, lightLevelOverride), OverlayTexture.NO_OVERLAY
         )
+        matrices.popPose()
     }
 }
 
