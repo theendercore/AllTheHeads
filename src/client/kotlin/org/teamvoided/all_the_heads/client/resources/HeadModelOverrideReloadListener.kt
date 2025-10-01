@@ -3,7 +3,6 @@ package org.teamvoided.all_the_heads.client.resources
 import com.google.gson.JsonElement
 import com.mojang.serialization.JsonOps
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener
-import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.packs.resources.ResourceManager
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener
@@ -11,8 +10,8 @@ import net.minecraft.util.profiling.ProfilerFiller
 import org.teamvoided.all_the_heads.AllTheHeads.GSON
 import org.teamvoided.all_the_heads.AllTheHeads.id
 import org.teamvoided.all_the_heads.AllTheHeads.log
-import org.teamvoided.all_the_heads.AllTheHeads.mc
 import org.teamvoided.all_the_heads.client.data.SkullRenderData
+import org.teamvoided.all_the_heads.client.init.ATHRenderTypes.getTypes
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getBuiltIn
 
@@ -43,7 +42,7 @@ class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, D
             log.error("No such model [ {} ] for Head Override [ {} ]!", modelId, id)
             return null
         }
-        val renderTypeFn = RENDER_TYPES.getOrDefault(data.renderType, null)
+        val renderTypeFn = getTypes().getOrDefault(data.renderType, null)
         if (renderTypeFn == null) {
             log.error("No such render type [ {} ] for Head Override [ {} ]!", data.renderType, id)
             return null
@@ -56,10 +55,5 @@ class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, D
     companion object {
         const val DIRECTORY: String = HeadModelOverride.FOLDER
         val HEAD_OVERRIDES = HashMap<ResourceLocation, SkullRenderData>()
-        val RENDER_TYPES = mapOf<ResourceLocation, (ResourceLocation) -> RenderType>(
-            mc("entity_cutout_no_cull") to RenderType::entityCutoutNoCull,
-            mc("entity_cutout_no_cull_z_offset") to RenderType::entityCutoutNoCullZOffset,
-            mc("entity_translucent") to RenderType::entityTranslucent,
-        )
     }
 }

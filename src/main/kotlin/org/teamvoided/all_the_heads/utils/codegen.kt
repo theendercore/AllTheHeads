@@ -6,43 +6,35 @@ import java.io.File
 
 
 val list = listOf(
-    "Dolphin",
-    "Donkey",
-    "Endermite",
-    "Fox",
-    "Frog",
-    "Goat",
-    "Hoglin",
-    "Horse",
-    "Illager",
-    "Iron Golem",
-    "Llama",
-    "Magma Cube",
-    "Panda",
-    "Parrot",
-    "Pig",
-    "Polar Bear",
-    "Pufferfish",
-    "Rabbit",
-    "Ravager",
-    "Salmon",
-    "Sheep",
-    "Shulker",
-    "Silverfish",
-    "Slime",
-    "Sniffer",
-    "Strider",
-    "Tadpole",
-    "Tropical Fish",
-    "Villager",
-    "Witch",
-    "Wolf",
+    "entity Solid",
+    "entity Cutout",
+    "entity Cutout No Cull",
+    "entity Cutout No Cull Z Offset",
+    "item Entity Translucent Cull",
+    "entity Translucent Cull",
+    "entity Translucent",
+    "entity Translucent Emissive",
+    "entity Smooth Cutout",
+    "beacon Beam",
+    "entity Decal",
+    "entity Shadow",
+    "eyes",
+    "breeze Eyes",
+    "breeze Wind",
+    "energy Swirl",
+    "armor Entity Glint",
+    "entity Glint",
+    "end Portal",
+    "end Gateway",
+    "lines",
+    "line Strip",
 )
 
-fun main() {
-    val rootDir = File("src/client/kotlin/org/teamvoided/all_the_heads/client/model/nw")
 
-    val newFile = rootDir.resolve("Model.kt")
+fun main() {
+    val rootDir = File("src/client/kotlin/org/teamvoided/all_the_heads/client/")
+
+    val newFile = rootDir.resolve("Types.kt")
     newFile.createNewFile()
     newFile.writeText(modelsFile())
 }
@@ -54,12 +46,9 @@ fun modelsFile(): String {
     list.forEach { rawName ->
         val uppercase = rawName.replace(" ", "_").uppercase()
         val lowercase = uppercase.lowercase()
-        val model = rawName.replace(" ", "") + "HeadModel"
-
-//        text += "val ${uppercase}_HEAD = mainLayer(\"${lowercase}_head\")\n"
-//        text2 += "register(${model}.ID, ${uppercase}_HEAD, ${model}::head, ::${model})\n"
-
-//        text+= "VTTextures.${uppercase} to builtIn(${model}.ID, \"${lowercase}\"),\n"
+        val fn = rawName.replace(" ", "")
+//        val ENTITY_CUTOUT_NO_CULL = addType(mc("entity_cutout_no_cull"), ::entityCutoutNoCull)
+        text+= "val $uppercase = addType(mc(\"$lowercase\"), ::$fn)\n"
     }
 
     return text + text2
