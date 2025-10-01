@@ -26,7 +26,6 @@ fun runDataGen(ctx: CommandContext<FabricClientCommandSource>): Int {
     val player = src.player ?: return -1
     val level = src.world ?: return -1
 
-    run()
 
     src.sendFeedback(Component.literal("Ran Super Data Gen!"))
     return 0

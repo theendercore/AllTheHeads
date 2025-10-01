@@ -43,7 +43,7 @@ fun debugRenderer(
     val mc = Minecraft.getInstance()
 
     val font = mc.font
-    if (clientConfig.noModelWarning && data == null && ctx.itemCtx == ItemDisplayContext.GUI) {
+    if (clientConfig.noModelWarning && data == null && ctx.itemCtx == ItemDisplayContext.GUI && ctx.skullOwner != null) {
         matrices.pushPose()
         val scale = .06f
         matrices.scale(scale, -scale, scale)
