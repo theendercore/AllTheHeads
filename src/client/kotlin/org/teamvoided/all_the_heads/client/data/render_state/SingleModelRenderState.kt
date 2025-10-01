@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture
 import org.teamvoided.all_the_heads.client.data.render_state.HeadRenderState.Companion.getLightOverride
 
 data class SingleModelRenderState(
-    val model: () -> SkullModelBase, val renderType: RenderType, val lightLevelOverride: Int?,
+    val model: () -> SkullModelBase, val renderType: RenderType, val lightLevelOverride: Int? = null,
 ) : HeadRenderState {
     override fun render(
         animationProgress: Float, yaw: Float, pitch: Float,

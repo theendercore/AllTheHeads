@@ -99,11 +99,11 @@ object ModelsManager {
         VTTextures.GRAY_LLAMA to builtIn(LlamaHeadModel.ID, "llama/gray"),
 
         VTTextures.MAGMA_CUBE to builtIn(MagmaCubeHeadModel.ID, "slime/magmacube", 15),
-        VTTextures.RED_MOOSHROOM to MultiModelRenderState(
+        VTTextures.RED_MOOSHROOM to multi(
             builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
             BlockRenderState(Blocks.RED_MUSHROOM.defaultBlockState())
         ),
-        VTTextures.BROWN_MOOSHROOM to MultiModelRenderState(
+        VTTextures.BROWN_MOOSHROOM to multi(
             builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
             BlockRenderState(Blocks.BROWN_MUSHROOM.defaultBlockState())
         ),
@@ -164,12 +164,18 @@ object ModelsManager {
         VTTextures.SHULKER to builtIn(ShulkerHeadModel.ID, "shulker/shulker"),
         VTTextures.SILVERFISH to builtIn(SilverfishHeadModel.ID, "silverfish"),
         VTTextures.SKELETON_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_skeleton"),
-        VTTextures.SLIME to builtIn(SlimeHeadModel.ID, "slime/slime"),
+        VTTextures.SLIME to multi(
+            builtIn(SlimeHeadModel.ID, "slime/slime"),
+            SingleModelRenderState(getVanilla(SkullBlock.Types.SKELETON), entityTranslucent("slime/slime"))
+        ),
         VTTextures.SNIFFER to builtIn(SnifferHeadModel.ID, "sniffer/sniffer"),
         VTTextures.SNOW_GOLEM to builtIn(SnowGolemHeadModel.ID, "snow_golem"),
         VTTextures.SPIDER to builtIn(SpiderHeadModel.ID, "spider/spider"),
         VTTextures.SQUID to builtIn(SquidHeadModel.ID, "squid/squid"),
-        VTTextures.STRAY to vanilla(SkullBlock.Types.SKELETON, "skeleton/stray"),
+        VTTextures.STRAY to multi(
+            vanilla(SkullBlock.Types.SKELETON, "skeleton/stray"),
+            vanilla(SkullBlock.Types.SKELETON, "skeleton/stray_overlay")
+        ),
         VTTextures.STRIDER to builtIn(StriderHeadModel.ID, "strider/strider"),
         VTTextures.COLD_STRIDER to builtIn(StriderHeadModel.ID, "strider/strider_cold"),
         VTTextures.TADPOLE to builtIn(TadpoleHeadModel.ID, "tadpole/tadpole"),
@@ -250,6 +256,7 @@ object ModelsManager {
         MiscTextures.TEST_TEX to builtIn(CamelWithNeckHeadModel.ID, "camel/camel"),
     )
 
+    fun multi(vararg model: HeadRenderState) = MultiModelRenderState(*model)
     fun vanilla(id: SkullBlock.Type, texture: String, lightLevel: Int? = null) =
         SingleModelRenderState(getVanilla(id), entityBasic(texture), lightLevel)
 
