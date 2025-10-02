@@ -1,4 +1,4 @@
-package org.teamvoided.all_the_heads.client.data.render_state
+package org.teamvoided.all_the_heads.client.data.render
 
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.math.Axis
@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.block.BlockRenderDispatcher
 import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.world.level.block.state.BlockState
-import org.teamvoided.all_the_heads.client.data.render_state.HeadRenderState.Companion.getLightOverride
+import org.teamvoided.all_the_heads.client.data.render.HeadRenderState.Companion.getLightOverride
 
 data class BlockRenderState(
     val blockState: BlockState, val lightLevelOverride: Int? = null,

@@ -1,4 +1,4 @@
-package org.teamvoided.all_the_heads.client.data.render_state
+package org.teamvoided.all_the_heads.client.data.render
 
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.renderer.MultiBufferSource

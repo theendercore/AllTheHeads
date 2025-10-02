@@ -6,10 +6,10 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
-import org.teamvoided.all_the_heads.client.data.render_state.BlockRenderState
-import org.teamvoided.all_the_heads.client.data.render_state.HeadRenderState
-import org.teamvoided.all_the_heads.client.data.render_state.MultiModelRenderState
-import org.teamvoided.all_the_heads.client.data.render_state.SingleModelRenderState
+import org.teamvoided.all_the_heads.client.data.render.BlockRenderState
+import org.teamvoided.all_the_heads.client.data.render.HeadRenderState
+import org.teamvoided.all_the_heads.client.data.render.MultiModelRenderState
+import org.teamvoided.all_the_heads.client.data.render.SingleModelRenderState
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures
 import org.teamvoided.all_the_heads.client.data.textures.VTTextures
 import org.teamvoided.all_the_heads.client.model.*

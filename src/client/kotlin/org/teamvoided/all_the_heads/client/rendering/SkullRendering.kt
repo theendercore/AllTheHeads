@@ -11,8 +11,8 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
-import org.teamvoided.all_the_heads.client.data.render_state.HeadRenderState
-import org.teamvoided.all_the_heads.client.data.render_state.SingleModelRenderState
+import org.teamvoided.all_the_heads.client.data.render.HeadRenderState
+import org.teamvoided.all_the_heads.client.data.render.SingleModelRenderState
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures.TEXTURE_BLACKLIST
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 import org.teamvoided.all_the_heads.client.utils.getTexture

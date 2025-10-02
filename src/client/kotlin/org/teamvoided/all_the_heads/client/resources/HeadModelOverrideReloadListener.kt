@@ -10,7 +10,7 @@ import net.minecraft.util.profiling.ProfilerFiller
 import org.teamvoided.all_the_heads.AllTheHeads.GSON
 import org.teamvoided.all_the_heads.AllTheHeads.id
 import org.teamvoided.all_the_heads.AllTheHeads.log
-import org.teamvoided.all_the_heads.client.data.render_state.SingleModelRenderState
+import org.teamvoided.all_the_heads.client.data.render.SingleModelRenderState
 import org.teamvoided.all_the_heads.client.init.ATHRenderTypes.getTypes
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getBuiltIn
