@@ -2,11 +2,9 @@ package org.teamvoided.all_the_heads.client.rendering
 
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.renderer.MultiBufferSource
-import net.minecraft.client.renderer.RenderType
 import net.minecraft.core.Direction
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads.sendError
-import org.teamvoided.all_the_heads.AllTheHeads.tryParseId
 import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
@@ -71,6 +69,3 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): ModelProvider? {
         }
     }
 }
-
-
-fun rType(texture: String): RenderType = RenderType.entityCutoutNoCullZOffset(tryParseId(texture)!!)
