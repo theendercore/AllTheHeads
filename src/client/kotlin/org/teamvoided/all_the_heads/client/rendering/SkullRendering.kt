@@ -1,6 +1,8 @@
 package org.teamvoided.all_the_heads.client.rendering
 
 import com.mojang.blaze3d.vertex.PoseStack
+import com.terraformersmc.modmenu.util.mod.Mod
+import net.minecraft.client.model.Model
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.core.Direction
@@ -11,11 +13,11 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
+import org.teamvoided.all_the_heads.client.data.gen.prov.ATHOverrideProvider.Companion.entityBasic
 import org.teamvoided.all_the_heads.client.data.render.HeadModel
 import org.teamvoided.all_the_heads.client.data.render.VanillaHeadModel
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures.TEXTURE_BLACKLIST
 import org.teamvoided.all_the_heads.client.init.ModelsManager
-import org.teamvoided.all_the_heads.client.init.ModelsManager.entityBasic
 import org.teamvoided.all_the_heads.client.utils.getTexture
 
 @Suppress("DEPRECATION")
@@ -46,7 +48,7 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): HeadModel? {
         HeadRenderMode.PROFILE -> when (clientConfig.profileDataMode.get()) {
             ProfileDataMode.TEXTURE -> {
                 val texture = ctx.skullOwner?.getTexture() ?: return null
-                val data = ModelsManager.models[texture]
+                val data = ModelsManager.TEXTURE_TO_MODEL[texture]?.let(ModelsManager.HEAD_MODELS::get)
                 if (data == null) {
                     if (TEXTURE_BLACKLIST.contains(texture)) return null
                     sendError("Could not find model for texture $texture", texture)

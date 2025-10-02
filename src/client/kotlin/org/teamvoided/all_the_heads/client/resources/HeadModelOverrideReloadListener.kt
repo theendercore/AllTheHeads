@@ -10,7 +10,9 @@ import net.minecraft.util.profiling.ProfilerFiller
 import org.teamvoided.all_the_heads.AllTheHeads.GSON
 import org.teamvoided.all_the_heads.AllTheHeads.id
 import org.teamvoided.all_the_heads.AllTheHeads.log
-import org.teamvoided.all_the_heads.client.data.render.HeadModel
+import org.teamvoided.all_the_heads.client.init.ModelsManager
+import org.teamvoided.all_the_heads.client.init.ModelsManager.HEAD_MODELS
+import org.teamvoided.all_the_heads.client.init.ModelsManager.TEXTURE_TO_MODEL
 
 class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, DIRECTORY),
     IdentifiableResourceReloadListener {
@@ -19,21 +21,23 @@ class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, D
     override fun apply(
         resources: MutableMap<ResourceLocation, JsonElement>, manager: ResourceManager, profiler: ProfilerFiller,
     ) {
-        HEAD_OVERRIDES.clear()
+        ModelsManager.onReload()
 
         for ((id, json) in resources) {
             log.info(id.toString())
             HeadModelOverride.CODEC.parse(JsonOps.INSTANCE, json)
                 .resultOrPartial { log.error("Failed to decode mob skull shader with ID {} - Error: {}", id, it) }
                 .ifPresent {
-                    HEAD_OVERRIDES[id] = it.model
+                    HEAD_MODELS[id] = it.model
+                    if (it.renderConditions.texture?.isNotEmpty() == true) {
+                        TEXTURE_TO_MODEL[it.renderConditions.texture] = id
+                    }
                 }
         }
-        log.info("List of all loaded data: {}", HEAD_OVERRIDES)
+        log.info("List of all loaded data: {}", HEAD_MODELS)
     }
 
     companion object {
         const val DIRECTORY: String = HeadModelOverride.FOLDER
-        val HEAD_OVERRIDES = HashMap<ResourceLocation, HeadModel>()
     }
 }
