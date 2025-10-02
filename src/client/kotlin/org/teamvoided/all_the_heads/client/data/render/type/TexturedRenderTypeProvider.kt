@@ -23,13 +23,16 @@ open class TexturedRenderTypeProvider(val id: ResourceLocation, val texture: Res
         val ITEM_ENTITY_TRANSLUCENT_CULL = type("item_entity_translucent_cull", ::itemEntityTranslucentCull)
         val ENTITY_TRANSLUCENT_CULL = type("entity_translucent_cull", ::entityTranslucentCull)
         val ENTITY_TRANSLUCENT = type("entity_translucent", ::entityTranslucent)
-        val ENTITY_TRANSLUCENT_EMISSIVE = type("entity_translucent_emissive", ::entityTranslucentEmissive)
-        val ENTITY_SMOOTH_CUTOUT = type("entity_smooth_cutout", ::entitySmoothCutout)
-        val ENTITY_DECAL = type("entity_decal", ::entityDecal)
-        val ENTITY_SHADOW = type("entity_shadow", ::entityShadow)
         val EYES = type("eyes", ::eyes)
         val BREEZE_EYES = type("breeze_eyes", ::breezeEyes)
 
+        // Kinda unstable
+        val ENTITY_TRANSLUCENT_EMISSIVE = type("entity_translucent_emissive", ::entityTranslucentEmissive)
+        val ENTITY_SHADOW = type("entity_shadow", ::entityShadow)
+
+        // Wired dragon stuff
+        val ENTITY_SMOOTH_CUTOUT = type("entity_smooth_cutout", ::entitySmoothCutout)
+        val ENTITY_DECAL = type("entity_decal", ::entityDecal)
 
         fun type(id: String, type: RenderTypeCreator) = type(mc(id), type)
         fun type(id: ResourceLocation, type: RenderTypeCreator): ResourceLocation {
