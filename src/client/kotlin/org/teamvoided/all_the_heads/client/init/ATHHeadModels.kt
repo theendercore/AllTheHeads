@@ -4,12 +4,7 @@ import com.mojang.serialization.MapCodec
 import net.minecraft.core.Registry
 import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads.id
-import org.teamvoided.all_the_heads.client.data.render.BlockHeadModel
-import org.teamvoided.all_the_heads.client.data.render.HeadModel
-import org.teamvoided.all_the_heads.client.data.render.HeadModelType
-import org.teamvoided.all_the_heads.client.data.render.ListHeadModel
-import org.teamvoided.all_the_heads.client.data.render.BuiltInHeadModel
-import org.teamvoided.all_the_heads.client.data.render.VanillaHeadModel
+import org.teamvoided.all_the_heads.client.data.render.*
 
 object ATHHeadModels {
     fun init() = Unit

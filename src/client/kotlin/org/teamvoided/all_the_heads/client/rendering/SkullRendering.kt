@@ -1,8 +1,6 @@
 package org.teamvoided.all_the_heads.client.rendering
 
 import com.mojang.blaze3d.vertex.PoseStack
-import com.terraformersmc.modmenu.util.mod.Mod
-import net.minecraft.client.model.Model
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.core.Direction
