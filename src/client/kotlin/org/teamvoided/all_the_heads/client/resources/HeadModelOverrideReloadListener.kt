@@ -10,7 +10,7 @@ import net.minecraft.util.profiling.ProfilerFiller
 import org.teamvoided.all_the_heads.AllTheHeads.GSON
 import org.teamvoided.all_the_heads.AllTheHeads.id
 import org.teamvoided.all_the_heads.AllTheHeads.log
-import org.teamvoided.all_the_heads.client.data.render.SingleModelRenderState
+import org.teamvoided.all_the_heads.client.data.render.BuiltInHeadModel
 import org.teamvoided.all_the_heads.client.init.ATHRenderTypes.getTypes
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getBuiltIn
@@ -36,7 +36,7 @@ class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, D
         log.info("List of all loaded data: {}", HEAD_OVERRIDES)
     }
 
-    fun load(id: ResourceLocation, data: HeadModelOverride): SingleModelRenderState? {
+    fun load(id: ResourceLocation, data: HeadModelOverride): BuiltInHeadModel? {
         val modelId = data.modelId
         if (!ModelsManager.BUILT_IN_MODELS.contains(modelId)) {
             log.error("No such model [ {} ] for Head Override [ {} ]!", modelId, id)
@@ -48,12 +48,12 @@ class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, D
             return null
         }
 
-        return SingleModelRenderState(getBuiltIn(modelId), renderTypeFn(data.texture), data.lightLevelOverride)
+        return BuiltInHeadModel(getBuiltIn(modelId), renderTypeFn(data.texture), data.lightLevelOverride)
     }
 
 
     companion object {
         const val DIRECTORY: String = HeadModelOverride.FOLDER
-        val HEAD_OVERRIDES = HashMap<ResourceLocation, SingleModelRenderState>()
+        val HEAD_OVERRIDES = HashMap<ResourceLocation, BuiltInHeadModel>()
     }
 }

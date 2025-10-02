@@ -21,7 +21,7 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.RenderLocation
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
-import org.teamvoided.all_the_heads.client.data.render.HeadRenderState
+import org.teamvoided.all_the_heads.client.data.render.HeadModel
 
 @JvmField
 var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
@@ -30,7 +30,7 @@ var models: MutableMap<SkullBlock.Type, SkullModelBase> = mutableMapOf()
 fun debugRenderer(
     direction: Direction?, yaw: Float, animationProgress: Float,
     matrices: PoseStack, vertexConsumers: MultiBufferSource, light: Int,
-    ctx: SkullRenderContext, data: HeadRenderState?,
+    ctx: SkullRenderContext, data: HeadModel?,
 ) {
     if (!clientConfig.enableDebugRendering) return
     val mc = Minecraft.getInstance()

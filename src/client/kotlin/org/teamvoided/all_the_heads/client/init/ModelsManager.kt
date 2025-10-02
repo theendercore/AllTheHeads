@@ -6,10 +6,10 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
-import org.teamvoided.all_the_heads.client.data.render.BlockRenderState
-import org.teamvoided.all_the_heads.client.data.render.HeadRenderState
-import org.teamvoided.all_the_heads.client.data.render.MultiModelRenderState
-import org.teamvoided.all_the_heads.client.data.render.SingleModelRenderState
+import org.teamvoided.all_the_heads.client.data.render.BlockHeadModel
+import org.teamvoided.all_the_heads.client.data.render.HeadModel
+import org.teamvoided.all_the_heads.client.data.render.ListHeadModel
+import org.teamvoided.all_the_heads.client.data.render.BuiltInHeadModel
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures
 import org.teamvoided.all_the_heads.client.data.textures.VTTextures
 import org.teamvoided.all_the_heads.client.model.*
@@ -21,7 +21,7 @@ object ModelsManager {
     @JvmField
     var BUILT_IN_MODELS = mutableMapOf<ResourceLocation, SkullModelBase>()
 
-    val models = mapOf<String, HeadRenderState>(
+    val models = mapOf<String, HeadModel>(
         VTTextures.ALLAY to builtIn(AllayHeadModel.ID, "allay/allay", 15),
         VTTextures.ARMADILLO to builtIn(ArmadilloHeadModel.ID, "armadillo"),
         // Axolotl
@@ -101,11 +101,11 @@ object ModelsManager {
         VTTextures.MAGMA_CUBE to builtIn(MagmaCubeHeadModel.ID, "slime/magmacube", 15),
         VTTextures.RED_MOOSHROOM to multi(
             builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
-            BlockRenderState(Blocks.RED_MUSHROOM.defaultBlockState())
+            BlockHeadModel(Blocks.RED_MUSHROOM.defaultBlockState())
         ),
         VTTextures.BROWN_MOOSHROOM to multi(
             builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
-            BlockRenderState(Blocks.BROWN_MUSHROOM.defaultBlockState())
+            BlockHeadModel(Blocks.BROWN_MUSHROOM.defaultBlockState())
         ),
         VTTextures.MULE to builtIn(ChestedHorseHeadModel.ID, "horse/mule"),
         VTTextures.OCELOT to builtIn(OcelotHeadModel.ID, "cat/ocelot"),
@@ -166,7 +166,7 @@ object ModelsManager {
         VTTextures.SKELETON_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_skeleton"),
         VTTextures.SLIME to multi(
             builtIn(SlimeHeadModel.ID, "slime/slime"),
-            SingleModelRenderState(getVanilla(SkullBlock.Types.SKELETON), entityTranslucent("slime/slime"))
+            BuiltInHeadModel(getVanilla(SkullBlock.Types.SKELETON), entityTranslucent("slime/slime"))
         ),
         VTTextures.SNIFFER to builtIn(SnifferHeadModel.ID, "sniffer/sniffer"),
         VTTextures.SNOW_GOLEM to builtIn(SnowGolemHeadModel.ID, "snow_golem"),
@@ -256,9 +256,9 @@ object ModelsManager {
         MiscTextures.TEST_TEX to builtIn(CamelWithNeckHeadModel.ID, "camel/camel"),
     )
 
-    fun multi(vararg model: HeadRenderState) = MultiModelRenderState(*model)
+    fun multi(vararg model: HeadModel) = ListHeadModel(*model)
     fun vanilla(id: SkullBlock.Type, texture: String, lightLevel: Int? = null) =
-        SingleModelRenderState(getVanilla(id), entityBasic(texture), lightLevel)
+        BuiltInHeadModel(getVanilla(id), entityBasic(texture), lightLevel)
 
     fun getVanilla(type: SkullBlock.Type): () -> SkullModelBase {
         if (type !is SkullBlock.Types) {
@@ -269,7 +269,7 @@ object ModelsManager {
     }
 
     fun builtIn(id: ResourceLocation, texture: String, lightLevel: Int? = null) =
-        SingleModelRenderState(getBuiltIn(id), entityBasic(texture), lightLevel)
+        BuiltInHeadModel(getBuiltIn(id), entityBasic(texture), lightLevel)
 
     fun getBuiltIn(id: ResourceLocation): () -> SkullModelBase = {
         val model = BUILT_IN_MODELS[id]

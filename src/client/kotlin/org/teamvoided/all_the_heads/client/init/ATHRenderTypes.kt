@@ -37,6 +37,8 @@ object ATHRenderTypes {
 
 
     fun getTypes() = TYPES
+    fun getType(id: ResourceLocation) = TYPES[id]
+    fun getTypeOrDefault(id: ResourceLocation) = TYPES[id] ?: ::entityCutout
     fun addVanillaType(id: String, creator: RenderTypeCreator) = addType(mc(id), creator)
     fun addType(id: ResourceLocation, creator: RenderTypeCreator): ResourceLocation {
         TYPES[id] = creator
