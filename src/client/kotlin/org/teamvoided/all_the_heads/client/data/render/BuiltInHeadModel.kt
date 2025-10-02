@@ -11,9 +11,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads.mc
 import org.teamvoided.all_the_heads.client.data.render.HeadModel.Companion.getLightOverride
+import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderType
 import org.teamvoided.all_the_heads.client.init.ATHHeadModels
-import org.teamvoided.all_the_heads.client.init.ATHRenderTypes
-import org.teamvoided.all_the_heads.client.init.ATHRenderTypes.getType
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getBuiltIn
 import org.teamvoided.all_the_heads.client.model.AllayHeadModel
 import java.util.*
@@ -43,13 +42,13 @@ open class BuiltInHeadModel(
         val CODEC: MapCodec<BuiltInHeadModel> = RecordCodecBuilder.mapCodec {
             it.group(
                 ResourceLocation.CODEC.fieldOf("model").forGetter { AllayHeadModel.ID },
-                ResourceLocation.CODEC.fieldOf("render_type").forGetter { ATHRenderTypes.ENTITY_CUTOUT },
+                ResourceLocation.CODEC.fieldOf("render_type").forGetter { TexturedRenderType.ENTITY_CUTOUT },
                 Codec.intRange(1, 15).optionalFieldOf("light_level_override")
                     .forGetter { obj -> Optional.ofNullable(obj.lightLevelOverride) },
             ).apply(it) { model, renderType, light ->
                 BuiltInHeadModel(
                     getBuiltIn(model),
-                    getType(renderType)?.invoke(mc("textures/entity/allay/allay.png"))
+                    TexturedRenderType.TYPES[renderType]?.invoke(mc("textures/entity/allay/allay.png"))
                         ?: error("No such render type [ $renderType ]"),
                     light.getOrNull()
                 )
