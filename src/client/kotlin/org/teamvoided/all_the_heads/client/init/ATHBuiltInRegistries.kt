@@ -12,8 +12,8 @@ object ATHBuiltInRegistries {
     val HEAD_RENDER_STATE_TYPE_KEY = key<HeadModelType<*>>("head_render_state_type")
     val HEAD_RENDER_STATE_TYPE: MappedRegistry<HeadModelType<*>> = create(HEAD_RENDER_STATE_TYPE_KEY)
 
-    val DATA_RENDER_TYPE_KEY = key<RenderTypeProviderType<*>>("data_render_type")
-    val DATA_RENDER_TYPE: MappedRegistry<RenderTypeProviderType<*>> = create(DATA_RENDER_TYPE_KEY)
+    val RENDER_TYPE_PROVIDER_TYPE_KEY = key<RenderTypeProviderType<*>>("render_type_provider_type")
+    val RENDER_TYPE_PROVIDER_TYPE: MappedRegistry<RenderTypeProviderType<*>> = create(RENDER_TYPE_PROVIDER_TYPE_KEY)
 
     fun init() = Unit
     private fun <T> key(id: String): ResourceKey<Registry<T>> = ResourceKey.createRegistryKey(id(id))

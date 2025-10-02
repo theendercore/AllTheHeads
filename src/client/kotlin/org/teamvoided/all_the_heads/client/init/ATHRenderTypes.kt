@@ -11,7 +11,7 @@ import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProviderType
 import org.teamvoided.all_the_heads.client.data.render.type.SimpleRenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
-import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries.DATA_RENDER_TYPE
+import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries.RENDER_TYPE_PROVIDER_TYPE
 
 typealias RenderTypeCreator = (ResourceLocation) -> RenderType
 
@@ -25,7 +25,7 @@ object ATHRenderTypes {
         encodableType(id(id), codec)
 
     fun <T : RenderTypeProvider> encodableType(id: ResourceLocation, codec: MapCodec<T>): RenderTypeProviderType<T> =
-        Registry.register(DATA_RENDER_TYPE, id, RenderTypeProviderType { codec })
+        Registry.register(RENDER_TYPE_PROVIDER_TYPE, id, RenderTypeProviderType { codec })
 
 
     private val TYPES = mutableMapOf<ResourceLocation, RenderTypeCreator>()
