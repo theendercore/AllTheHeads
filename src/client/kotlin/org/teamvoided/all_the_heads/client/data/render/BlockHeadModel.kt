@@ -18,7 +18,7 @@ import kotlin.jvm.optionals.getOrNull
 open class BlockHeadModel(
     val blockState: BlockState, val lightLevelOverride: Int? = null,
 ) : HeadModel {
-    val blockRenderer: BlockRenderDispatcher = Minecraft.getInstance().blockRenderer
+    fun blockRenderer(): BlockRenderDispatcher = Minecraft.getInstance().blockRenderer
 
     init {
         if (lightLevelOverride != null && lightLevelOverride !in 1..15) {
@@ -35,7 +35,7 @@ open class BlockHeadModel(
         matrices.translate(-.5f, 0f, -.5f)
         matrices.rotateAround(Axis.YP.rotationDegrees(yaw), .5f, 0f, .5f)
         matrices.rotateAround(Axis.XP.rotationDegrees(180f), .5f, 0f, .5f)
-        blockRenderer.renderSingleBlock(
+        blockRenderer().renderSingleBlock(
             blockState, matrices, vertexConsumers,
             getLightOverride(light, lightLevelOverride), OverlayTexture.NO_OVERLAY
         )

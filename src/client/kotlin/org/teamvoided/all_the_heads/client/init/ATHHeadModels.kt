@@ -18,8 +18,6 @@ object ATHHeadModels {
     val BLOCK = register("block", BlockHeadModel.CODEC)
     val LIST = register("list", ListHeadModel.CODEC)
 
-
-
     fun <T : HeadModel> register(id: String, codec: MapCodec<T>): HeadModelType<T> = register(id(id), codec)
     fun <T : HeadModel> register(id: ResourceLocation, codec: MapCodec<T>): HeadModelType<T> =
         Registry.register(ATHBuiltInRegistries.HEAD_RENDER_STATE_TYPE, id, HeadModelType { codec })
