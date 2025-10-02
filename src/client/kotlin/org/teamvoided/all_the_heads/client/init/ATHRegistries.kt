@@ -8,7 +8,7 @@ import org.teamvoided.all_the_heads.AllTheHeads.id
 import org.teamvoided.all_the_heads.client.data.render.ModelProviderType
 import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProviderType
 
-object ATHBuiltInRegistries {
+object ATHRegistries {
     val MODEL_PROVIDER_TYPE_KEY = key<ModelProviderType<*>>("model_provider_type")
     val MODEL_PROVIDER_TYPE: MappedRegistry<ModelProviderType<*>> = create(MODEL_PROVIDER_TYPE_KEY)
 

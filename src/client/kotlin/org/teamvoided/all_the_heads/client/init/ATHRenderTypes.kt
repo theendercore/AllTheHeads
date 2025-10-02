@@ -11,7 +11,7 @@ import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProviderType
 import org.teamvoided.all_the_heads.client.data.render.type.SimpleRenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
-import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries.RENDER_TYPE_PROVIDER_TYPE
+import org.teamvoided.all_the_heads.client.init.ATHRegistries.RENDER_TYPE_PROVIDER_TYPE
 
 typealias RenderTypeCreator = (ResourceLocation) -> RenderType
 

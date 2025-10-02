@@ -9,7 +9,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.server.packs.PackType
 import org.teamvoided.all_the_heads.CopyToClipboardPayload
 import org.teamvoided.all_the_heads.client.config.AllTheHeadsClientConfig
-import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries
+import org.teamvoided.all_the_heads.client.init.ATHRegistries
 import org.teamvoided.all_the_heads.client.init.ATHModelProviders
 import org.teamvoided.all_the_heads.client.init.ATHModels
 import org.teamvoided.all_the_heads.client.init.ATHRenderTypes
@@ -24,7 +24,7 @@ object AllTheHeadsClient {
     @JvmField
     var clientConfig = ConfigApi.registerAndLoadConfig(::AllTheHeadsClientConfig, RegisterType.CLIENT)
     fun init() {
-        ATHBuiltInRegistries.init()
+        ATHRegistries.init()
         ATHModelProviders.init()
         ATHRenderTypes.init()
         ATHModels.init()

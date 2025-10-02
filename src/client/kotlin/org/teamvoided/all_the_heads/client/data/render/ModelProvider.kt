@@ -3,7 +3,7 @@ package org.teamvoided.all_the_heads.client.data.render
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.serialization.Codec
 import net.minecraft.client.renderer.MultiBufferSource
-import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries.MODEL_PROVIDER_TYPE
+import org.teamvoided.all_the_heads.client.init.ATHRegistries.MODEL_PROVIDER_TYPE
 
 interface ModelProvider {
     fun getType(): ModelProviderType<*>

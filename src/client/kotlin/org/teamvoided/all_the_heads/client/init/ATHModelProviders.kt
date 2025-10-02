@@ -15,5 +15,5 @@ object ATHModelProviders {
 
     fun <T : ModelProvider> register(id: String, codec: MapCodec<T>): ModelProviderType<T> = register(id(id), codec)
     fun <T : ModelProvider> register(id: ResourceLocation, codec: MapCodec<T>): ModelProviderType<T> =
-        Registry.register(ATHBuiltInRegistries.MODEL_PROVIDER_TYPE, id, ModelProviderType { codec })
+        Registry.register(ATHRegistries.MODEL_PROVIDER_TYPE, id, ModelProviderType { codec })
 }
