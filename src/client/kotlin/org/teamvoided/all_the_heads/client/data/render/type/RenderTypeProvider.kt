@@ -6,7 +6,7 @@ import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries.DATA_RENDER
 
 interface RenderTypeProvider {
     fun getType(): RenderTypeProviderType<*>
-    fun renderType(): RenderType
+    fun get(): RenderType
 
     companion object {
         val CODEC: Codec<RenderTypeProvider> =

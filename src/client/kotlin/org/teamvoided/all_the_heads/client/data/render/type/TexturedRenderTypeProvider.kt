@@ -11,7 +11,7 @@ import org.teamvoided.all_the_heads.client.init.RenderTypeCreator
 
 open class TexturedRenderTypeProvider(val id: ResourceLocation, val texture: ResourceLocation) : RenderTypeProvider {
     override fun getType(): RenderTypeProviderType<*> = ATHRenderTypes.TEXTURED
-    override fun renderType(): RenderType = TYPES[id]?.invoke(texture.withSuffix(".png")) ?: lines()
+    override fun get(): RenderType = TYPES[id]?.invoke(texture.withSuffix(".png")) ?: lines()
 
     companion object {
         val TYPES = mutableMapOf<ResourceLocation, RenderTypeCreator>()

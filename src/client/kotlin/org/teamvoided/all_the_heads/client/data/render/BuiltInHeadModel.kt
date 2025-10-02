@@ -6,12 +6,10 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.client.model.SkullModelBase
 import net.minecraft.client.renderer.MultiBufferSource
-import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.resources.ResourceLocation
-import org.teamvoided.all_the_heads.AllTheHeads.mc
 import org.teamvoided.all_the_heads.client.data.render.HeadModel.Companion.getLightOverride
-import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
+import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProvider
 import org.teamvoided.all_the_heads.client.init.ATHHeadModels
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getBuiltIn
 import org.teamvoided.all_the_heads.client.model.AllayHeadModel
@@ -19,7 +17,7 @@ import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
 open class BuiltInHeadModel(
-    val model: () -> SkullModelBase, val renderType: RenderType, val lightLevelOverride: Int? = null,
+    val model: () -> SkullModelBase, val renderTypeProvider: RenderTypeProvider, val lightLevelOverride: Int? = null,
 ) : HeadModel {
     override fun getType(): HeadModelType<*> = ATHHeadModels.BUILT_IN
     override fun render(
@@ -32,7 +30,7 @@ open class BuiltInHeadModel(
         model.setupAnim(animationProgress, yaw, 0.0f)
         model.renderToBuffer(
             matrices,
-            vertexConsumers.getBuffer(renderType),
+            vertexConsumers.getBuffer(renderTypeProvider.get()),
             getLightOverride(light, lightLevelOverride),
             OverlayTexture.NO_OVERLAY
         )
@@ -42,16 +40,11 @@ open class BuiltInHeadModel(
         val CODEC: MapCodec<BuiltInHeadModel> = RecordCodecBuilder.mapCodec {
             it.group(
                 ResourceLocation.CODEC.fieldOf("model").forGetter { AllayHeadModel.ID },
-                ResourceLocation.CODEC.fieldOf("render_type").forGetter { TexturedRenderTypeProvider.ENTITY_CUTOUT },
+                RenderTypeProvider.CODEC.fieldOf("render_type").forGetter(BuiltInHeadModel::renderTypeProvider),
                 Codec.intRange(1, 15).optionalFieldOf("light_level_override")
                     .forGetter { obj -> Optional.ofNullable(obj.lightLevelOverride) },
             ).apply(it) { model, renderType, light ->
-                BuiltInHeadModel(
-                    getBuiltIn(model),
-                    TexturedRenderTypeProvider.TYPES[renderType]?.invoke(mc("textures/entity/allay/allay.png"))
-                        ?: error("No such render type [ $renderType ]"),
-                    light.getOrNull()
-                )
+                BuiltInHeadModel(getBuiltIn(model), renderType, light.getOrNull())
             }
         }
     }

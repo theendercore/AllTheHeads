@@ -11,8 +11,11 @@ import org.teamvoided.all_the_heads.client.data.gen.FutureLookup
 import org.teamvoided.all_the_heads.client.data.gen.HeadModelOverrideProvider
 import org.teamvoided.all_the_heads.client.data.gen.Output
 import org.teamvoided.all_the_heads.client.data.render.*
+import org.teamvoided.all_the_heads.client.data.render.type.SimpleRenderTypeProvider
+import org.teamvoided.all_the_heads.client.data.render.type.SimpleRenderTypeProvider.Companion.END_PORTAL
 import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider.Companion.ENTITY_CUTOUT_NO_CULL
+import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider.Companion.ENTITY_TRANSLUCENT
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getBuiltIn
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getVanilla
 import org.teamvoided.all_the_heads.client.model.AllayHeadModel
@@ -24,7 +27,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("test1"),
             BuiltInHeadModel(
                 getBuiltIn(AllayHeadModel.ID),
-                TexturedRenderTypeProvider.TYPES[ENTITY_CUTOUT_NO_CULL]?.invoke(entity("allay/allay"))!!,
+                TexturedRenderTypeProvider(ENTITY_CUTOUT_NO_CULL, entity("allay/allay")),
                 15
             )
         )
@@ -32,11 +35,17 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("test2"),
             VanillaHeadModel(
                 getVanilla(SkullBlock.Types.SKELETON),
-                TexturedRenderTypeProvider.TYPES[ENTITY_CUTOUT_NO_CULL]?.invoke(entity("slime/slime"))!!,
+                TexturedRenderTypeProvider(ENTITY_TRANSLUCENT, entity("slime/slime")),
             )
         )
+
         dataBuilder.create(
             id("test3"),
+            VanillaHeadModel(getVanilla(SkullBlock.Types.SKELETON), SimpleRenderTypeProvider(END_PORTAL))
+        )
+
+        dataBuilder.create(
+            id("test4"),
             ListHeadModel(
                 BlockHeadModel(Blocks.RED_STAINED_GLASS.defaultBlockState()),
                 BlockHeadModel(Blocks.OAK_FENCE.defaultBlockState())

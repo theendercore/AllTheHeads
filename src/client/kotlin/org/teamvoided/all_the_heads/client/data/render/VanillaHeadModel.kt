@@ -6,23 +6,19 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.client.model.SkullModelBase
 import net.minecraft.client.renderer.MultiBufferSource
-import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.texture.OverlayTexture
-import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads.log
-import org.teamvoided.all_the_heads.AllTheHeads.mc
 import org.teamvoided.all_the_heads.client.data.render.HeadModel.Companion.getLightOverride
-import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
+import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProvider
 import org.teamvoided.all_the_heads.client.init.ATHHeadModels
-import org.teamvoided.all_the_heads.client.init.ATHRenderTypes.getTypes
 import org.teamvoided.all_the_heads.client.init.ModelsManager.VANILLA_MODEL_ACCESS
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getVanilla
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
 open class VanillaHeadModel(
-    val model: () -> SkullModelBase, val renderType: RenderType, val lightLevelOverride: Int? = null,
+    val model: () -> SkullModelBase, val renderTypeProvider: RenderTypeProvider, val lightLevelOverride: Int? = null,
 ) : HeadModel {
     override fun getType(): HeadModelType<*> = ATHHeadModels.VANILLA
     override fun render(
@@ -35,7 +31,7 @@ open class VanillaHeadModel(
         model.setupAnim(animationProgress, yaw, 0.0f)
         model.renderToBuffer(
             matrices,
-            vertexConsumers.getBuffer(renderType),
+            vertexConsumers.getBuffer(renderTypeProvider.get()),
             getLightOverride(light, lightLevelOverride),
             OverlayTexture.NO_OVERLAY
         )
@@ -45,7 +41,7 @@ open class VanillaHeadModel(
         val CODEC: MapCodec<VanillaHeadModel> = RecordCodecBuilder.mapCodec {
             it.group(
                 SkullBlock.Types.CODEC.fieldOf("type").forGetter { SkullBlock.Types.CREEPER },
-                ResourceLocation.CODEC.fieldOf("render_type").forGetter { TexturedRenderTypeProvider.ENTITY_CUTOUT },
+                RenderTypeProvider.CODEC.fieldOf("render_type").forGetter(VanillaHeadModel::renderTypeProvider),
                 Codec.intRange(1, 15).optionalFieldOf("light_level_override")
                     .forGetter { obj -> Optional.ofNullable(obj.lightLevelOverride) },
             ).apply(it) { model, renderType, light ->
@@ -53,17 +49,7 @@ open class VanillaHeadModel(
                     log.error("No such model [ $model ]")
                     SkullBlock.Types.CREEPER
                 }
-
-                var renderTypeId = if (getTypes().contains(renderType)) renderType else {
-                    log.error("No such render type [ $renderType ]")
-                    TexturedRenderTypeProvider.ENTITY_CUTOUT
-                }
-
-                VanillaHeadModel(
-                    getVanilla(modelId),
-                    TexturedRenderTypeProvider.TYPES[renderType]!!.invoke(mc("textures/entity/allay/allay.png")),
-                    light.getOrNull()
-                )
+                VanillaHeadModel(getVanilla(modelId), renderType, light.getOrNull())
             }
         }
     }

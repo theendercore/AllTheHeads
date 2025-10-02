@@ -1,15 +1,17 @@
 package org.teamvoided.all_the_heads.client.init
 
 import net.minecraft.client.model.SkullModelBase
-import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
+import org.teamvoided.all_the_heads.AllTheHeads.mc
 import org.teamvoided.all_the_heads.client.data.render.BlockHeadModel
+import org.teamvoided.all_the_heads.client.data.render.BuiltInHeadModel
 import org.teamvoided.all_the_heads.client.data.render.HeadModel
 import org.teamvoided.all_the_heads.client.data.render.ListHeadModel
-import org.teamvoided.all_the_heads.client.data.render.BuiltInHeadModel
+import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProvider
+import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures
 import org.teamvoided.all_the_heads.client.data.textures.VTTextures
 import org.teamvoided.all_the_heads.client.model.*
@@ -17,9 +19,23 @@ import org.teamvoided.all_the_heads.client.model.*
 object ModelsManager {
     @JvmField
     var VANILLA_MODEL_ACCESS = mapOf<SkullBlock.Type, SkullModelBase>()
+    fun getVanillaModel(skull: SkullBlock.Type): SkullModelBase {
+        if (skull !is SkullBlock.Types) {
+            AllTheHeads.sendError("Supplied non vanilla SkullType! $skull", skull)
+            return VANILLA_MODEL_ACCESS[SkullBlock.Types.PLAYER]!!
+        }
+        return VANILLA_MODEL_ACCESS[skull]!!
+    }
 
     @JvmField
     var BUILT_IN_MODELS = mutableMapOf<ResourceLocation, SkullModelBase>()
+    fun getBuiltInModel(id: ResourceLocation): SkullModelBase? {
+        val model = BUILT_IN_MODELS[id]
+        return if (model != null) model else {
+            AllTheHeads.sendError("Failed to load model for Id! $id", id)
+            VANILLA_MODEL_ACCESS[SkullBlock.Types.PLAYER]!!
+        }
+    }
 
     val models = mapOf<String, HeadModel>(
         VTTextures.ALLAY to builtIn(AllayHeadModel.ID, "allay/allay", 15),
@@ -280,12 +296,13 @@ object ModelsManager {
         }
     }
 
-    fun basicType(texture: String): RenderType = RenderType.entityCutoutNoCullZOffset(AllTheHeads.tryParseId(texture)!!)
-    fun entityBasic(texture: String): RenderType = basicType("textures/entity/${texture}.png")
+    fun textured(texture: String, id: ResourceLocation): RenderTypeProvider =
+        TexturedRenderTypeProvider(id, mc("textures/entity/${texture}"))
 
-    fun translucentType(texture: String): RenderType = RenderType.entityTranslucent(AllTheHeads.tryParseId(texture)!!)
+    fun entityBasic(texture: String): RenderTypeProvider =
+        textured(texture, TexturedRenderTypeProvider.ENTITY_CUTOUT_NO_CULL_Z_OFFSET)
 
-    @Suppress("unused")
-    fun entityTranslucent(texture: String): RenderType = translucentType("textures/entity/${texture}.png")
+    fun entityTranslucent(texture: String): RenderTypeProvider =
+        textured(texture, TexturedRenderTypeProvider.ENTITY_TRANSLUCENT)
 
 }
