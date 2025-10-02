@@ -161,7 +161,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             ),
             id("magma_cube") to HeadModelOverride(
                 VTTextures.MAGMA_CUBE,
-                builtIn(MagmaCubeHeadModel.ID, "slime/magmacube")
+                builtIn(MagmaCubeHeadModel.ID, "slime/magmacube", 15)
             ),
             // Llama
             id("llama/creamy") to HeadModelOverride(
