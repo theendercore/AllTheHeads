@@ -9,8 +9,8 @@ import org.teamvoided.all_the_heads.AllTheHeads.mc
 import org.teamvoided.all_the_heads.client.init.ATHRenderTypes
 import org.teamvoided.all_the_heads.client.init.RenderTypeCreator
 
-open class TexturedRenderType(val id: ResourceLocation, val texture: ResourceLocation) : EncodableRenderType {
-    override fun getType(): EncodableRenderType.Type<*> = ATHRenderTypes.TEXTURED
+open class TexturedRenderTypeProvider(val id: ResourceLocation, val texture: ResourceLocation) : RenderTypeProvider {
+    override fun getType(): RenderTypeProviderType<*> = ATHRenderTypes.TEXTURED
     override fun renderType(): RenderType = TYPES[id]?.invoke(texture.withSuffix(".png")) ?: lines()
 
     companion object {
@@ -36,13 +36,13 @@ open class TexturedRenderType(val id: ResourceLocation, val texture: ResourceLoc
             return id
         }
 
-        val CODEC: MapCodec<TexturedRenderType> = RecordCodecBuilder.mapCodec {
+        val CODEC: MapCodec<TexturedRenderTypeProvider> = RecordCodecBuilder.mapCodec {
             it.group(
-                ResourceLocation.CODEC.fieldOf("id").forGetter(TexturedRenderType::id),
-                ResourceLocation.CODEC.fieldOf("texture").forGetter(TexturedRenderType::texture)
+                ResourceLocation.CODEC.fieldOf("id").forGetter(TexturedRenderTypeProvider::id),
+                ResourceLocation.CODEC.fieldOf("texture").forGetter(TexturedRenderTypeProvider::texture)
             ).apply(it) { id, texture ->
                 if (!TYPES.contains(id)) error("No such TexturedRenderType register [ $id ]")
-                TexturedRenderType(id, texture)
+                TexturedRenderTypeProvider(id, texture)
             }
         }
     }

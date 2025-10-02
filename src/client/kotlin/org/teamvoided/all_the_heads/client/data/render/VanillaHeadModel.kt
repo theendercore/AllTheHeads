@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads.log
 import org.teamvoided.all_the_heads.AllTheHeads.mc
 import org.teamvoided.all_the_heads.client.data.render.HeadModel.Companion.getLightOverride
-import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderType
+import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
 import org.teamvoided.all_the_heads.client.init.ATHHeadModels
 import org.teamvoided.all_the_heads.client.init.ATHRenderTypes.getTypes
 import org.teamvoided.all_the_heads.client.init.ModelsManager.VANILLA_MODEL_ACCESS
@@ -45,7 +45,7 @@ open class VanillaHeadModel(
         val CODEC: MapCodec<VanillaHeadModel> = RecordCodecBuilder.mapCodec {
             it.group(
                 SkullBlock.Types.CODEC.fieldOf("type").forGetter { SkullBlock.Types.CREEPER },
-                ResourceLocation.CODEC.fieldOf("render_type").forGetter { TexturedRenderType.ENTITY_CUTOUT },
+                ResourceLocation.CODEC.fieldOf("render_type").forGetter { TexturedRenderTypeProvider.ENTITY_CUTOUT },
                 Codec.intRange(1, 15).optionalFieldOf("light_level_override")
                     .forGetter { obj -> Optional.ofNullable(obj.lightLevelOverride) },
             ).apply(it) { model, renderType, light ->
@@ -56,12 +56,12 @@ open class VanillaHeadModel(
 
                 var renderTypeId = if (getTypes().contains(renderType)) renderType else {
                     log.error("No such render type [ $renderType ]")
-                    TexturedRenderType.ENTITY_CUTOUT
+                    TexturedRenderTypeProvider.ENTITY_CUTOUT
                 }
 
                 VanillaHeadModel(
                     getVanilla(modelId),
-                    TexturedRenderType.TYPES[renderType]!!.invoke(mc("textures/entity/allay/allay.png")),
+                    TexturedRenderTypeProvider.TYPES[renderType]!!.invoke(mc("textures/entity/allay/allay.png")),
                     light.getOrNull()
                 )
             }

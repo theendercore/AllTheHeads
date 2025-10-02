@@ -9,8 +9,8 @@ import org.teamvoided.all_the_heads.AllTheHeads.mc
 import org.teamvoided.all_the_heads.client.init.ATHRenderTypes
 import java.util.function.Supplier
 
-open class SimpleRenderType(val id: ResourceLocation) : EncodableRenderType {
-    override fun getType(): EncodableRenderType.Type<*> = ATHRenderTypes.SIMPLE
+open class SimpleRenderTypeProvider(val id: ResourceLocation) : RenderTypeProvider {
+    override fun getType(): RenderTypeProviderType<*> = ATHRenderTypes.SIMPLE
     override fun renderType(): RenderType = TYPES[id]?.get() ?: lines()
 
     companion object {
@@ -29,10 +29,10 @@ open class SimpleRenderType(val id: ResourceLocation) : EncodableRenderType {
             return id
         }
 
-        val CODEC: MapCodec<SimpleRenderType> = RecordCodecBuilder.mapCodec {
-            it.group(ResourceLocation.CODEC.fieldOf("id").forGetter(SimpleRenderType::id)).apply(it) { id ->
+        val CODEC: MapCodec<SimpleRenderTypeProvider> = RecordCodecBuilder.mapCodec {
+            it.group(ResourceLocation.CODEC.fieldOf("id").forGetter(SimpleRenderTypeProvider::id)).apply(it) { id ->
                 if (!TYPES.contains(id)) error("No such SimpleRenderType register [ $id ]")
-                SimpleRenderType(id)
+                SimpleRenderTypeProvider(id)
             }
         }
     }

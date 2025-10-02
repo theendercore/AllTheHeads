@@ -7,9 +7,10 @@ import net.minecraft.core.Registry
 import net.minecraft.resources.ResourceLocation
 import org.teamvoided.all_the_heads.AllTheHeads.id
 import org.teamvoided.all_the_heads.AllTheHeads.mc
-import org.teamvoided.all_the_heads.client.data.render.type.EncodableRenderType
-import org.teamvoided.all_the_heads.client.data.render.type.SimpleRenderType
-import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderType
+import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProvider
+import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProviderType
+import org.teamvoided.all_the_heads.client.data.render.type.SimpleRenderTypeProvider
+import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
 import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries.DATA_RENDER_TYPE
 
 typealias RenderTypeCreator = (ResourceLocation) -> RenderType
@@ -17,14 +18,14 @@ typealias RenderTypeCreator = (ResourceLocation) -> RenderType
 object ATHRenderTypes {
     fun init() = Unit
 
-    val SIMPLE = encodableType("simple", SimpleRenderType.CODEC)
-    val TEXTURED = encodableType("textured", TexturedRenderType.CODEC)
+    val SIMPLE = encodableType("simple", SimpleRenderTypeProvider.CODEC)
+    val TEXTURED = encodableType("textured", TexturedRenderTypeProvider.CODEC)
 
-    fun <T : EncodableRenderType> encodableType(id: String, codec: MapCodec<T>): EncodableRenderType.Type<T> =
+    fun <T : RenderTypeProvider> encodableType(id: String, codec: MapCodec<T>): RenderTypeProviderType<T> =
         encodableType(id(id), codec)
 
-    fun <T : EncodableRenderType> encodableType(id: ResourceLocation, codec: MapCodec<T>): EncodableRenderType.Type<T> =
-        Registry.register(DATA_RENDER_TYPE, id, EncodableRenderType.Type { codec })
+    fun <T : RenderTypeProvider> encodableType(id: ResourceLocation, codec: MapCodec<T>): RenderTypeProviderType<T> =
+        Registry.register(DATA_RENDER_TYPE, id, RenderTypeProviderType { codec })
 
 
     private val TYPES = mutableMapOf<ResourceLocation, RenderTypeCreator>()

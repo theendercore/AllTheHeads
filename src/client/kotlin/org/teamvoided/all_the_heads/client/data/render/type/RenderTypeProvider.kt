@@ -1,0 +1,15 @@
+package org.teamvoided.all_the_heads.client.data.render.type
+
+import com.mojang.serialization.Codec
+import net.minecraft.client.renderer.RenderType
+import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries.DATA_RENDER_TYPE
+
+interface RenderTypeProvider {
+    fun getType(): RenderTypeProviderType<*>
+    fun renderType(): RenderType
+
+    companion object {
+        val CODEC: Codec<RenderTypeProvider> =
+            DATA_RENDER_TYPE.byNameCodec().dispatch(RenderTypeProvider::getType, RenderTypeProviderType<*>::codec)
+    }
+}

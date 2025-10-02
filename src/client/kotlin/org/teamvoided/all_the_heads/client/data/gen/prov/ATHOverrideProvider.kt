@@ -11,8 +11,8 @@ import org.teamvoided.all_the_heads.client.data.gen.FutureLookup
 import org.teamvoided.all_the_heads.client.data.gen.HeadModelOverrideProvider
 import org.teamvoided.all_the_heads.client.data.gen.Output
 import org.teamvoided.all_the_heads.client.data.render.*
-import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderType
-import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderType.Companion.ENTITY_CUTOUT_NO_CULL
+import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
+import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider.Companion.ENTITY_CUTOUT_NO_CULL
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getBuiltIn
 import org.teamvoided.all_the_heads.client.init.ModelsManager.getVanilla
 import org.teamvoided.all_the_heads.client.model.AllayHeadModel
@@ -24,7 +24,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("test1"),
             BuiltInHeadModel(
                 getBuiltIn(AllayHeadModel.ID),
-                TexturedRenderType.TYPES[ENTITY_CUTOUT_NO_CULL]?.invoke(entity("allay/allay"))!!,
+                TexturedRenderTypeProvider.TYPES[ENTITY_CUTOUT_NO_CULL]?.invoke(entity("allay/allay"))!!,
                 15
             )
         )
@@ -32,7 +32,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("test2"),
             VanillaHeadModel(
                 getVanilla(SkullBlock.Types.SKELETON),
-                TexturedRenderType.TYPES[ENTITY_CUTOUT_NO_CULL]?.invoke(entity("slime/slime"))!!,
+                TexturedRenderTypeProvider.TYPES[ENTITY_CUTOUT_NO_CULL]?.invoke(entity("slime/slime"))!!,
             )
         )
         dataBuilder.create(
