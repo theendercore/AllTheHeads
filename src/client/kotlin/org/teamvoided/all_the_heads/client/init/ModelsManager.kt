@@ -6,10 +6,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
 import org.teamvoided.all_the_heads.AllTheHeads.mc
-import org.teamvoided.all_the_heads.client.data.render.BlockHeadModel
-import org.teamvoided.all_the_heads.client.data.render.BuiltInHeadModel
-import org.teamvoided.all_the_heads.client.data.render.HeadModel
-import org.teamvoided.all_the_heads.client.data.render.ListHeadModel
+import org.teamvoided.all_the_heads.client.data.render.*
 import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures
@@ -29,7 +26,7 @@ object ModelsManager {
 
     @JvmField
     var BUILT_IN_MODELS = mutableMapOf<ResourceLocation, SkullModelBase>()
-    fun getBuiltInModel(id: ResourceLocation): SkullModelBase? {
+    fun getBuiltInModel(id: ResourceLocation): SkullModelBase {
         val model = BUILT_IN_MODELS[id]
         return if (model != null) model else {
             AllTheHeads.sendError("Failed to load model for Id! $id", id)
@@ -37,7 +34,7 @@ object ModelsManager {
         }
     }
 
-    val models = mapOf<String, HeadModel>(
+    val models = mapOf(
         VTTextures.ALLAY to builtIn(AllayHeadModel.ID, "allay/allay", 15),
         VTTextures.ARMADILLO to builtIn(ArmadilloHeadModel.ID, "armadillo"),
         // Axolotl
@@ -115,11 +112,11 @@ object ModelsManager {
         VTTextures.GRAY_LLAMA to builtIn(LlamaHeadModel.ID, "llama/gray"),
 
         VTTextures.MAGMA_CUBE to builtIn(MagmaCubeHeadModel.ID, "slime/magmacube", 15),
-        VTTextures.RED_MOOSHROOM to multi(
+        VTTextures.RED_MOOSHROOM to list(
             builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
             BlockHeadModel(Blocks.RED_MUSHROOM.defaultBlockState())
         ),
-        VTTextures.BROWN_MOOSHROOM to multi(
+        VTTextures.BROWN_MOOSHROOM to list(
             builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
             BlockHeadModel(Blocks.BROWN_MUSHROOM.defaultBlockState())
         ),
@@ -180,15 +177,15 @@ object ModelsManager {
         VTTextures.SHULKER to builtIn(ShulkerHeadModel.ID, "shulker/shulker"),
         VTTextures.SILVERFISH to builtIn(SilverfishHeadModel.ID, "silverfish"),
         VTTextures.SKELETON_HORSE to builtIn(HorseHeadModel.ID, "horse/horse_skeleton"),
-        VTTextures.SLIME to multi(
+        VTTextures.SLIME to list(
             builtIn(SlimeHeadModel.ID, "slime/slime"),
-            BuiltInHeadModel(getVanilla(SkullBlock.Types.SKELETON), entityTranslucent("slime/slime"))
+            VanillaHeadModel(SkullBlock.Types.SKELETON, entityTranslucent("slime/slime"))
         ),
         VTTextures.SNIFFER to builtIn(SnifferHeadModel.ID, "sniffer/sniffer"),
         VTTextures.SNOW_GOLEM to builtIn(SnowGolemHeadModel.ID, "snow_golem"),
         VTTextures.SPIDER to builtIn(SpiderHeadModel.ID, "spider/spider"),
         VTTextures.SQUID to builtIn(SquidHeadModel.ID, "squid/squid"),
-        VTTextures.STRAY to multi(
+        VTTextures.STRAY to list(
             vanilla(SkullBlock.Types.SKELETON, "skeleton/stray"),
             vanilla(SkullBlock.Types.SKELETON, "skeleton/stray_overlay")
         ),
@@ -272,29 +269,13 @@ object ModelsManager {
         MiscTextures.TEST_TEX to builtIn(CamelWithNeckHeadModel.ID, "camel/camel"),
     )
 
-    fun multi(vararg model: HeadModel) = ListHeadModel(*model)
-    fun vanilla(id: SkullBlock.Type, texture: String, lightLevel: Int? = null) =
-        BuiltInHeadModel(getVanilla(id), entityBasic(texture), lightLevel)
-
-    fun getVanilla(type: SkullBlock.Type): () -> SkullModelBase {
-        if (type !is SkullBlock.Types) {
-            AllTheHeads.sendError("Supplied non vanilla SkullType! $type", type)
-            return { VANILLA_MODEL_ACCESS[SkullBlock.Types.PLAYER]!! }
-        }
-        return { VANILLA_MODEL_ACCESS[type]!! }
-    }
+    fun list(vararg model: HeadModel) = ListHeadModel(*model)
+    fun vanilla(type: SkullBlock.Type, texture: String, lightLevel: Int? = null) =
+        VanillaHeadModel(type, entityBasic(texture), lightLevel)
 
     fun builtIn(id: ResourceLocation, texture: String, lightLevel: Int? = null) =
-        BuiltInHeadModel(getBuiltIn(id), entityBasic(texture), lightLevel)
+        BuiltInHeadModel(id, entityBasic(texture), lightLevel)
 
-    fun getBuiltIn(id: ResourceLocation): () -> SkullModelBase = {
-        val model = BUILT_IN_MODELS[id]
-        if (model != null) model
-        else {
-            AllTheHeads.sendError("Failed to load model for Id! $id", id)
-            VANILLA_MODEL_ACCESS[SkullBlock.Types.PLAYER]!!
-        }
-    }
 
     fun textured(texture: String, id: ResourceLocation): RenderTypeProvider =
         TexturedRenderTypeProvider(id, mc("textures/entity/${texture}"))

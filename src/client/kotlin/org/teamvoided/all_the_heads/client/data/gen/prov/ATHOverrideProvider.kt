@@ -16,8 +16,6 @@ import org.teamvoided.all_the_heads.client.data.render.type.SimpleRenderTypeProv
 import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider
 import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider.Companion.ENTITY_CUTOUT_NO_CULL
 import org.teamvoided.all_the_heads.client.data.render.type.TexturedRenderTypeProvider.Companion.ENTITY_TRANSLUCENT
-import org.teamvoided.all_the_heads.client.init.ModelsManager.getBuiltIn
-import org.teamvoided.all_the_heads.client.init.ModelsManager.getVanilla
 import org.teamvoided.all_the_heads.client.model.AllayHeadModel
 import org.teamvoided.all_the_heads.client.resources.HeadModelOverride
 
@@ -26,7 +24,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
         dataBuilder.create(
             id("test1"),
             BuiltInHeadModel(
-                getBuiltIn(AllayHeadModel.ID),
+                AllayHeadModel.ID,
                 TexturedRenderTypeProvider(ENTITY_CUTOUT_NO_CULL, entity("allay/allay")),
                 15
             )
@@ -34,14 +32,14 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
         dataBuilder.create(
             id("test2"),
             VanillaHeadModel(
-                getVanilla(SkullBlock.Types.SKELETON),
+                SkullBlock.Types.SKELETON,
                 TexturedRenderTypeProvider(ENTITY_TRANSLUCENT, entity("slime/slime")),
             )
         )
 
         dataBuilder.create(
             id("test3"),
-            VanillaHeadModel(getVanilla(SkullBlock.Types.SKELETON), SimpleRenderTypeProvider(END_PORTAL))
+            VanillaHeadModel(SkullBlock.Types.SKELETON, SimpleRenderTypeProvider(END_PORTAL))
         )
 
         dataBuilder.create(

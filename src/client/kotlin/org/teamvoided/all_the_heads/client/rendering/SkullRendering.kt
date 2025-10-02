@@ -11,8 +11,8 @@ import org.teamvoided.all_the_heads.client.AllTheHeadsClient.clientConfig
 import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
-import org.teamvoided.all_the_heads.client.data.render.BuiltInHeadModel
 import org.teamvoided.all_the_heads.client.data.render.HeadModel
+import org.teamvoided.all_the_heads.client.data.render.VanillaHeadModel
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures.TEXTURE_BLACKLIST
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 import org.teamvoided.all_the_heads.client.init.ModelsManager.entityBasic
@@ -64,10 +64,10 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): HeadModel? {
             val model = models[SkullBlock.Types.DRAGON]
             if (model == null) {
                 sendError("Could not find model for ${SkullBlock.Types.DRAGON}", "No thanks")
-
                 return null
             }
-            return BuiltInHeadModel({ model }, entityBasic("enderdragon/dragon"))
+
+            return VanillaHeadModel(SkullBlock.Types.DRAGON, entityBasic("enderdragon/dragon"))
         }
     }
 }
