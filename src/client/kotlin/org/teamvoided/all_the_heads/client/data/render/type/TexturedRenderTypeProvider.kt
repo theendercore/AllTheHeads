@@ -11,7 +11,7 @@ import org.teamvoided.all_the_heads.client.init.RenderTypeCreator
 
 open class TexturedRenderTypeProvider(val id: ResourceLocation, val texture: ResourceLocation) : RenderTypeProvider {
     override fun getType(): RenderTypeProviderType<*> = ATHRenderTypes.TEXTURED
-    override fun get(): RenderType = TYPES[id]?.invoke(texture.withSuffix(".png")) ?: lines()
+    override fun get(): RenderType = TYPES[id]?.invoke(texture.withSuffix(".png")) ?: super.get()
 
     companion object {
         val TYPES = mutableMapOf<ResourceLocation, RenderTypeCreator>()
@@ -29,6 +29,7 @@ open class TexturedRenderTypeProvider(val id: ResourceLocation, val texture: Res
         val ENTITY_SHADOW = type("entity_shadow", ::entityShadow)
         val EYES = type("eyes", ::eyes)
         val BREEZE_EYES = type("breeze_eyes", ::breezeEyes)
+
 
         fun type(id: String, type: RenderTypeCreator) = type(mc(id), type)
         fun type(id: ResourceLocation, type: RenderTypeCreator): ResourceLocation {

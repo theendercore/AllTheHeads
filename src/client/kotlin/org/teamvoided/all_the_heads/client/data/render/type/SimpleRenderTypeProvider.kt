@@ -11,7 +11,7 @@ import java.util.function.Supplier
 
 open class SimpleRenderTypeProvider(val id: ResourceLocation) : RenderTypeProvider {
     override fun getType(): RenderTypeProviderType<*> = ATHRenderTypes.SIMPLE
-    override fun get(): RenderType = TYPES[id]?.get() ?: lines()
+    override fun get(): RenderType = TYPES[id]?.get() ?: super.get()
 
     companion object {
         val TYPES = mutableMapOf<ResourceLocation, Supplier<RenderType>>()
