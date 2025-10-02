@@ -12,8 +12,8 @@ import org.teamvoided.all_the_heads.client.data.HeadRenderMode
 import org.teamvoided.all_the_heads.client.data.ProfileDataMode
 import org.teamvoided.all_the_heads.client.data.SkullRenderContext
 import org.teamvoided.all_the_heads.client.data.gen.prov.ATHOverrideProvider.Companion.entityBasic
-import org.teamvoided.all_the_heads.client.data.render.HeadModel
-import org.teamvoided.all_the_heads.client.data.render.VanillaHeadModel
+import org.teamvoided.all_the_heads.client.data.render.ModelProvider
+import org.teamvoided.all_the_heads.client.data.render.VanillaModelProvider
 import org.teamvoided.all_the_heads.client.data.textures.MiscTextures.TEXTURE_BLACKLIST
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 import org.teamvoided.all_the_heads.client.utils.getTexture
@@ -41,7 +41,7 @@ fun renderSkull(
     return false
 }
 
-fun fetchSkullRenderInfo(ctx: SkullRenderContext): HeadModel? {
+fun fetchSkullRenderInfo(ctx: SkullRenderContext): ModelProvider? {
     when (clientConfig.headRenderMode.get()) {
         HeadRenderMode.PROFILE -> when (clientConfig.profileDataMode.get()) {
             ProfileDataMode.TEXTURE -> {
@@ -67,7 +67,7 @@ fun fetchSkullRenderInfo(ctx: SkullRenderContext): HeadModel? {
                 return null
             }
 
-            return VanillaHeadModel(SkullBlock.Types.DRAGON, entityBasic("enderdragon/dragon"))
+            return VanillaModelProvider(SkullBlock.Types.DRAGON, entityBasic("enderdragon/dragon"))
         }
     }
 }

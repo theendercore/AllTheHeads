@@ -10,14 +10,14 @@ import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.block.BlockRenderDispatcher
 import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.world.level.block.state.BlockState
-import org.teamvoided.all_the_heads.client.data.render.HeadModel.Companion.getLightOverride
-import org.teamvoided.all_the_heads.client.init.ATHHeadModels
+import org.teamvoided.all_the_heads.client.data.render.ModelProvider.Companion.getLightOverride
+import org.teamvoided.all_the_heads.client.init.ATHModelProviders
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
-open class BlockHeadModel(
+open class BlockModelProvider(
     val blockState: BlockState, val lightLevelOverride: Int? = null,
-) : HeadModel {
+) : ModelProvider {
     fun blockRenderer(): BlockRenderDispatcher = Minecraft.getInstance().blockRenderer
 
     init {
@@ -26,7 +26,7 @@ open class BlockHeadModel(
         }
     }
 
-    override fun getType(): HeadModelType<*> = ATHHeadModels.BLOCK
+    override fun getType(): ModelProviderType<*> = ATHModelProviders.BLOCK
     override fun render(
         animationProgress: Float, yaw: Float, pitch: Float,
         matrices: PoseStack, vertexConsumers: MultiBufferSource, light: Int,
@@ -43,12 +43,12 @@ open class BlockHeadModel(
     }
 
     companion object {
-        val CODEC: MapCodec<BlockHeadModel> = RecordCodecBuilder.mapCodec {
+        val CODEC: MapCodec<BlockModelProvider> = RecordCodecBuilder.mapCodec {
             it.group(
-                BlockState.CODEC.fieldOf("block_state").forGetter(BlockHeadModel::blockState),
+                BlockState.CODEC.fieldOf("block_state").forGetter(BlockModelProvider::blockState),
                 Codec.intRange(1, 15).optionalFieldOf("light_level_override")
                     .forGetter { obj -> Optional.ofNullable(obj.lightLevelOverride) },
-            ).apply(it) { state, light -> BlockHeadModel(state, light.getOrNull()) }
+            ).apply(it) { state, light -> BlockModelProvider(state, light.getOrNull()) }
         }
     }
 }

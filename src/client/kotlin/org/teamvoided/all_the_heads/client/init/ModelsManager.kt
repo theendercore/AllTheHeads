@@ -4,7 +4,7 @@ import net.minecraft.client.model.SkullModelBase
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SkullBlock
 import org.teamvoided.all_the_heads.AllTheHeads
-import org.teamvoided.all_the_heads.client.data.render.HeadModel
+import org.teamvoided.all_the_heads.client.data.render.ModelProvider
 
 object ModelsManager {
     @JvmField
@@ -30,7 +30,7 @@ object ModelsManager {
     }
 
     val TEXTURE_TO_MODEL = mutableMapOf<String, ResourceLocation>()
-    val HEAD_MODELS = mutableMapOf<ResourceLocation, HeadModel>()
+    val HEAD_MODELS = mutableMapOf<ResourceLocation, ModelProvider>()
 
     fun onReload() {
         TEXTURE_TO_MODEL.clear()

@@ -5,12 +5,12 @@ import net.minecraft.core.MappedRegistry
 import net.minecraft.core.Registry
 import net.minecraft.resources.ResourceKey
 import org.teamvoided.all_the_heads.AllTheHeads.id
-import org.teamvoided.all_the_heads.client.data.render.HeadModelType
+import org.teamvoided.all_the_heads.client.data.render.ModelProviderType
 import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProviderType
 
 object ATHBuiltInRegistries {
-    val HEAD_RENDER_STATE_TYPE_KEY = key<HeadModelType<*>>("head_render_state_type")
-    val HEAD_RENDER_STATE_TYPE: MappedRegistry<HeadModelType<*>> = create(HEAD_RENDER_STATE_TYPE_KEY)
+    val MODEL_PROVIDER_TYPE_KEY = key<ModelProviderType<*>>("model_provider_type")
+    val MODEL_PROVIDER_TYPE: MappedRegistry<ModelProviderType<*>> = create(MODEL_PROVIDER_TYPE_KEY)
 
     val RENDER_TYPE_PROVIDER_TYPE_KEY = key<RenderTypeProviderType<*>>("render_type_provider_type")
     val RENDER_TYPE_PROVIDER_TYPE: MappedRegistry<RenderTypeProviderType<*>> = create(RENDER_TYPE_PROVIDER_TYPE_KEY)

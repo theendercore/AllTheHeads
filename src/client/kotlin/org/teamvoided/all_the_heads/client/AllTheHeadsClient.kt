@@ -10,7 +10,7 @@ import net.minecraft.server.packs.PackType
 import org.teamvoided.all_the_heads.CopyToClipboardPayload
 import org.teamvoided.all_the_heads.client.config.AllTheHeadsClientConfig
 import org.teamvoided.all_the_heads.client.init.ATHBuiltInRegistries
-import org.teamvoided.all_the_heads.client.init.ATHHeadModels
+import org.teamvoided.all_the_heads.client.init.ATHModelProviders
 import org.teamvoided.all_the_heads.client.init.ATHModels
 import org.teamvoided.all_the_heads.client.init.ATHRenderTypes
 import org.teamvoided.all_the_heads.client.resources.HeadModelOverrideReloadListener
@@ -25,7 +25,7 @@ object AllTheHeadsClient {
     var clientConfig = ConfigApi.registerAndLoadConfig(::AllTheHeadsClientConfig, RegisterType.CLIENT)
     fun init() {
         ATHBuiltInRegistries.init()
-        ATHHeadModels.init()
+        ATHModelProviders.init()
         ATHRenderTypes.init()
         ATHModels.init()
         ClientPlayNetworking.registerGlobalReceiver(CopyToClipboardPayload.ID, ::copyClipboard)

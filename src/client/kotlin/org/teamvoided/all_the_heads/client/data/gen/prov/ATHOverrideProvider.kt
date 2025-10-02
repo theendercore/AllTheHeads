@@ -82,7 +82,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("cave_spider") to HeadModelOverride(
                 VTTextures.CAVE_SPIDER, list(
                     builtIn(SpiderHeadModel.ID, "spider/cave_spider"),
-                    BuiltInHeadModel(SpiderHeadModel.ID, eyes("spider_eyes"))
+                    BuiltInModelProvider(SpiderHeadModel.ID, eyes("spider_eyes"))
                 )
             ),
             id("chicken") to HeadModelOverride(VTTextures.CHICKEN, builtIn(ChickenHeadModel.ID, "chicken")),
@@ -175,13 +175,13 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("red_mooshroom") to HeadModelOverride(
                 VTTextures.RED_MOOSHROOM, list(
                     builtIn(CowHeadModel.ID, "cow/red_mooshroom"),
-                    BlockHeadModel(Blocks.RED_MUSHROOM.defaultBlockState())
+                    BlockModelProvider(Blocks.RED_MUSHROOM.defaultBlockState())
                 )
             ),
             id("brown_mooshroom") to HeadModelOverride(
                 VTTextures.BROWN_MOOSHROOM, list(
                     builtIn(CowHeadModel.ID, "cow/brown_mooshroom"),
-                    BlockHeadModel(Blocks.BROWN_MUSHROOM.defaultBlockState())
+                    BlockModelProvider(Blocks.BROWN_MUSHROOM.defaultBlockState())
                 )
             ),
 
@@ -239,7 +239,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("phantom") to HeadModelOverride(
                 VTTextures.PHANTOM, list(
                     builtIn(PhantomHeadModel.ID, "phantom"),
-                    BuiltInHeadModel(PhantomHeadModel.ID, eyes("phantom_eyes"))
+                    BuiltInModelProvider(PhantomHeadModel.ID, eyes("phantom_eyes"))
                 )
             ),
             id("pig") to HeadModelOverride(VTTextures.PIG, builtIn(PigHeadModel.ID, "pig/pig")),
@@ -333,7 +333,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("slime") to HeadModelOverride(
                 VTTextures.SLIME, list(
                     builtIn(SlimeHeadModel.ID, "slime/slime"),
-                    VanillaHeadModel(SkullBlock.Types.SKELETON, entityTranslucent("slime/slime"))
+                    VanillaModelProvider(SkullBlock.Types.SKELETON, entityTranslucent("slime/slime"))
                 )
             ),
 
@@ -342,7 +342,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("spider") to HeadModelOverride(
                 VTTextures.SPIDER, list(
                     builtIn(SpiderHeadModel.ID, "spider/spider"),
-                    BuiltInHeadModel(SpiderHeadModel.ID, eyes("spider_eyes"))
+                    BuiltInModelProvider(SpiderHeadModel.ID, eyes("spider_eyes"))
                 )
             ),
             id("squid") to HeadModelOverride(VTTextures.SQUID, builtIn(SquidHeadModel.ID, "squid/squid")),
@@ -614,13 +614,13 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
     }
 
     companion object {
-        fun list(vararg model: HeadModel) = ListHeadModel(*model)
+        fun list(vararg model: ModelProvider) = ListModelProvider(*model)
 
         fun vanilla(type: SkullBlock.Type, texture: String, lightLevel: Int? = null) =
-            VanillaHeadModel(type, entityBasic(texture), lightLevel)
+            VanillaModelProvider(type, entityBasic(texture), lightLevel)
 
         fun builtIn(id: ResourceLocation, texture: String, lightLevel: Int? = null) =
-            BuiltInHeadModel(id, entityBasic(texture), lightLevel)
+            BuiltInModelProvider(id, entityBasic(texture), lightLevel)
 
         fun textured(texture: String, id: ResourceLocation): RenderTypeProvider =
             TexturedRenderTypeProvider(id, mc("textures/entity/${texture}"))

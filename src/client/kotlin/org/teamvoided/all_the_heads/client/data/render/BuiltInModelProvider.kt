@@ -6,23 +6,23 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.texture.OverlayTexture
-import net.minecraft.world.level.block.SkullBlock
-import org.teamvoided.all_the_heads.client.data.render.HeadModel.Companion.getLightOverride
+import net.minecraft.resources.ResourceLocation
+import org.teamvoided.all_the_heads.client.data.render.ModelProvider.Companion.getLightOverride
 import org.teamvoided.all_the_heads.client.data.render.type.RenderTypeProvider
-import org.teamvoided.all_the_heads.client.init.ATHHeadModels
+import org.teamvoided.all_the_heads.client.init.ATHModelProviders
 import org.teamvoided.all_the_heads.client.init.ModelsManager
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
-open class VanillaHeadModel(
-    val skullType: SkullBlock.Type, val renderTypeProvider: RenderTypeProvider, val lightLevelOverride: Int? = null,
-) : HeadModel {
-    override fun getType(): HeadModelType<*> = ATHHeadModels.VANILLA
+open class BuiltInModelProvider(
+    val modelId: ResourceLocation, val renderTypeProvider: RenderTypeProvider, val lightLevelOverride: Int? = null,
+) : ModelProvider {
+    override fun getType(): ModelProviderType<*> = ATHModelProviders.BUILT_IN
     override fun render(
         animationProgress: Float, yaw: Float, pitch: Float,
         matrices: PoseStack, vertexConsumers: MultiBufferSource, light: Int,
     ) {
-        val model = ModelsManager.getVanillaModel(skullType)
+        val model = ModelsManager.getBuiltInModel(modelId)
         model.setupAnim(animationProgress, yaw, 0.0f)
         model.renderToBuffer(
             matrices,
@@ -33,13 +33,13 @@ open class VanillaHeadModel(
     }
 
     companion object {
-        val CODEC: MapCodec<VanillaHeadModel> = RecordCodecBuilder.mapCodec {
+        val CODEC: MapCodec<BuiltInModelProvider> = RecordCodecBuilder.mapCodec {
             it.group(
-                SkullBlock.Types.CODEC.fieldOf("skull_type").forGetter(VanillaHeadModel::skullType),
-                RenderTypeProvider.CODEC.fieldOf("render_type").forGetter(VanillaHeadModel::renderTypeProvider),
+                ResourceLocation.CODEC.fieldOf("model_id").forGetter(BuiltInModelProvider::modelId),
+                RenderTypeProvider.CODEC.fieldOf("render_type").forGetter(BuiltInModelProvider::renderTypeProvider),
                 Codec.intRange(1, 15).optionalFieldOf("light_level_override")
                     .forGetter { obj -> Optional.ofNullable(obj.lightLevelOverride) },
-            ).apply(it) { skullType, renderType, light -> VanillaHeadModel(skullType, renderType, light.getOrNull()) }
+            ).apply(it) { model, renderType, light -> BuiltInModelProvider(model, renderType, light.getOrNull()) }
         }
     }
 }

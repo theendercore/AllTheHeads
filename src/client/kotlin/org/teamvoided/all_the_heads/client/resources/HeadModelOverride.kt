@@ -2,12 +2,12 @@ package org.teamvoided.all_the_heads.client.resources
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import org.teamvoided.all_the_heads.client.data.render.HeadModel
+import org.teamvoided.all_the_heads.client.data.render.ModelProvider
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
-class HeadModelOverride(val renderConditions: RenderConditions, val model: HeadModel) {
-    constructor(texture: String?, model: HeadModel) : this(RenderConditions(texture), model)
+class HeadModelOverride(val renderConditions: RenderConditions, val model: ModelProvider) {
+    constructor(texture: String?, model: ModelProvider) : this(RenderConditions(texture), model)
 
     class RenderConditions(val texture: String?) {
         companion object {
@@ -23,7 +23,7 @@ class HeadModelOverride(val renderConditions: RenderConditions, val model: HeadM
         val CODEC: Codec<HeadModelOverride> = RecordCodecBuilder.create {
             it.group(
                 RenderConditions.CODEC.fieldOf("render_conditions").forGetter(HeadModelOverride::renderConditions),
-                HeadModel.CODEC.fieldOf("model").forGetter(HeadModelOverride::model)
+                ModelProvider.CODEC.fieldOf("model").forGetter(HeadModelOverride::model)
             ).apply(it, ::HeadModelOverride)
         }
 
