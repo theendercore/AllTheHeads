@@ -24,7 +24,6 @@ class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, D
         ModelsManager.onReload()
 
         for ((id, json) in resources) {
-            log.info(id.toString())
             HeadModelOverride.CODEC.parse(JsonOps.INSTANCE, json)
                 .resultOrPartial { log.error("Failed to decode mob skull shader with ID {} - Error: {}", id, it) }
                 .ifPresent {
@@ -34,7 +33,7 @@ class HeadModelOverrideReloadListener : SimpleJsonResourceReloadListener(GSON, D
                     }
                 }
         }
-        log.info("List of all loaded data: {}", HEAD_MODELS)
+//        log.info("List of all loaded data: {}", HEAD_MODELS)
     }
 
     companion object {
