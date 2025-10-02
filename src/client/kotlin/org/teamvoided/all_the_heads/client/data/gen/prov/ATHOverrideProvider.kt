@@ -91,6 +91,7 @@ class ATHOverrideProvider(o: Output, r: FutureLookup) : HeadModelOverrideProvide
             id("husk") to HeadModelOverride(VTTextures.HUSK, vanilla(SkullBlock.Types.ZOMBIE, "zombie/husk")),
             id("iron_golem") to HeadModelOverride(VTTextures.IRON_GOLEM, builtIn(IronGolemHeadModel.ID, "iron_golem/iron_golem")),
             id("illusioner") to HeadModelOverride(VTTextures.ILLUSIONER, builtIn(IllagerHeadModel.ID, "illager/illusioner")),
+            id("magma_cube") to HeadModelOverride(VTTextures.MAGMA_CUBE, builtIn(MagmaCubeHeadModel.ID, "slime/magmacube")),
             // Llama
             id("llama/creamy") to HeadModelOverride(VTTextures.CREAMY_LLAMA, builtIn(LlamaHeadModel.ID, "llama/creamy")),
             id("llama/white") to HeadModelOverride(VTTextures.WHITE_LLAMA, builtIn(LlamaHeadModel.ID, "llama/white")),
